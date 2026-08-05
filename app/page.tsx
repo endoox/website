@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import { DiaGradient } from "./dia-gradient";
 import { HeroBackground } from "./hero-background";
 import { HeroStats } from "./hero-stats";
+import { MobileMenu } from "./mobile-menu";
 import { MotionObserver } from "./motion-observer";
 
 const TRUSTED_BY_LOGOS = [
@@ -331,6 +332,12 @@ export default function Home() {
           className={`${styles.headerCtaWrap} t-stagger-line t-stagger-line--3`}
         >
           <DemoButton href="#closing-cta" />
+        </div>
+
+        <div
+          className={`${styles.mobileMenuSlot} t-stagger-line t-stagger-line--3`}
+        >
+          <MobileMenu />
         </div>
       </header>
 
