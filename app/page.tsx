@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import { DiaGradient } from "./dia-gradient";
 import { HeroBackground } from "./hero-background";
 import { HeroStats } from "./hero-stats";
+import { MotionObserver } from "./motion-observer";
 
 const TRUSTED_BY_LOGOS = [
   {
@@ -175,13 +176,15 @@ function ArrowIcon() {
 function DemoButton({
   href,
   external = false,
+  className,
 }: {
   href: string;
   external?: boolean;
+  className?: string;
 }) {
   return (
     <a
-      className={styles.demoButton}
+      className={`${styles.demoButton} ${className ?? ""}`}
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noreferrer" : undefined}
@@ -285,8 +288,17 @@ function TestimonialRow({
 export default function Home() {
   return (
     <div className={styles.page}>
-      <header className={styles.header}>
-        <a className={styles.brand} href="#top" aria-label="Endo home">
+      <MotionObserver />
+
+      <header
+        className={`${styles.header} t-stagger`}
+        data-scroll-reveal
+      >
+        <a
+          className={`${styles.brand} t-stagger-line t-stagger-line--1`}
+          href="#top"
+          aria-label="Endo home"
+        >
           <Image
             className={styles.brandLogoBase}
             src="/brand/endo-logo-white.png"
@@ -306,13 +318,20 @@ export default function Home() {
           />
         </a>
 
-        <nav className={styles.headerNav} aria-label="Primary navigation">
+        <nav
+          className={`${styles.headerNav} t-stagger-line t-stagger-line--2`}
+          aria-label="Primary navigation"
+        >
           <a href="https://www.endodeals.com/features">Features</a>
           <a href="https://www.endodeals.com/about">About</a>
           <a href="https://www.endodeals.com/about#team">Our Team</a>
         </nav>
 
-        <DemoButton href="#closing-cta" />
+        <div
+          className={`${styles.headerCtaWrap} t-stagger-line t-stagger-line--3`}
+        >
+          <DemoButton href="#closing-cta" />
+        </div>
       </header>
 
       <main id="top" className={styles.main}>
@@ -322,32 +341,50 @@ export default function Home() {
           <div className={styles.heroStructure} aria-hidden="true" />
           <div className={styles.heroShade} aria-hidden="true" />
 
-          <div className={styles.heroContent}>
-            <h1 id="hero-heading" className={styles.heading}>
+          <div
+            className={`${styles.heroContent} t-stagger`}
+            data-scroll-reveal
+          >
+            <h1
+              id="hero-heading"
+              className={`${styles.heading} t-stagger-line t-stagger-line--1`}
+            >
               The endorsement platform
               <span>built for sports agencies</span>
             </h1>
 
-            <p className={styles.subheading}>
+            <p
+              className={`${styles.subheading} t-stagger-line t-stagger-line--2`}
+            >
               Never miss a payment or deliverable, price every deal right, and
               get more time to do what you do best.
             </p>
 
-            <DemoButton href="#closing-cta" />
+            <div
+              className={`${styles.heroButtonWrap} t-stagger-line t-stagger-line--3`}
+            >
+              <DemoButton href="#closing-cta" />
+            </div>
           </div>
 
           <HeroStats />
         </section>
 
         <section
-          className={styles.trustedSection}
+          className={`${styles.trustedSection} t-stagger`}
           aria-labelledby="trusted-heading"
+          data-scroll-reveal
         >
-          <h2 id="trusted-heading" className={styles.trustedHeading}>
+          <h2
+            id="trusted-heading"
+            className={`${styles.trustedHeading} t-stagger-line t-stagger-line--1`}
+          >
             Trusted by
           </h2>
 
-          <div className={styles.logoViewport}>
+          <div
+            className={`${styles.logoViewport} t-stagger-line t-stagger-line--2`}
+          >
             <div
               className={styles.logoTrack}
               style={{
@@ -392,22 +429,36 @@ export default function Home() {
           className={styles.featuresSection}
           aria-labelledby="features-heading"
         >
-          <div className={styles.featuresHeader}>
-            <div>
+          <div
+            className={`${styles.featuresHeader} t-stagger`}
+            data-scroll-reveal
+          >
+            <div className="t-stagger-line t-stagger-line--1">
               <h2 id="features-heading">
                 Everything your agency needs.
                 <span>Nothing it doesn’t.</span>
               </h2>
             </div>
-            <p className={styles.featuresIntro}>
+            <p
+              className={`${styles.featuresIntro} t-stagger-line t-stagger-line--2`}
+            >
               One connected workspace to value opportunities, manage every
               obligation, and grow the business behind the roster.
             </p>
           </div>
 
           <div className={styles.featuresGrid}>
-            {PLATFORM_FEATURES.map((feature) => (
-              <article className={styles.featureItem} key={feature.number}>
+            {PLATFORM_FEATURES.map((feature, index) => (
+              <article
+                className={`${styles.featureItem} ${styles.scrollReveal}`}
+                style={
+                  {
+                    "--reveal-delay": `${index * 55}ms`,
+                  } as CSSProperties
+                }
+                data-scroll-reveal
+                key={feature.number}
+              >
                 <span className={styles.featureNumber}>{feature.number}</span>
                 <div>
                   <h3>{feature.title}</h3>
@@ -423,18 +474,28 @@ export default function Home() {
           className={styles.testimonialsSection}
           aria-labelledby="testimonials-heading"
         >
-          <div className={styles.testimonialsHeader}>
-            <h2 id="testimonials-heading">
+          <div
+            className={`${styles.testimonialsHeader} t-stagger`}
+            data-scroll-reveal
+          >
+            <h2
+              id="testimonials-heading"
+              className="t-stagger-line t-stagger-line--1"
+            >
               What firms
               <span>are saying.</span>
             </h2>
-            <p>
+            <p className="t-stagger-line t-stagger-line--2">
               Real outcomes from agencies managing real endorsement deals—not
               polished hypotheticals.
             </p>
           </div>
 
-          <div className={styles.testimonialRows}>
+          <div
+            className={`${styles.testimonialRows} ${styles.scrollReveal}`}
+            style={{ "--reveal-delay": "90ms" } as CSSProperties}
+            data-scroll-reveal
+          >
             {TESTIMONIAL_ROWS.map((testimonials, rowIndex) => (
               <TestimonialRow
                 testimonials={testimonials}
@@ -452,17 +513,31 @@ export default function Home() {
         >
           <DiaGradient className={styles.closingGradient} />
 
-          <div className={styles.closingContent}>
-            <h2 id="closing-heading">
+          <div
+            className={`${styles.closingContent} t-stagger`}
+            data-scroll-reveal
+          >
+            <h2
+              id="closing-heading"
+              className="t-stagger-line t-stagger-line--1"
+            >
               See what every endorsement is really worth.
             </h2>
-            <DemoButton
-              href="https://calendly.com/will-8qc/30min"
-              external
-            />
+            <div
+              className={`${styles.closingButtonWrap} t-stagger-line t-stagger-line--2`}
+            >
+              <DemoButton
+                href="https://calendly.com/will-8qc/30min"
+                external
+              />
+            </div>
           </div>
 
-          <footer className={styles.footer}>
+          <footer
+            className={`${styles.footer} ${styles.scrollReveal}`}
+            style={{ "--reveal-delay": "120ms" } as CSSProperties}
+            data-scroll-reveal
+          >
             <div className={styles.footerBrand}>
               <a href="#top" aria-label="Endo home">
                 <Image

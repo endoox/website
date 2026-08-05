@@ -1,6 +1,7 @@
 "use client";
 
 import NumberFlow, { continuous } from "@number-flow/react";
+import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
 
@@ -130,7 +131,9 @@ export function HeroStats() {
   return (
     <dl
       ref={listRef}
-      className={styles.heroStats}
+      className={`${styles.heroStats} ${styles.scrollReveal}`}
+      style={{ "--reveal-delay": "120ms" } as CSSProperties}
+      data-scroll-reveal
       aria-label="Endo platform impact"
     >
       {HERO_STATS.map((stat, index) => (
