@@ -2,7 +2,8 @@ import Image from "next/image";
 import type { CSSProperties } from "react";
 import styles from "./page.module.css";
 import { DiaGradient } from "./dia-gradient";
-import { StadiumShader } from "./stadium-shader";
+import { HeroBackground } from "./hero-background";
+import { HeroStats } from "./hero-stats";
 
 const TRUSTED_BY_LOGOS = [
   {
@@ -65,21 +66,6 @@ const PLATFORM_FEATURES = [
     number: "06",
     title: "CRM and pipeline",
     copy: "Manage brand conversations, contacts, and new opportunities in one place built around agent workflows.",
-  },
-] as const;
-
-const PLATFORM_STATS = [
-  {
-    value: "$10M+",
-    label: "endorsements managed on our platform",
-  },
-  {
-    value: "250+",
-    label: "athletes managed through endo",
-  },
-  {
-    value: "$200K+",
-    label: "value created through valuation tool",
   },
 ] as const;
 
@@ -331,8 +317,9 @@ export default function Home() {
 
       <main id="top" className={styles.main}>
         <section className={styles.hero} aria-labelledby="hero-heading">
-          <div className={styles.stadiumImage} aria-hidden="true" />
-          <StadiumShader className={styles.stadiumShader} />
+          <div className={styles.heroBackdrop} aria-hidden="true" />
+          <HeroBackground className={styles.heroBackground} />
+          <div className={styles.heroStructure} aria-hidden="true" />
           <div className={styles.heroShade} aria-hidden="true" />
 
           <div className={styles.heroContent}>
@@ -349,14 +336,7 @@ export default function Home() {
             <DemoButton href="#closing-cta" />
           </div>
 
-          <dl className={styles.heroStats} aria-label="Endo platform impact">
-            {PLATFORM_STATS.map((stat) => (
-              <div className={styles.heroStat} key={stat.value}>
-                <dt>{stat.label}</dt>
-                <dd>{stat.value}</dd>
-              </div>
-            ))}
-          </dl>
+          <HeroStats />
         </section>
 
         <section
