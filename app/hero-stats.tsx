@@ -35,7 +35,7 @@ const compactFormat = {
 } as const;
 
 const flowTiming = {
-  duration: 160,
+  duration: 110,
   easing: "linear",
 } as const;
 
@@ -43,7 +43,7 @@ const flowPlugins = [continuous];
 
 const COUNT_DURATION = 2_400;
 const COUNT_DELAY = 320;
-const UPDATE_INTERVAL = 64;
+const UPDATE_INTERVAL = 140;
 
 function easeInOutCubic(progress: number) {
   return progress < 0.5

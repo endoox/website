@@ -7,7 +7,15 @@ import styles from "./page.module.css";
 const MENU_LINKS = [
   {
     label: "Features",
-    href: "https://www.endodeals.com/features",
+    href: "#features",
+  },
+  {
+    label: "Case studies",
+    href: "#stories",
+  },
+  {
+    label: "Testimonials",
+    href: "#testimonials",
   },
   {
     label: "About",
@@ -108,7 +116,7 @@ export function MobileMenu() {
   }, [closeMenu, isOpen]);
 
   useEffect(() => {
-    const desktopQuery = window.matchMedia("(min-width: 721px)");
+    const desktopQuery = window.matchMedia("(min-width: 761px)");
 
     const closeAtDesktop = () => {
       if (desktopQuery.matches) {
@@ -174,10 +182,12 @@ export function MobileMenu() {
 
         <a
           className={styles.mobileMenuDemo}
-          href="#closing-cta"
+          href="https://calendly.com/will-8qc/30min"
+          target="_blank"
+          rel="noreferrer"
           onClick={() => closeMenu()}
         >
-          <span>Book a demo</span>
+          <span>Request a demo</span>
           <span className={styles.mobileMenuDemoArrow} aria-hidden="true">
             <ArrowIcon />
           </span>
