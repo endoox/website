@@ -398,6 +398,66 @@
   }
 }
 
+/* Keep the About hero scoped against the shared root hero rules in production CSS extraction. */
+.aboutPage .aboutHero {
+  min-height: 650px;
+  padding: 142px max(28px, calc((100vw - 1200px) / 2)) 96px;
+}
+
+.aboutPage .aboutHeroCopy {
+  width: min(1120px, 100%);
+  max-width: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .88fr);
+  align-items: center;
+  gap: clamp(56px, 9vw, 132px);
+  text-align: left;
+}
+
+.aboutPage .aboutHeroCopy h1 {
+  max-width: 680px;
+  margin: 0;
+  font-size: clamp(3.4rem, 5.6vw, 5.8rem);
+  line-height: .98;
+  text-align: left;
+}
+
+.aboutPage .aboutHeroBody {
+  max-width: 560px;
+  margin: 0;
+}
+
+.aboutPage .aboutHeroBody p {
+  text-align: left;
+}
+
+@media (max-width: 760px) {
+  .aboutPage .aboutHero {
+    min-height: 700px;
+    padding: 148px 22px 90px;
+  }
+
+  .aboutPage .aboutHeroCopy {
+    display: block;
+    text-align: center;
+  }
+
+  .aboutPage .aboutHeroCopy h1 {
+    margin: 0 auto;
+    font-size: clamp(2.8rem, 12vw, 4.4rem);
+    text-align: center;
+  }
+
+  .aboutPage .aboutHeroBody {
+    margin-top: 30px;
+  }
+
+  .aboutPage .aboutHeroBody p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
 /* Team cards use one full-bleed portrait surface with the details layered over it. */
 .teamCard {
   position: relative;
