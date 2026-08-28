@@ -8,14 +8,14 @@ type GradientStop = {
 };
 
 const GRADIENT_STOPS: GradientStop[] = [
-  { offset: 0, color: "#020816" },
-  { offset: 0.16, color: "#061a37" },
-  { offset: 0.32, color: "#0b3f78" },
-  { offset: 0.5, color: "#0e5ead" },
-  { offset: 0.66, color: "#1774cb" },
-  { offset: 0.8, color: "#57a9eb" },
-  { offset: 0.91, color: "#bfe3ff" },
-  { offset: 1, color: "#eff8ff00" },
+  { offset: 0, color: "#242d6d" },
+  { offset: 0.16, color: "#2e3b82" },
+  { offset: 0.32, color: "#4168b8" },
+  { offset: 0.5, color: "#4b7cd1" },
+  { offset: 0.66, color: "#638fd9" },
+  { offset: 0.8, color: "#8fb8ea" },
+  { offset: 0.91, color: "#dce9fb" },
+  { offset: 1, color: "#f7f9ff00" },
 ];
 
 const VIEWBOX = {

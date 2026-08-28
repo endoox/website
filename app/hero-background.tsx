@@ -25,9 +25,9 @@ export function HeroBackground({ className }: HeroBackgroundProps) {
     <GodRays
       aria-hidden="true"
       className={className}
-      colorBack="#020816"
-      colorBloom="#0e5ead"
-      colors={["#1774cbd8", "#57a9eb9c", "#bfe3ff62", "#0b3f78b8"]}
+      colorBack="#242d6d"
+      colorBloom="#4b7cd1"
+      colors={["#4b7cd1d8", "#8fb8ea9c", "#dce9fb62", "#4168b8b8"]}
       density={0.3}
       spotty={0.34}
       midSize={0.12}

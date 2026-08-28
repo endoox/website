@@ -10,6 +10,7 @@ import { HeroStats } from "./hero-stats";
 import { MobileMenu } from "./mobile-menu";
 import { MotionObserver } from "./motion-observer";
 import { ProductDemoMedia } from "./product-demo-media";
+import { PricingSection } from "../components/ui/pricing-section";
 
 const TRUSTED_BY_LOGOS = [
   {
@@ -171,33 +172,23 @@ const TESTIMONIALS = [
   },
 ] as const;
 
-function Brand({ footer = false }: { footer?: boolean }) {
+export function Brand({ footer = false }: { footer?: boolean }) {
   return (
     <span className={`${styles.brandMark} ${footer ? styles.brandMarkFooter : ""}`}>
       <Image
         className={styles.brandMarkBase}
-        src={footer ? "/brand/endo-logo-footer.png" : "/brand/endo-logo-white.png"}
+        src={footer ? "/brand/endo-logo-white-gradient.png" : "/brand/endo-logo-dark.png"}
         alt="Endo"
-        width={footer ? 772 : 872}
-        height={footer ? 200 : 374}
+        width={2826}
+        height={1214}
+        sizes={footer ? "155px" : "132px"}
         priority={!footer}
       />
-      {!footer && (
-        <Image
-          className={styles.brandMarkInk}
-          src="/brand/endo-logo-white.png"
-          alt=""
-          width={872}
-          height={374}
-          aria-hidden="true"
-          priority
-        />
-      )}
     </span>
   );
 }
 
-function DemoButton({ className = "" }: { className?: string }) {
+export function DemoButton({ className = "" }: { className?: string }) {
   return (
     <a
       className={`${styles.demoButton} ${className}`}
@@ -278,9 +269,8 @@ export default function Home() {
           <nav className={styles.headerNav} aria-label="Primary navigation">
             <a href="#features">Features</a>
             <a href="#stories">Case studies</a>
-            <a href="#testimonials">Testimonials</a>
-            <a href="https://www.endodeals.com/about">About</a>
-            <a href="https://www.endodeals.com/about#team">Our team</a>
+            <a href="#pricing">Pricing</a>
+            <a href="/about">About</a>
           </nav>
           <DemoButton className={styles.headerButton} />
           <div className={styles.mobileMenuSlot}>
@@ -479,6 +469,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <PricingSection />
       </main>
 
       <div className={styles.closingRegion}>
@@ -506,7 +498,7 @@ export default function Home() {
             data-scroll-reveal
           >
             <div><p>Platform</p><a href="#features">Features</a><a href="#stories">Case studies</a><a href="#testimonials">Testimonials</a></div>
-            <div><p>Company</p><a href="https://www.endodeals.com/about">About</a><a href="https://www.endodeals.com/about#team">Our team</a><a href="mailto:admin@endodeals.com">Contact</a></div>
+            <div><p>Company</p><a href="/about">About</a><a href="/about#team">Our team</a><a href="mailto:admin@endodeals.com">Contact</a></div>
             <div><p>Legal</p><a href="https://www.endodeals.com/privacy">Privacy policy</a><a href="https://www.endodeals.com/terms">Terms of service</a></div>
           </div>
           <div

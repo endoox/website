@@ -136,12 +136,12 @@ img {
 }
 
 ::selection {
-  background: #bfe3ff;
-  color: #0a1425;
+  background: #8fb8ea;
+  color: #242d6d;
 }
 
 :focus-visible {
-  outline: 3px solid #8bcaff;
+  outline: 3px solid #4b7cd1;
   outline-offset: 4px;
 }
 

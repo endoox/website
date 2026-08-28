@@ -17,56 +17,56 @@ const notificationSet: NotificationItem[] = [
     description: "$48,000 collected from Crown Mobile",
     time: "15m ago",
     icon: "💸",
-    color: "#00a987",
+    color: "#4b7cd1",
   },
   {
     name: "Contract signed",
     description: "Northstar × Jordan Mills · $72.5K",
     time: "10m ago",
     icon: "✍️",
-    color: "#167ee8",
+    color: "#4168b8",
   },
   {
     name: "Deliverable approved",
     description: "Campaign post marked complete",
     time: "5m ago",
     icon: "✅",
-    color: "#7c5ce7",
+    color: "#8fb8ea",
   },
   {
     name: "New opportunity",
     description: "Nike × Avery Cole · Proposal stage",
     time: "3m ago",
     icon: "🤝",
-    color: "#f39b2f",
+    color: "#46528a",
   },
   {
     name: "Valuation updated",
     description: "Recommended value increased to $86K",
     time: "2m ago",
     icon: "📈",
-    color: "#ef5c89",
+    color: "#242d6d",
   },
   {
     name: "Renewal ready",
     description: "Apex Hydration renews in 30 days",
     time: "1m ago",
     icon: "🔄",
-    color: "#20a9c9",
+    color: "#4b7cd1",
   },
   {
     name: "Payment scheduled",
     description: "$24,500 expected this Friday",
     time: "now",
     icon: "📅",
-    color: "#3355c5",
+    color: "#4168b8",
   },
   {
     name: "Approval requested",
     description: "Brand terms are ready for review",
     time: "now",
     icon: "🔔",
-    color: "#db6d35",
+    color: "#8fb8ea",
   },
 ]
 
@@ -96,7 +96,7 @@ function Notification({
         </div>
         <div className="flex min-w-0 flex-col overflow-hidden">
           <figcaption className="flex min-w-0 flex-row items-baseline whitespace-nowrap">
-            <span className="truncate text-[16px] font-medium tracking-[-0.015em] text-[#111827]">
+            <span className="truncate text-[16px] font-medium tracking-[-0.015em] text-[#2b2b2b]">
               {name}
             </span>
             <span className="mx-1.5 text-xs text-gray-400">·</span>

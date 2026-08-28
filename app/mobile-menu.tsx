@@ -4,26 +4,22 @@ import type { CSSProperties } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
 
-const MENU_LINKS = [
+const MENU_LINKS = (homePath: string) => [
   {
     label: "Features",
-    href: "#features",
+    href: `${homePath}#features`,
   },
   {
     label: "Case studies",
-    href: "#stories",
+    href: `${homePath}#stories`,
   },
   {
-    label: "Testimonials",
-    href: "#testimonials",
+    label: "Pricing",
+    href: `${homePath}#pricing`,
   },
   {
     label: "About",
-    href: "https://www.endodeals.com/about",
-  },
-  {
-    label: "Our Team",
-    href: "https://www.endodeals.com/about#team",
+    href: "/about",
   },
 ] as const;
 
@@ -37,7 +33,7 @@ function ArrowIcon() {
   );
 }
 
-export function MobileMenu() {
+export function MobileMenu({ homePath = "/" }: { homePath?: string }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const closeTimerRef = useRef<number | null>(null);
@@ -163,7 +159,7 @@ export function MobileMenu() {
         inert={!isOpen}
       >
         <nav className={styles.mobileMenuNav} aria-label="Mobile navigation">
-          {MENU_LINKS.map((link, index) => (
+          {MENU_LINKS(homePath).map((link, index) => (
             <a
               className={styles.mobileMenuLink}
               style={

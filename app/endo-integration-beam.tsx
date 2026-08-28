@@ -68,7 +68,7 @@ export function EndoIntegrationBeam() {
         </IntegrationNode>
         <IntegrationNode
           ref={notificationRef}
-          className="absolute bottom-2 left-[9%] text-[#1688e8]"
+          className="absolute bottom-2 left-[9%] text-[#4b7cd1]"
         >
           <BellRing aria-hidden="true" className="size-7" strokeWidth={1.8} />
         </IntegrationNode>
@@ -78,19 +78,12 @@ export function EndoIntegrationBeam() {
         >
           <span className="relative block h-[24px] w-[84px] overflow-hidden">
             <Image
-              src="/brand/endo-logo-footer.png"
+              src="/brand/endo-logo-dark.png"
               alt="Endo"
-              width={772}
-              height={200}
+              width={2826}
+              height={1214}
+              sizes="84px"
               className="absolute top-1/2 left-0 h-auto w-full -translate-y-1/2"
-            />
-            <Image
-              src="/brand/endo-logo-footer.png"
-              alt=""
-              width={772}
-              height={200}
-              aria-hidden="true"
-              className="absolute top-1/2 left-0 h-auto w-full -translate-y-1/2 brightness-0 [clip-path:inset(0_10%_0_0)]"
             />
           </span>
         </IntegrationNode>
@@ -103,7 +96,7 @@ export function EndoIntegrationBeam() {
           pathColor="#d9e4ef"
           pathOpacity={0.78}
           gradientStartColor="#34a853"
-          gradientStopColor="#1688e8"
+          gradientStopColor="#4b7cd1"
           duration={3.6}
           startXOffset={28}
           endXOffset={-56}
@@ -116,7 +109,7 @@ export function EndoIntegrationBeam() {
           pathColor="#d9e4ef"
           pathOpacity={0.78}
           gradientStartColor="#ea4335"
-          gradientStopColor="#1688e8"
+          gradientStopColor="#4b7cd1"
           delay={0.55}
           duration={3.6}
           startXOffset={28}
@@ -129,8 +122,8 @@ export function EndoIntegrationBeam() {
           curvature={54}
           pathColor="#d9e4ef"
           pathOpacity={0.78}
-          gradientStartColor="#5bc5ff"
-          gradientStopColor="#176bd5"
+          gradientStartColor="#8fb8ea"
+          gradientStopColor="#242d6d"
           delay={1.1}
           duration={3.6}
           startXOffset={28}
