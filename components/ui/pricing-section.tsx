@@ -1,12 +1,14 @@
 "use client";
 
 import { ArrowRight, Check } from "lucide-react";
+import { DEMO_URL } from "@/lib/contact";
 import styles from "./pricing-section.module.css";
 
 type PricingPlan = {
   name: string;
   description: string;
   features: readonly { label: string; value: string }[];
+  applicationDeadline?: string;
   button: string;
   buttonVariant?: "outline" | "solid";
 };
@@ -17,7 +19,7 @@ const PLANS: PricingPlan[] = [
     description: "A focused operating system for smaller agencies and lean teams.",
     features: [
       { label: "Seats", value: "Up to 3" },
-      { label: "endodeal valuation reports", value: "2 / month" },
+      { label: "Endo Deals valuation reports", value: "2 / month" },
       { label: "Talent uploads", value: "Up to 15" },
       { label: "Contracts and deliverables", value: "Unlimited" },
       { label: "Commissions and payments", value: "Unlimited" },
@@ -33,7 +35,7 @@ const PLANS: PricingPlan[] = [
     description: "For established agencies managing a growing roster and deal volume.",
     features: [
       { label: "Seats", value: "Unlimited" },
-      { label: "endodeal valuation reports", value: "15 / month" },
+      { label: "Endo Deals valuation reports", value: "15 / month" },
       { label: "Talent uploads", value: "Unlimited" },
       { label: "Contracts and deliverables", value: "Unlimited" },
       { label: "Commissions and payments", value: "Unlimited" },
@@ -44,9 +46,21 @@ const PLANS: PricingPlan[] = [
     button: "Request a demo",
     buttonVariant: "solid",
   },
+  {
+    name: "Design partner",
+    description: "A small group of agencies shaping what gets built.",
+    features: [
+      { label: "Everything in Professional", value: "Included" },
+      { label: "Founder calls", value: "Every two weeks" },
+      { label: "Roadmap input", value: "Included" },
+      { label: "Rate held flat", value: "For the term" },
+      { label: "Onboarding and migration", value: "Priority" },
+    ],
+    button: "Apply now",
+    buttonVariant: "outline",
+    applicationDeadline: "2026-12-31",
+  },
 ] as const;
-
-const DEMO_URL = "https://calendly.com/will-8qc/30min";
 
 export function PricingSection() {
   return (
@@ -70,8 +84,10 @@ export function PricingSection() {
               </div>
 
               <div className={styles.pricingPrice}>
-                <strong>Custom</strong>
-                <span>tailored plan</span>
+                <strong>{plan.applicationDeadline ? "Application" : "Custom"}</strong>
+                <span>{plan.applicationDeadline ? (
+                  <>Closes <time dateTime={plan.applicationDeadline}>31 Dec 2026</time></>
+                ) : "tailored plan"}</span>
               </div>
 
               <a

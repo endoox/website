@@ -1,6 +1,7 @@
 "use client";
 
 import type { CSSProperties } from "react";
+import { DEMO_URL } from "@/lib/contact";
 import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
 
@@ -12,6 +13,10 @@ const MENU_LINKS = (homePath: string) => [
   {
     label: "Case studies",
     href: `${homePath}#stories`,
+  },
+  {
+    label: "Endo Deals",
+    href: "/endo-deals",
   },
   {
     label: "Pricing",
@@ -178,9 +183,7 @@ export function MobileMenu({ homePath = "/" }: { homePath?: string }) {
 
         <a
           className={styles.mobileMenuDemo}
-          href="https://calendly.com/will-8qc/30min"
-          target="_blank"
-          rel="noreferrer"
+          href={DEMO_URL}
           onClick={() => closeMenu()}
         >
           <span>Request a demo</span>

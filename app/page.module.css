@@ -276,6 +276,16 @@
   object-position: top left;
 }
 
+.heroVideo {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 12px 12px 0 0;
+  background: #151a22;
+  object-fit: cover;
+  object-position: top left;
+}
+
 .heroProduct .productWindow {
   height: 500px;
   box-shadow: none;

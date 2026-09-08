@@ -63,6 +63,7 @@ export default function AboutPage() {
         <nav className={pageStyles.headerNav} aria-label="Primary navigation">
           <Link href="/#features">Features</Link>
           <Link href="/#stories">Case studies</Link>
+          <Link href="/endo-deals">Endo Deals</Link>
           <Link href="/#pricing">Pricing</Link>
           <Link href="/about">About</Link>
         </nav>
@@ -149,7 +150,7 @@ export default function AboutPage() {
               className={`${pageStyles.footerLinks} ${pageStyles.scrollReveal}`}
               data-scroll-reveal
             >
-              <div><p>Platform</p><Link href="/#features">Features</Link><Link href="/#stories">Case studies</Link><Link href="/#testimonials">Testimonials</Link></div>
+              <div><p>Platform</p><Link href="/#features">Features</Link><Link href="/#stories">Case studies</Link><Link href="/endo-deals">Endo Deals</Link><Link href="/#pricing">Pricing</Link><Link href="/#testimonials">Testimonials</Link></div>
               <div><p>Company</p><Link href="/about">About</Link><Link href="/about#team">Our team</Link><a href="mailto:admin@endodeals.com">Contact</a></div>
               <div><p>Legal</p><a href="https://www.endodeals.com/privacy">Privacy policy</a><a href="https://www.endodeals.com/terms">Terms of service</a></div>
             </div>

@@ -3,12 +3,13 @@
 import { useEffect, useRef } from "react";
 
 type ProductDemoMediaProps = {
+  className?: string;
   label: string;
   poster: string;
   src: string;
 };
 
-export function ProductDemoMedia({ label, poster, src }: ProductDemoMediaProps) {
+export function ProductDemoMedia({ className, label, poster, src }: ProductDemoMediaProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -36,6 +37,7 @@ export function ProductDemoMedia({ label, poster, src }: ProductDemoMediaProps) 
   return (
     <video
       ref={videoRef}
+      className={className}
       aria-label={label}
       loop
       muted

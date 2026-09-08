@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { DEMO_URL } from "@/lib/contact";
+import { LeagueCoverage } from "./league-coverage";
 import styles from "./page.module.css";
 import { DiaGradient } from "./dia-gradient";
 import { EndoAnimatedNotifications } from "./endo-animated-notifications";
@@ -46,7 +48,7 @@ const TRUSTED_BY_LOGOS = [
 const FEATURES = [
   {
     id: "valuation",
-    eyebrow: "Endodeal valuation",
+    eyebrow: "Endo Deals valuation",
     title: "Walk into every negotiation knowing the number.",
     bullets: ["Contract comparables", "Athlete-specific drivers", "Defensible pricing"],
     mode: "valuation",
@@ -134,6 +136,12 @@ const FEATURE_DEMOS: Record<FeatureMode, FeatureMedia> = {
   },
 };
 
+const HERO_VIDEO = {
+  src: "/demos/financial-demo.mp4",
+  poster: "/demos/financial-poster.webp",
+  label: "Endo platform overview showing financial tracking and payment workflows",
+} as const;
+
 const TESTIMONIALS = [
   {
     name: "Shelbi Kilcollins",
@@ -188,15 +196,13 @@ export function Brand({ footer = false }: { footer?: boolean }) {
   );
 }
 
-export function DemoButton({ className = "" }: { className?: string }) {
+export function DemoButton({ className = "", href = DEMO_URL, label = "Request a demo" }: { className?: string; href?: string; label?: string }) {
   return (
     <a
       className={`${styles.demoButton} ${className}`}
-      href="https://calendly.com/will-8qc/30min"
-      target="_blank"
-      rel="noreferrer"
+      href={href}
     >
-      <span>Request a demo</span>
+      <span>{label}</span>
       <span className={styles.demoButtonArrow} aria-hidden="true">
         <svg viewBox="0 0 24 24">
           <path d="M12 19V5M6.5 10.5 12 5l5.5 5.5" />
@@ -235,7 +241,7 @@ function FeatureNav() {
     >
       {FEATURES.map((feature, index) => (
         <a className={index === 0 ? styles.featurePillActive : ""} href={`#${feature.id}`} key={feature.id}>
-          {feature.eyebrow.replace("Endodeal ", "")}
+          {feature.eyebrow.replace("Endo Deals ", "")}
         </a>
       ))}
     </nav>
@@ -269,6 +275,7 @@ export default function Home() {
           <nav className={styles.headerNav} aria-label="Primary navigation">
             <a href="#features">Features</a>
             <a href="#stories">Case studies</a>
+            <a href="/endo-deals">Endo Deals</a>
             <a href="#pricing">Pricing</a>
             <a href="/about">About</a>
           </nav>
@@ -293,14 +300,11 @@ export default function Home() {
             className={styles.heroProduct}
             data-scroll-drift="20"
           >
-            <Image
-              className={styles.heroDashboard}
-              src="/demos/agent-dashboard.webp"
-              alt="Endo agent dashboard showing agency revenue, active deals, athletes, payments, and upcoming contracts"
-              width={1908}
-              height={922}
-              priority
-              sizes="(max-width: 760px) 900px, 1120px"
+            <ProductDemoMedia
+              className={styles.heroVideo}
+              label={HERO_VIDEO.label}
+              poster={HERO_VIDEO.poster}
+              src={HERO_VIDEO.src}
             />
           </div>
         </section>
@@ -449,12 +453,14 @@ export default function Home() {
           <DemoButton className={styles.impactButton} />
         </section>
 
+        <LeagueCoverage />
+
         <section id="testimonials" className={styles.testimonials} aria-labelledby="testimonials-heading">
           <div
             className={`${styles.sectionHeading} ${styles.scrollReveal}`}
             data-scroll-reveal
           >
-            <h2 id="testimonials-heading">Agencies love Endo.</h2>
+            <h2 id="testimonials-heading">In the agency’s words.</h2>
           </div>
           <div
             className={`${styles.testimonialViewport} ${styles.scrollReveal}`}
@@ -497,7 +503,7 @@ export default function Home() {
             className={`${styles.footerLinks} ${styles.scrollReveal}`}
             data-scroll-reveal
           >
-            <div><p>Platform</p><a href="#features">Features</a><a href="#stories">Case studies</a><a href="#testimonials">Testimonials</a></div>
+            <div><p>Platform</p><a href="#features">Features</a><a href="#stories">Case studies</a><a href="/endo-deals">Endo Deals</a><a href="#pricing">Pricing</a><a href="#testimonials">Testimonials</a></div>
             <div><p>Company</p><a href="/about">About</a><a href="/about#team">Our team</a><a href="mailto:admin@endodeals.com">Contact</a></div>
             <div><p>Legal</p><a href="https://www.endodeals.com/privacy">Privacy policy</a><a href="https://www.endodeals.com/terms">Terms of service</a></div>
           </div>

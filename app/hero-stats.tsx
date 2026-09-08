@@ -10,20 +10,23 @@ const HERO_STATS = [
     start: 1_000_000,
     end: 10_000_000,
     currency: true,
+    suffix: "+",
     label: "endorsements managed on our platform",
     ariaLabel: "More than 10 million dollars in endorsements managed",
   },
   {
-    start: 25,
-    end: 250,
+    start: 170,
+    end: 170,
     currency: false,
-    label: "athletes managed through endo",
-    ariaLabel: "More than 250 athletes managed through Endo",
+    suffix: "%",
+    label: "more value in a Quartexx brand negotiation",
+    ariaLabel: "170 percent more value in a Quartexx brand negotiation",
   },
   {
     start: 20_000,
     end: 200_000,
     currency: true,
+    suffix: "+",
     label: "value created through valuation tool",
     ariaLabel: "More than 200 thousand dollars in value created",
   },
@@ -147,7 +150,7 @@ export function HeroStats() {
               locales="en-US"
               format={compactFormat}
               prefix={stat.currency ? "$" : ""}
-              suffix="+"
+              suffix={stat.suffix}
               trend={1}
               plugins={flowPlugins}
               isolate

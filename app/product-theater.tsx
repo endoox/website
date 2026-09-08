@@ -43,7 +43,7 @@ function ValuationScreen({ compact }: { compact?: boolean }) {
   return (
     <Shell compact={compact}>
       <div className={styles.productContent}>
-        <div className={styles.productTitle}><div><span>Endodeal valuation</span><h4>Jordan Mills × Northstar</h4></div><button>Share</button></div>
+        <div className={styles.productTitle}><div><span>Endo Deals valuation</span><h4>Jordan Mills × Northstar</h4></div><button>Share</button></div>
         <div className={styles.valuationGrid}>
           <section className={styles.valuationScore}>
             <p>Recommended deal value</p><strong>$72,500</strong><span>High confidence · 18 comparables</span>

@@ -1,0 +1,187 @@
+.hero {
+  padding: 108px 24px 92px;
+  text-align: center;
+}
+
+.kicker {
+  margin: 0 0 24px;
+  color: var(--blue);
+  font-size: .9rem;
+  font-weight: 600;
+}
+
+.hero h1 {
+  max-width: 1040px;
+  margin: 0 auto;
+  font-size: clamp(3.5rem, 6.4vw, 6rem);
+  font-weight: 480;
+  letter-spacing: -.06em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.hero h1 span { display: block; }
+.intro { max-width: 620px; margin: 28px auto 0; color: var(--muted); font-size: 1.13rem; line-height: 1.6; text-wrap: pretty; }
+.actions { margin-top: 32px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px; }
+.textLink { color: var(--ink); font-size: .95rem; text-decoration: none; }
+.textLink:hover { color: var(--blue); }
+.textLink:focus-visible, .faq summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 6px; }
+.activeNav { color: var(--blue) !important; }
+
+.scoreSection {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 76px clamp(24px, 5vw, 76px) 36px;
+  overflow: hidden;
+  border-radius: 30px;
+  background: var(--ink);
+  color: #fff;
+}
+
+.scoreHeading { max-width: 740px; margin: 0 auto 28px; text-align: center; }
+.scoreHeading .kicker { color: var(--sky); }
+.scoreHeading h2, .sectionHeading h2, .featureCopy h2, .coverage h2 {
+  margin: 0;
+  font-size: clamp(2.5rem, 4.2vw, 4.3rem);
+  font-weight: 480;
+  letter-spacing: -.05em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+.scoreHeading > p:last-child { max-width: 580px; margin: 24px auto 0; color: #b7c3d8; font-size: 1.05rem; line-height: 1.6; }
+.scorePreview { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 6vw, 80px); align-items: center; max-width: 880px; margin: 0 auto; padding: 38px 0 20px; color: #fff; }
+.scoreDial { position: relative; width: min(100%, 360px); aspect-ratio: 1; justify-self: center; }
+.scoreDial svg { width: 100%; height: 100%; overflow: visible; }
+.scoreRing { opacity: .65; transition: opacity 260ms ease; }
+.scoreRing[data-active="true"] { opacity: 1; }
+.scoreArc { transition: stroke-width 320ms cubic-bezier(.22, 1, .36, 1); pointer-events: stroke; }
+.scoreRing[data-active="true"] .scoreArc { stroke-width: 11; }
+.scoreNumber { pointer-events: none; position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+.scoreNumber > span { color: #b7c3d8; font-size: .8rem; }
+.scoreNumber strong { font-size: clamp(4rem, 6.5vw, 6rem); font-weight: 480; letter-spacing: -.06em; line-height: 1.1; }
+.scoreNumber strong span { margin-left: 5px; color: #b7c3d8; font-size: .95rem; letter-spacing: 0; font-weight: 400; }
+.scoreLabel { margin: 0 0 16px; color: #b7c3d8; font-size: .85rem; }
+.factor { width: 100%; padding: 18px 0; display: flex; align-items: center; justify-content: space-between; gap: 12px; border: 0; border-bottom: 1px solid rgb(255 255 255 / 14%); background: transparent; color: #b7c3d8; cursor: pointer; font: inherit; font-size: .94rem; text-align: left; }
+.factor > span { display: flex; align-items: center; gap: 12px; }
+.factor i { width: 8px; height: 8px; flex-shrink: 0; border-radius: 50%; background: var(--factor-color); }
+.factor strong { font-weight: 500; font-variant-numeric: tabular-nums; }
+.factor[data-active="true"], .factor:hover { color: #fff; }
+.factor:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 3px; }
+.factorDescription { min-height: 78px; margin: 20px 0 0; color: #b7c3d8; font-size: .88rem; line-height: 1.6; }
+.exampleNote { margin: 24px 0 0; padding-top: 22px; border-top: 1px solid rgb(255 255 255 / 14%); color: #b7c3d8; font-size: .8rem; line-height: 1.5; text-align: center; }
+
+.section { max-width: 1200px; margin: 0 auto; padding: 116px 0; }
+.sectionHeading { max-width: 740px; margin: 0 auto 56px; text-align: center; }
+.sectionHeading > p:last-child { max-width: 610px; margin: 24px auto 0; color: var(--muted); font-size: 1.05rem; line-height: 1.6; }
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-block: 1px solid var(--line); }
+.step { padding: 34px; }
+.step + .step { border-left: 1px solid var(--line); }
+.stepNumber { color: var(--blue); font-size: .9rem; }
+.step h3 { margin: 38px 0 14px; font-size: 1.6rem; font-weight: 500; letter-spacing: -.035em; }
+.step > p { margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.65; }
+.step ul { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 12px; color: var(--ink); font-size: .88rem; }
+.step li { display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+.step li svg { flex-shrink: 0; margin-top: 3px; color: var(--blue); }
+.reportSection { padding: 100px 24px; background: #f5f7fa; border-radius: 30px; margin: 0 4px; }
+.reportLayout { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.35fr); align-items: start; gap: clamp(36px, 5vw, 72px); }
+.reportLayout > .sectionHeading { margin: 0; align-self: center; text-align: left; }
+.reportLayout > .sectionHeading h2 { font-size: clamp(2.5rem, 4vw, 3.7rem); text-wrap: pretty; }
+.reportLayout > .sectionHeading p { margin: 24px 0 0; }
+.reportLayout > .report { width: 100%; padding: 36px; }
+.receiptBrand { display: flex; justify-content: flex-end; margin-bottom: 26px; }
+.receiptBrand img { width: 80px; height: auto; filter: grayscale(1); opacity: .28; }
+.report { max-width: 760px; margin: 0 auto; padding: clamp(24px, 5vw, 48px); border: 1px solid var(--line); border-radius: 8px; background: #fff; box-shadow: 0 4px 8px rgb(36 45 109 / 3%), 0 24px 48px rgb(36 45 109 / 5%); }
+.reportTitle { margin: 0 0 12px; font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 500; letter-spacing: -.04em; }
+.reportSubtitle { margin: 0; color: var(--muted); font-size: .82rem; line-height: 1.7; }
+.reportMeta { margin: 28px 0; display: grid; grid-template-columns: repeat(3, 1fr); padding-block: 20px; border-block: 1px dashed #cbd2dc; gap: 20px; }
+.reportMeta dt { margin-bottom: 8px; color: var(--muted); font-size: .75rem; }
+.reportMeta dd { margin: 0; font-size: .95rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.table { width: 100%; border-collapse: collapse; font-size: .86rem; }
+.table th { padding: 0 0 12px; color: var(--muted); font-size: .72rem; font-weight: 400; text-align: left; }
+.table td { padding: 14px 0; border-top: 1px solid #f0f2f5; }
+.table th:nth-child(2), .table td:nth-child(2) { text-align: center; padding-inline: 14px; }
+.table th:last-child, .table td:last-child { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.reportTotal { margin: 18px 0 0; padding: 26px 0 0; border-top: 1px dashed #cbd2dc; }
+.totalLine { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.totalLine > span { color: var(--ink); font-size: .85rem; }
+.totalLine strong { color: var(--ink); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 500; letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
+.rangeCaption { margin: 26px 0 14px; color: var(--muted); font-size: .75rem; }
+.range { position: relative; height: 4px; border-radius: 4px; background: #e2e9f3; }
+.range i { position: absolute; top: 50%; left: 49.27%; width: 10px; height: 10px; border: 2px solid #fff; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 1px var(--blue); transform: translate(-50%, -50%); }
+.rangeLabels { display: flex; justify-content: space-between; gap: 14px; margin-top: 12px; color: var(--muted); font-size: .75rem; font-variant-numeric: tabular-nums; }
+.reportFootnote { margin: 26px 0 0; padding-top: 20px; border-top: 1px dashed #cbd2dc; color: var(--muted); font-size: .7rem; line-height: 1.7; }
+.faq { max-width: 850px; margin: 0 auto; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq details:first-child { border-top: 1px solid var(--line); }
+.faq summary { padding: 26px 0; display: flex; align-items: center; justify-content: space-between; gap: 24px; cursor: pointer; list-style: none; font-size: 1.15rem; font-weight: 500; letter-spacing: -.02em; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--blue); font-size: 1.5rem; font-weight: 400; }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { margin: 0; padding: 0 40px 28px 0; color: var(--muted); font-size: 1rem; line-height: 1.7; }
+
+.homeFeature { margin-top: 28px; padding: clamp(30px, 5vw, 64px); overflow: hidden; border-radius: 28px; background: radial-gradient(ellipse at 100% 0%, #35478a, transparent 70%), #202840; color: #fff; }
+.featureTop { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 40px; }
+.featureCopy { max-width: 540px; }
+.featureCopy .kicker { color: var(--sky); }
+.featureCopy h2 { font-size: clamp(2.5rem, 4vw, 4rem); }
+.featureAside > p { margin: 0 0 26px; color: #b7c3d8; font-size: 1rem; line-height: 1.7; }
+.homeFeature .scorePreview { max-width: none; margin-top: 34px; padding-top: 40px; border-top: 1px solid rgb(255 255 255 / 14%); }
+.featureLink { display: inline-flex; align-items: center; gap: 24px; padding: 13px 20px; border: 1px solid rgb(255 255 255 / 25%); border-radius: 999px; color: #fff; font-size: .92rem; text-decoration: none; transition: background 180ms ease; }
+.featureLink:hover { background: rgb(255 255 255 / 10%); }
+.featureLink:focus-visible { outline: 2px solid var(--sky); outline-offset: 4px; }
+.coverage { max-width: 1200px; margin: 0 auto; padding: 96px 0 84px; text-align: center; }
+.coverage h2 { font-size: clamp(2.3rem, 3.7vw, 3.6rem); }
+.coverage > p { margin: 18px auto 0; max-width: 530px; color: var(--muted); font-size: 1rem; line-height: 1.6; }
+.leagueRow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: center; gap: 28px; padding: 46px 24px; margin: 38px 0 0; border-block: 1px solid var(--line); list-style: none; }
+.leagueRow li { display: grid; place-items: center; }
+.leagueRow img { display: block; width: 100%; max-width: 100px; height: 72px; object-fit: contain; filter: grayscale(1); opacity: .66; transition: filter 180ms ease, opacity 180ms ease; }
+.leagueRow li:hover img { filter: grayscale(0); opacity: 1; }
+
+@media (max-width: 1300px) {
+  .scoreSection { margin-inline: 24px; }
+  .section, .coverage { margin-inline: 30px; }
+}
+@media (max-width: 760px) {
+  .hero { padding: 66px 22px 64px; }
+  .hero h1 { font-size: clamp(3.05rem, 11vw, 4.6rem); }
+  .intro { font-size: 1rem; }
+  .actions { gap: 20px; }
+  .scoreSection { margin-inline: 4px; padding: 54px 24px 28px; border-radius: 26px; }
+  .scorePreview { grid-template-columns: 1fr; gap: 28px; padding-top: 24px; }
+  .scoreDial { width: min(100%, 300px); }
+  .scoreNumber strong { font-size: 5rem; }
+  .scoreFactors { width: 100%; max-width: 430px; margin: 0 auto; }
+  .factorDescription { min-height: 66px; }
+  .section { margin-inline: 22px; padding-block: 76px; }
+  .sectionHeading { margin-bottom: 36px; }
+  .steps { grid-template-columns: 1fr; }
+  .step { padding: 28px 4px; }
+  .step + .step { border-left: 0; border-top: 1px solid var(--line); }
+  .step h3 { margin-top: 18px; }
+  .reportSection { padding: 66px 18px; border-radius: 26px; }
+  .reportLayout { grid-template-columns: 1fr; gap: 32px; }
+  .reportLayout > .report { padding: 28px 20px; }
+  .report { padding: 28px 20px; border-radius: 8px; }
+  .reportMeta { gap: 12px; }
+  .reportMeta dt { font-size: .75rem; }
+  .reportMeta dd { font-size: .9rem; }
+  .table { font-size: .8rem; }
+  .table td:first-child { max-width: 140px; }
+  .table th:nth-child(2), .table td:nth-child(2) { padding-inline: 8px; }
+  .reportTotal { padding: 22px 0 0; }
+  .totalLine { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .rangeLabels { flex-wrap: wrap; font-size: .72rem; }
+  .faq summary { font-size: 1.05rem; }
+  .faq details p { padding-right: 0; }
+  .featureTop { grid-template-columns: 1fr; gap: 24px; }
+  .homeFeature { padding: 34px 24px; border-radius: 24px; }
+  .homeFeature .scorePreview { margin-top: 30px; }
+  .coverage { margin-inline: 22px; padding-block: 76px; }
+  .leagueRow { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 26px 18px; padding: 32px 0; }
+  .leagueRow li { grid-column: span 2; }
+  .leagueRow li:nth-child(4) { grid-column: 2 / span 2; }
+  .leagueRow img { height: 54px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scoreRing, .scoreArc, .leagueRow img, .featureLink { transition: none; }
+}
