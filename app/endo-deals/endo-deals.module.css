@@ -3,13 +3,6 @@
   text-align: center;
 }
 
-.kicker {
-  margin: 0 0 24px;
-  color: var(--blue);
-  font-size: .9rem;
-  font-weight: 600;
-}
-
 .hero h1 {
   max-width: 1040px;
   margin: 0 auto;
@@ -23,11 +16,7 @@
 .hero h1 span { display: block; }
 .intro { max-width: 620px; margin: 28px auto 0; color: var(--muted); font-size: 1.13rem; line-height: 1.6; text-wrap: pretty; }
 .actions { margin-top: 32px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px; }
-.textLink { color: var(--ink); font-size: .95rem; text-decoration: none; }
-.textLink:hover { color: var(--blue); }
-.textLink:focus-visible, .faq summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 6px; }
-.activeNav { color: var(--blue) !important; }
-
+.faq summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 6px; }
 .scoreSection {
   max-width: 1280px;
   margin: 0 auto;
@@ -39,8 +28,7 @@
 }
 
 .scoreHeading { max-width: 740px; margin: 0 auto 28px; text-align: center; }
-.scoreHeading .kicker { color: var(--sky); }
-.scoreHeading h2, .sectionHeading h2, .featureCopy h2, .coverage h2 {
+.scoreHeading h2, .sectionHeading h2, .featureCopy h2 {
   margin: 0;
   font-size: clamp(2.5rem, 4.2vw, 4.3rem);
   font-weight: 480;
@@ -118,21 +106,10 @@
 .faq summary::after { content: "+"; color: var(--blue); font-size: 1.5rem; font-weight: 400; }
 .faq details[open] summary::after { content: "−"; }
 .faq details p { margin: 0; padding: 0 40px 28px 0; color: var(--muted); font-size: 1rem; line-height: 1.7; }
-
-.homeFeature { margin-top: 28px; padding: clamp(30px, 5vw, 64px); overflow: hidden; border-radius: 28px; background: radial-gradient(ellipse at 100% 0%, #35478a, transparent 70%), #202840; color: #fff; }
-.featureTop { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 40px; }
 .featureCopy { max-width: 540px; }
-.featureCopy .kicker { color: var(--sky); }
 .featureCopy h2 { font-size: clamp(2.5rem, 4vw, 4rem); }
-.featureAside > p { margin: 0 0 26px; color: #b7c3d8; font-size: 1rem; line-height: 1.7; }
-.homeFeature .scorePreview { max-width: none; margin-top: 34px; padding-top: 40px; border-top: 1px solid rgb(255 255 255 / 14%); }
-.featureLink { display: inline-flex; align-items: center; gap: 24px; padding: 13px 20px; border: 1px solid rgb(255 255 255 / 25%); border-radius: 999px; color: #fff; font-size: .92rem; text-decoration: none; transition: background 180ms ease; }
-.featureLink:hover { background: rgb(255 255 255 / 10%); }
-.featureLink:focus-visible { outline: 2px solid var(--sky); outline-offset: 4px; }
 .coverage { max-width: 1200px; margin: 0 auto; padding: 96px 0 84px; text-align: center; }
-.coverage h2 { font-size: clamp(2.3rem, 3.7vw, 3.6rem); }
-.coverage > p { margin: 18px auto 0; max-width: 530px; color: var(--muted); font-size: 1rem; line-height: 1.6; }
-.leagueRow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: center; gap: 28px; padding: 46px 24px; margin: 38px 0 0; border-block: 1px solid var(--line); list-style: none; }
+.leagueRow { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); align-items: center; gap: 36px 28px; padding: 46px 24px; margin: 0; border-block: 1px solid var(--line); list-style: none; }
 .leagueRow li { display: grid; place-items: center; }
 .leagueRow img { display: block; width: 100%; max-width: 100px; height: 72px; object-fit: contain; filter: grayscale(1); opacity: .66; transition: filter 180ms ease, opacity 180ms ease; }
 .leagueRow li:hover img { filter: grayscale(0); opacity: 1; }
@@ -173,15 +150,13 @@
   .rangeLabels { flex-wrap: wrap; font-size: .72rem; }
   .faq summary { font-size: 1.05rem; }
   .faq details p { padding-right: 0; }
-  .featureTop { grid-template-columns: 1fr; gap: 24px; }
-  .homeFeature { padding: 34px 24px; border-radius: 24px; }
-  .homeFeature .scorePreview { margin-top: 30px; }
   .coverage { margin-inline: 22px; padding-block: 76px; }
   .leagueRow { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 26px 18px; padding: 32px 0; }
   .leagueRow li { grid-column: span 2; }
-  .leagueRow li:nth-child(4) { grid-column: 2 / span 2; }
   .leagueRow img { height: 54px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .scoreRing, .scoreArc, .leagueRow img, .featureLink { transition: none; }
+  .scoreRing, .scoreArc, .leagueRow img { transition: none; }
 }
+
+.leagueText { color: var(--muted); font-size: 1rem; font-weight: 650; line-height: 1.2; text-align: center; }

@@ -19,7 +19,7 @@ const PLANS: PricingPlan[] = [
     description: "A focused operating system for smaller agencies and lean teams.",
     features: [
       { label: "Seats", value: "Up to 3" },
-      { label: "Endo Deals valuation reports", value: "2 / month" },
+      { label: "endo.deals valuation reports", value: "2 / month" },
       { label: "Talent uploads", value: "Up to 15" },
       { label: "Contracts and deliverables", value: "Unlimited" },
       { label: "Commissions and payments", value: "Unlimited" },
@@ -35,7 +35,7 @@ const PLANS: PricingPlan[] = [
     description: "For established agencies managing a growing roster and deal volume.",
     features: [
       { label: "Seats", value: "Unlimited" },
-      { label: "Endo Deals valuation reports", value: "15 / month" },
+      { label: "endo.deals valuation reports", value: "15 / month" },
       { label: "Talent uploads", value: "Unlimited" },
       { label: "Contracts and deliverables", value: "Unlimited" },
       { label: "Commissions and payments", value: "Unlimited" },

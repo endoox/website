@@ -1,0 +1,20 @@
+.pressPage { background: #fff; }
+
+.main { max-width: 1200px; min-height: 60vh; margin: 0 auto; padding: 176px max(28px, calc((100vw - 1200px) / 2)) 120px; }
+.main h1 { margin: 0 0 56px; font-size: clamp(3.4rem, 6vw, 6.5rem); font-weight: 500; letter-spacing: -.065em; line-height: .95; }
+
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px 24px; }
+.card { color: var(--ink); text-decoration: none; }
+.image { position: relative; display: block; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 18px; background: #f2f4f7; }
+.image img { object-fit: cover; transition: transform 400ms ease; }
+.card:hover .image img { transform: scale(1.03); }
+.card h2 { margin: 20px 0 8px; font-size: 1.3rem; font-weight: 500; letter-spacing: -.03em; line-height: 1.25; transition: color 180ms ease; }
+.card:hover h2 { color: var(--blue); }
+.card p { margin: 0; color: var(--muted); font-size: .9rem; }
+
+@media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) {
+  .main { padding: 132px 16px 80px; }
+  .grid { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (prefers-reduced-motion: reduce) { .image img, .card h2 { transition: none; } .card:hover .image img { transform: none; } }

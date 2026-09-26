@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "endo — Endorsement management for sports agencies",
   description:
-    "Endo helps sports agencies value, manage, and grow every endorsement deal.",
+    "endo helps sports agencies value, manage, and grow every endorsement deal.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

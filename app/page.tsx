@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { DEMO_URL } from "@/lib/contact";
 import { LeagueCoverage } from "./league-coverage";
 import styles from "./page.module.css";
 import { DiaGradient } from "./dia-gradient";
@@ -7,11 +6,10 @@ import { EndoAnimatedNotifications } from "./endo-animated-notifications";
 import { EndoDealMarquee } from "./endo-deal-marquee";
 import { EndoGlobe } from "./endo-globe";
 import { EndoIntegrationBeam } from "./endo-integration-beam";
-import { FloatingHeader } from "./floating-header";
 import { HeroStats } from "./hero-stats";
-import { MobileMenu } from "./mobile-menu";
 import { MotionObserver } from "./motion-observer";
 import { ProductDemoMedia } from "./product-demo-media";
+import { DemoButton, SiteFooter, SiteHeader } from "./site-chrome";
 import { PricingSection } from "../components/ui/pricing-section";
 
 const TRUSTED_BY_LOGOS = [
@@ -48,7 +46,7 @@ const TRUSTED_BY_LOGOS = [
 const FEATURES = [
   {
     id: "valuation",
-    eyebrow: "Endo Deals valuation",
+    eyebrow: "endo.deals valuation",
     title: "Walk into every negotiation knowing the number.",
     bullets: ["Contract comparables", "Athlete-specific drivers", "Defensible pricing"],
     mode: "valuation",
@@ -101,36 +99,36 @@ const FEATURE_DEMOS: Record<FeatureMode, FeatureMedia> = {
     type: "video",
     src: "/demos/valuation-demo.mp4",
     poster: "/demos/valuation-poster.webp",
-    label: "Endo valuation workflow product demo",
+    label: "endo valuation workflow product demo",
   },
   contracts: {
     type: "video",
     src: "/demos/financial-demo.mp4",
     poster: "/demos/financial-poster.webp",
-    label: "Endo contract and deal tracking product demo",
+    label: "endo contract and deal tracking product demo",
   },
   roster: {
     type: "video",
     src: "/demos/player-profile-demo.mp4",
     poster: "/demos/player-profile-poster.webp",
-    label: "Endo athlete profile product demo",
+    label: "endo athlete profile product demo",
   },
   financials: {
     type: "video",
     src: "/demos/financial-demo.mp4",
     poster: "/demos/financial-poster.webp",
-    label: "Endo financial and deal tracking product demo",
+    label: "endo financial and deal tracking product demo",
   },
   deliverables: {
     type: "video",
     src: "/demos/deliverables-demo.mp4",
     poster: "/demos/deliverables-poster.webp",
-    label: "Endo deliverable tracking product demo",
+    label: "endo deliverable tracking product demo",
   },
   pipeline: {
     type: "image",
     src: "/demos/agent-dashboard.webp",
-    label: "Endo live agency dashboard showing deals, athletes, revenue, payments, tasks, and notes",
+    label: "endo live agency dashboard showing deals, athletes, revenue, payments, tasks, and notes",
     width: 1908,
     height: 922,
   },
@@ -139,7 +137,7 @@ const FEATURE_DEMOS: Record<FeatureMode, FeatureMedia> = {
 const HERO_VIDEO = {
   src: "/demos/financial-demo.mp4",
   poster: "/demos/financial-poster.webp",
-  label: "Endo platform overview showing financial tracking and payment workflows",
+  label: "endo platform overview showing financial tracking and payment workflows",
 } as const;
 
 const TESTIMONIALS = [
@@ -180,51 +178,17 @@ const TESTIMONIALS = [
   },
 ] as const;
 
-export function Brand({ footer = false }: { footer?: boolean }) {
-  return (
-    <span className={`${styles.brandMark} ${footer ? styles.brandMarkFooter : ""}`}>
-      <Image
-        className={styles.brandMarkBase}
-        src={footer ? "/brand/endo-logo-white-gradient.png" : "/brand/endo-logo-dark.png"}
-        alt="Endo"
-        width={2826}
-        height={1214}
-        sizes={footer ? "155px" : "132px"}
-        priority={!footer}
-      />
-    </span>
-  );
-}
-
-export function DemoButton({ className = "", href = DEMO_URL, label = "Request a demo" }: { className?: string; href?: string; label?: string }) {
-  return (
-    <a
-      className={`${styles.demoButton} ${className}`}
-      href={href}
-    >
-      <span>{label}</span>
-      <span className={styles.demoButtonArrow} aria-hidden="true">
-        <svg viewBox="0 0 24 24">
-          <path d="M12 19V5M6.5 10.5 12 5l5.5 5.5" />
-        </svg>
-      </span>
-    </a>
-  );
-}
-
 function TrustedBy() {
   return (
     <div className={styles.trusted} aria-label="Trusted by leading sports agencies">
-      <div className={styles.logoRow}>
-        {TRUSTED_BY_LOGOS.map((logo) => (
-          <div className={`${styles.logoItem} ${logo.className}`} key={logo.name}>
-            <Image
-              src={logo.src}
-              alt={logo.name}
-              width={logo.width}
-              height={logo.height}
-              sizes="(max-width: 720px) 120px, 180px"
-            />
+      <div className={styles.logoTrack}>
+        {[0, 1].map((copy) => (
+          <div className={styles.logoRow} key={copy} aria-hidden={copy === 1 ? true : undefined}>
+            {TRUSTED_BY_LOGOS.map((logo) => (
+              <div className={`${styles.logoItem} ${logo.className}`} key={logo.name}>
+                <Image src={logo.src} alt={copy === 1 ? "" : logo.name} width={logo.width} height={logo.height} sizes="(max-width: 720px) 120px, 180px" />
+              </div>
+            ))}
           </div>
         ))}
       </div>
@@ -241,7 +205,7 @@ function FeatureNav() {
     >
       {FEATURES.map((feature, index) => (
         <a className={index === 0 ? styles.featurePillActive : ""} href={`#${feature.id}`} key={feature.id}>
-          {feature.eyebrow.replace("Endo Deals ", "")}
+          {feature.eyebrow.replace("endo.deals ", "")}
         </a>
       ))}
     </nav>
@@ -268,28 +232,13 @@ export default function Home() {
     <div className={styles.page}>
       <MotionObserver />
 
-      <FloatingHeader>
-          <a className={styles.brandLink} href="#top" aria-label="Endo home">
-            <Brand />
-          </a>
-          <nav className={styles.headerNav} aria-label="Primary navigation">
-            <a href="#features">Features</a>
-            <a href="#stories">Case studies</a>
-            <a href="/endo-deals">Endo Deals</a>
-            <a href="#pricing">Pricing</a>
-            <a href="/about">About</a>
-          </nav>
-          <DemoButton className={styles.headerButton} />
-          <div className={styles.mobileMenuSlot}>
-            <MobileMenu />
-          </div>
-      </FloatingHeader>
+      <SiteHeader />
 
       <main id="top">
         <section className={styles.hero} aria-labelledby="hero-heading">
           <div className={styles.heroCopy}>
             <h1 id="hero-heading">
-              The endorsement platform built for sports agencies
+              The software behind modern sports agencies
             </h1>
             <p className={styles.heroSubhead}>
               Never miss a payment or deliverable, price every deal right, and get more time to do what you do best.
@@ -387,7 +336,7 @@ export default function Home() {
             </article>
             <article data-scroll-reveal>
               <h3>Grow the roster</h3>
-              <p>Give your team back the time and visibility it needs to create more value for every athlete.</p>
+              <p>Give your team back the time and visibility it needs to create more value for every client.</p>
               <div className={`${styles.advantageVisual} ${styles.globeVisual}`} aria-hidden="true">
                 <EndoGlobe className={styles.growthGlobe} />
                 <div className={styles.globeFade} />
@@ -432,7 +381,7 @@ export default function Home() {
               <Image
                 className={styles.storyLaptopImage}
                 src="/demos/dashboard-laptop.webp"
-                alt="Endo agent dashboard displayed on a laptop"
+                alt="endo agent dashboard displayed on a laptop"
                 width={2200}
                 height={1466}
                 sizes="(max-width: 760px) 100vw, 700px"
@@ -491,27 +440,7 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className={styles.footer}>
-          <div
-            className={`${styles.footerTop} ${styles.scrollReveal}`}
-            data-scroll-reveal
-          >
-            <a href="#top" aria-label="Endo home"><Brand footer /></a>
-            <p>The endorsement platform built for sports agencies.</p>
-          </div>
-          <div
-            className={`${styles.footerLinks} ${styles.scrollReveal}`}
-            data-scroll-reveal
-          >
-            <div><p>Platform</p><a href="#features">Features</a><a href="#stories">Case studies</a><a href="/endo-deals">Endo Deals</a><a href="#pricing">Pricing</a><a href="#testimonials">Testimonials</a></div>
-            <div><p>Company</p><a href="/about">About</a><a href="/about#team">Our team</a><a href="mailto:admin@endodeals.com">Contact</a></div>
-            <div><p>Legal</p><a href="https://www.endodeals.com/privacy">Privacy policy</a><a href="https://www.endodeals.com/terms">Terms of service</a></div>
-          </div>
-          <div
-            className={`${styles.footerBottom} ${styles.scrollReveal}`}
-            data-scroll-reveal
-          ><span>© 2026 Endo. All rights reserved.</span><a href="#top">Back to top ↑</a></div>
-        </footer>
+        <SiteFooter />
       </div>
     </div>
   );

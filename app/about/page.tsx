@@ -1,9 +1,6 @@
-import Link from "next/link";
 import pageStyles from "../page.module.css";
-import { Brand, DemoButton } from "../page";
+import { DemoButton, SiteFooter, SiteHeader } from "../site-chrome";
 import { DiaGradient } from "../dia-gradient";
-import { FloatingHeader } from "../floating-header";
-import { MobileMenu } from "../mobile-menu";
 import { MotionObserver } from "../motion-observer";
 import { TeamPhotoTexture } from "./team-photo-texture";
 import styles from "./about.module.css";
@@ -34,21 +31,21 @@ const TEAM = [
 
 const TALKING_POINTS = [
   {
-    title: "Numbers or silence",
-    body: "We publish figures when we have them and say nothing when we do not. No adjective does work a fact should do.",
+    "title": "Time",
+    "body": "Agents spend their days digging through inboxes instead of building careers. endo runs the book so they can focus on what they do best."
   },
   {
-    title: "Coverage, not headcount",
-    body: "We report the leagues our athletes compete in. A roster total invites a comparison to a marketplace and answers the wrong question.",
+    "title": "Revenue",
+    "body": "Talent has been underpaid because nobody could prove their marketing value. endo puts a real number behind every deal."
   },
   {
-    title: "AI is plumbing",
-    body: "There is a model behind valuation because pricing is a modelling problem. It is never the pitch.",
+    "title": "Transparency",
+    "body": "Talent and their families deserve to see what's being done for them. endo gives everyone the same view."
   },
   {
-    title: "Agent language",
-    body: "The book, the recap, the signing, what he is worth. The buyer universe is a few dozen people who all know each other and can hear an outsider in one sentence.",
-  },
+    "title": "Status",
+    "body": "The next generation of talent picks agencies that look like the future. endo is how a modern agency runs."
+  }
 ] as const;
 
 export default function AboutPage() {
@@ -56,34 +53,35 @@ export default function AboutPage() {
     <div className={`${pageStyles.page} ${styles.aboutPage}`}>
       <MotionObserver />
 
-      <FloatingHeader>
-        <Link className={pageStyles.brandLink} href="/" aria-label="Endo home">
-          <Brand />
-        </Link>
-        <nav className={pageStyles.headerNav} aria-label="Primary navigation">
-          <Link href="/#features">Features</Link>
-          <Link href="/#stories">Case studies</Link>
-          <Link href="/endo-deals">Endo Deals</Link>
-          <Link href="/#pricing">Pricing</Link>
-          <Link href="/about">About</Link>
-        </nav>
-        <DemoButton className={pageStyles.headerButton} />
-        <div className={pageStyles.mobileMenuSlot}>
-          <MobileMenu homePath="/" />
-        </div>
-      </FloatingHeader>
+      <SiteHeader current="/about" />
 
       <main id="top">
         <section className={`${pageStyles.hero} ${styles.aboutHero}`} aria-labelledby="about-heading">
           <div className={`${pageStyles.heroCopy} ${styles.aboutHeroCopy}`}>
-            <h1 id="about-heading">We built this from the side of the table you sit on.</h1>
+            <h1 id="about-heading">Athletes are undervalued. Agents are on their own. We’re changing both.</h1>
             <div className={styles.aboutHeroBody}>
               <p>
-                Endorsement pricing has never had a public market. Agents are left with instinct, follower counts, and the last deal they heard about, while brands hold better information than the people representing the athlete. That gap is where we work.
+                Endorsement pricing has always happened in the dark. We think the people doing the work deserve to see the same numbers as the people paying for it.
               </p>
               <p>
-                Endo gives agents a defensible number before negotiations begin, then keeps a live view of the whole book afterward. The rest of the platform exists because agencies asked for it.
+                Agents have always worn every hat, with no one in their corner. We built endo to be that support: a clear valuation before every negotiation, a live roster view, a breakdown of every deal, and social and earned media analytics. Everything else in the platform is there because our customers asked for it.
               </p>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.talkSection} aria-labelledby="talk-heading">
+          <div className={styles.talkInner}>
+            <div className={`${styles.talkHeading} ${pageStyles.scrollReveal}`} data-scroll-reveal>
+              <h2 id="talk-heading">Why we built endo</h2>
+            </div>
+            <div className={styles.talkGrid}>
+              {TALKING_POINTS.map((point) => (
+                <article className={`${styles.talkItem} ${pageStyles.scrollReveal}`} data-scroll-reveal key={point.title}>
+                  <h3>{point.title}</h3>
+                  <p>{point.body}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -110,21 +108,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className={styles.talkSection} aria-labelledby="talk-heading">
-          <div className={styles.talkInner}>
-            <div className={`${styles.talkHeading} ${pageStyles.scrollReveal}`} data-scroll-reveal>
-              <h2 id="talk-heading">How we talk about the work</h2>
-            </div>
-            <div className={styles.talkGrid}>
-              {TALKING_POINTS.map((point) => (
-                <article className={`${styles.talkItem} ${pageStyles.scrollReveal}`} data-scroll-reveal key={point.title}>
-                  <h3>{point.title}</h3>
-                  <p>{point.body}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+
 
         <div className={`${pageStyles.closingRegion} ${styles.aboutClosingRegion}`}>
           <DiaGradient className={pageStyles.closingGradient} />
@@ -138,27 +122,7 @@ export default function AboutPage() {
             </div>
           </section>
 
-          <footer className={pageStyles.footer}>
-            <div
-              className={`${pageStyles.footerTop} ${pageStyles.scrollReveal}`}
-              data-scroll-reveal
-            >
-              <Link href="#top" aria-label="Endo home"><Brand footer /></Link>
-              <p>The endorsement platform built for sports agencies.</p>
-            </div>
-            <div
-              className={`${pageStyles.footerLinks} ${pageStyles.scrollReveal}`}
-              data-scroll-reveal
-            >
-              <div><p>Platform</p><Link href="/#features">Features</Link><Link href="/#stories">Case studies</Link><Link href="/endo-deals">Endo Deals</Link><Link href="/#pricing">Pricing</Link><Link href="/#testimonials">Testimonials</Link></div>
-              <div><p>Company</p><Link href="/about">About</Link><Link href="/about#team">Our team</Link><a href="mailto:admin@endodeals.com">Contact</a></div>
-              <div><p>Legal</p><a href="https://www.endodeals.com/privacy">Privacy policy</a><a href="https://www.endodeals.com/terms">Terms of service</a></div>
-            </div>
-            <div
-              className={`${pageStyles.footerBottom} ${pageStyles.scrollReveal}`}
-              data-scroll-reveal
-            ><span>© 2026 Endo. All rights reserved.</span><Link href="#top">Back to top ↑</Link></div>
-          </footer>
+          <SiteFooter />
         </div>
       </main>
     </div>

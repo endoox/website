@@ -6,7 +6,7 @@ import styles from "./endo-deals.module.css";
 
 const FACTORS = [
   { name: "Social analytics", score: 88, color: "#7db7ff", description: "Reach, engagement and sponsored performance across the athlete’s social platforms." },
-  { name: "Playing performance", score: 81, color: "#4f8aef", description: "On-field performance, considered in the context of the athlete’s position and role." },
+  { name: "Performance", score: 81, color: "#4f8aef", description: "On-field performance, considered in the context of the athlete’s position and role." },
   { name: "Earned media", score: 92, color: "#b2d7ff", description: "The coverage, conversation and attention surrounding the athlete beyond their own channels." },
   { name: "League & market", score: 76, color: "#6b9bd4", description: "The league, audience and market context that help put an endorsement opportunity in perspective." },
 ] as const;
@@ -35,7 +35,7 @@ export function MarketabilityScore() {
           ))}
         </svg>
         <div className={styles.scoreNumber}>
-          <span>Endo Deals score</span>
+          <span>endo.deals score</span>
           <strong>87<span>/100</span></strong>
         </div>
       </div>

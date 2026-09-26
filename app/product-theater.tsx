@@ -30,7 +30,7 @@ function Shell({ children, compact }: { children: React.ReactNode; compact?: boo
       </aside>
       <div className={styles.productBody}>
         <div className={styles.productToolbar}>
-          <div><strong>Endo</strong><span>Agency workspace</span></div>
+          <div><strong>endo</strong><span>Agency workspace</span></div>
           <div className={styles.productToolbarActions}><span>Search</span><i>WK</i></div>
         </div>
         {children}
@@ -43,7 +43,7 @@ function ValuationScreen({ compact }: { compact?: boolean }) {
   return (
     <Shell compact={compact}>
       <div className={styles.productContent}>
-        <div className={styles.productTitle}><div><span>Endo Deals valuation</span><h4>Jordan Mills × Northstar</h4></div><button>Share</button></div>
+        <div className={styles.productTitle}><div><span>endo.deals valuation</span><h4>Jordan Mills × Northstar</h4></div><button>Share</button></div>
         <div className={styles.valuationGrid}>
           <section className={styles.valuationScore}>
             <p>Recommended deal value</p><strong>$72,500</strong><span>High confidence · 18 comparables</span>
@@ -211,7 +211,7 @@ export function ProductTheater() {
       <div className={styles.theaterWindow} key={activeMode}>
         <ProductWindow mode={activeMode} />
       </div>
-      <div className={styles.theaterTabs} role="tablist" aria-label="Preview Endo features">
+      <div className={styles.theaterTabs} role="tablist" aria-label="Preview endo features">
         {THEATER_TABS.map((tab) => (
           <button
             className={activeMode === tab.mode ? styles.theaterTabActive : ""}

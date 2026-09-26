@@ -79,7 +79,7 @@ export function EndoIntegrationBeam() {
           <span className="relative block h-[24px] w-[84px] overflow-hidden">
             <Image
               src="/brand/endo-logo-dark.png"
-              alt="Endo"
+              alt="endo"
               width={2826}
               height={1214}
               sizes="84px"

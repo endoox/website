@@ -2,31 +2,10 @@
 
 import type { CSSProperties } from "react";
 import { DEMO_URL } from "@/lib/contact";
+import { NAV_LINKS } from "@/lib/nav";
 import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
 
-const MENU_LINKS = (homePath: string) => [
-  {
-    label: "Features",
-    href: `${homePath}#features`,
-  },
-  {
-    label: "Case studies",
-    href: `${homePath}#stories`,
-  },
-  {
-    label: "Endo Deals",
-    href: "/endo-deals",
-  },
-  {
-    label: "Pricing",
-    href: `${homePath}#pricing`,
-  },
-  {
-    label: "About",
-    href: "/about",
-  },
-] as const;
 
 type MenuPhase = "closed" | "open" | "closing";
 
@@ -38,7 +17,7 @@ function ArrowIcon() {
   );
 }
 
-export function MobileMenu({ homePath = "/" }: { homePath?: string }) {
+export function MobileMenu() {
   const rootRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const closeTimerRef = useRef<number | null>(null);
@@ -164,7 +143,7 @@ export function MobileMenu({ homePath = "/" }: { homePath?: string }) {
         inert={!isOpen}
       >
         <nav className={styles.mobileMenuNav} aria-label="Mobile navigation">
-          {MENU_LINKS(homePath).map((link, index) => (
+          {NAV_LINKS.map((link, index) => (
             <a
               className={styles.mobileMenuLink}
               style={

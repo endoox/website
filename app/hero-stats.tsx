@@ -137,7 +137,7 @@ export function HeroStats() {
       className={`${styles.heroStats} ${styles.scrollReveal}`}
       style={{ "--reveal-delay": "120ms" } as CSSProperties}
       data-scroll-reveal
-      aria-label="Endo platform impact"
+      aria-label="endo platform impact"
     >
       {HERO_STATS.map((stat, index) => (
         <div className={styles.heroStat} key={stat.label}>

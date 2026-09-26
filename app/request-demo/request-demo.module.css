@@ -1,0 +1,339 @@
+.demoPage {
+  background: #fff;
+}
+
+.demoHero {
+  min-height: 840px;
+  padding: 156px max(30px, calc((100vw - 1200px) / 2)) 112px;
+  background: #f7f8fa;
+}
+
+.demoHeroInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+  align-items: start;
+  gap: clamp(52px, 8vw, 112px);
+}
+
+.demoIntro {
+  padding-top: 20px;
+}
+
+.demoKicker {
+  margin: 0 0 20px;
+  color: var(--blue);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.demoIntro h1 {
+  max-width: 540px;
+  margin: 0;
+  font-size: clamp(3.2rem, 5.3vw, 5.5rem);
+  font-weight: 500;
+  letter-spacing: -.06em;
+  line-height: .98;
+  text-wrap: balance;
+}
+
+.demoIntro > p {
+  max-width: 470px;
+  margin: 30px 0 0;
+  color: var(--muted);
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  line-height: 1.55;
+}
+
+.demoAside {
+  max-width: 390px;
+  margin-top: 64px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.demoAside > span {
+  color: var(--blue-deep);
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.demoAside ol {
+  margin: 20px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 13px;
+  list-style: none;
+  counter-reset: next-step;
+}
+
+.demoAside li {
+  display: grid;
+  grid-template-columns: 27px 1fr;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-size: .94rem;
+}
+
+.demoAside li::before {
+  content: counter(next-step);
+  counter-increment: next-step;
+  width: 27px;
+  height: 27px;
+  display: grid;
+  border-radius: 50%;
+  background: #e8eef9;
+  color: var(--blue-deep);
+  font-size: .76rem;
+  font-weight: 700;
+  place-items: center;
+}
+
+.demoFormShell {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  background: #fff;
+  box-shadow: 0 24px 60px rgb(7 20 38 / 9%);
+}
+
+.demoForm,
+.formSuccess {
+  padding: clamp(28px, 4vw, 44px);
+}
+
+.formFields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 18px;
+}
+
+.formFields label {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.formFields label > span {
+  color: var(--ink);
+  font-size: .82rem;
+  font-weight: 650;
+}
+
+.formFields input,
+.formFields select,
+.formFields textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid #d9e0e8;
+  border-radius: 10px;
+  outline: none;
+  background: #fbfcfd;
+  color: var(--ink);
+  font: inherit;
+  font-size: .92rem;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.formFields textarea {
+  min-height: 112px;
+  resize: vertical;
+}
+
+.formFields input::placeholder,
+.formFields textarea::placeholder {
+  color: #9aa4b1;
+}
+
+.formFields select:invalid {
+  color: #9aa4b1;
+}
+
+.formFields select option {
+  color: var(--ink);
+}
+
+.formFields input:focus,
+.formFields select:focus,
+.formFields textarea:focus {
+  border-color: var(--blue);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgb(75 124 209 / 15%);
+}
+
+.formFieldWide {
+  grid-column: 1 / -1;
+}
+
+.formButton {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 28px;
+  padding: 0 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid var(--blue);
+  border-radius: 999px;
+  background: var(--blue);
+  color: #fff;
+  font: inherit;
+  font-size: .93rem;
+  font-weight: 650;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.formButton:hover {
+  border-color: #4168b8;
+  background: #4168b8;
+}
+
+.formButton:active {
+  transform: scale(.985);
+}
+
+.formButton span {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.formNote {
+  margin: 16px 0 0;
+  color: #8b95a2;
+  font-size: .76rem;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.formSuccess {
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.successMark {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  margin-bottom: 24px;
+  border-radius: 50%;
+  background: #e8eef9;
+  color: var(--blue-deep);
+  font-size: 1.35rem;
+  font-weight: 700;
+  place-items: center;
+}
+
+.formSuccess h2 {
+  margin: 0;
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  font-weight: 500;
+  letter-spacing: -.05em;
+  line-height: 1;
+}
+
+.formSuccess p {
+  max-width: 380px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.formSuccess .formButton {
+  width: auto;
+  min-width: 190px;
+  margin-top: 30px;
+}
+
+.editButton {
+  margin-top: 17px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: .84rem;
+  cursor: pointer;
+}
+
+.editButton:hover {
+  color: var(--ink);
+}
+
+.demoClosingRegion {
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .demoHeroInner {
+    grid-template-columns: 1fr;
+    gap: 58px;
+  }
+
+  .demoIntro {
+    padding-top: 0;
+  }
+
+  .demoAside {
+    margin-top: 42px;
+  }
+
+  .demoFormShell {
+    max-width: 720px;
+  }
+}
+
+@media (max-width: 760px) {
+  .demoHero {
+    min-height: 0;
+    padding: 132px 22px 84px;
+  }
+
+  .demoIntro h1 {
+    font-size: clamp(3rem, 13vw, 4.5rem);
+  }
+
+  .demoIntro > p {
+    margin-top: 22px;
+    font-size: 1rem;
+  }
+
+  .demoAside {
+    margin-top: 38px;
+  }
+
+  .demoForm,
+  .formSuccess {
+    padding: 26px 20px;
+  }
+
+  .formFields {
+    grid-template-columns: 1fr;
+    gap: 19px;
+  }
+
+  .formFieldWide {
+    grid-column: auto;
+  }
+
+  .formSuccess {
+    min-height: 420px;
+  }
+
+  .formSuccess .formButton {
+    width: 100%;
+  }
+}

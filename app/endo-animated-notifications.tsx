@@ -125,7 +125,7 @@ export function EndoAnimatedNotifications({ className }: { className?: string })
         ))}
       </AnimatedList>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white via-white/85 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#242d6d] via-[#242d6d]/85 to-transparent" />
     </div>
   )
 }

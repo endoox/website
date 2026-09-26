@@ -107,7 +107,7 @@
   transition: color 180ms ease;
 }
 
-.headerNav a:hover { color: var(--blue); }
+.headerNav a:hover, .headerNav a[aria-current="page"] { color: var(--blue); }
 
 .demoButton {
   --button-bg: var(--blue);
@@ -265,15 +265,6 @@
 @keyframes hero-product-in {
   from { opacity: 0; transform: translateY(34px) scale(.985); filter: blur(5px); }
   to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-}
-
-.heroDashboard {
-  width: 100%;
-  height: 100%;
-  display: block;
-  border-radius: 12px 12px 0 0;
-  object-fit: cover;
-  object-position: top left;
 }
 
 .heroVideo {
@@ -650,6 +641,7 @@
 .advantages, .stories, .testimonials { padding: 120px max(30px, calc((100vw - 1200px) / 2)); }
 .advantages { background: #f7f8fa; }
 .sectionHeading { max-width: 850px; margin: 0 auto 80px; text-align: center; }
+.sectionHeading p { max-width: 650px; margin: 28px auto 0; color: #7a828d; font-size: clamp(1rem, 1.35vw, 1.2rem); font-weight: 430; line-height: 1.55; text-wrap: balance; }
 .advantageGrid { display: grid; grid-template-columns: repeat(2, 1fr); overflow: hidden; border: 1px solid var(--line); border-radius: 28px; background: #fff; }
 .advantageGrid article { position: relative; min-height: 430px; padding: 42px; overflow: hidden; }
 .advantageGrid article[data-scroll-reveal] {
@@ -674,8 +666,6 @@
 .advantageGrid article h3 { margin: 220px 0 10px; font-size: 2rem; font-weight: 550; letter-spacing: -.035em; }
 .advantageGrid article > p { max-width: 480px; margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.55; }
 .advantageVisual { position: absolute; top: 34px; right: 42px; left: 42px; height: 175px; }
-.textOnlyAdvantage { display: flex; flex-direction: column; justify-content: center; }
-.advantageGrid .textOnlyAdvantage h3 { margin-top: 0; }
 
 .rosterVisual { top: 18px; height: 216px; overflow: hidden; }
 .integrationVisual { top: 18px; height: 216px; overflow: hidden; }
@@ -784,7 +774,7 @@
   .hero { min-height: 840px; padding: 58px 12px 0; }.hero h1 { font-size: clamp(2.6rem, 12vw, 4rem); letter-spacing: -.052em; line-height: 1.01; }.heroSubhead { max-width: 350px; margin-top: 22px; font-size: .96rem; line-height: 1.48; }
   .trusted { margin: 44px auto 34px; overflow: hidden; }.logoRow { width: max-content; justify-content: flex-start; gap: 42px; animation: mobile-logos 22s linear infinite; }.logoItem { width: 122px; height: 49px; }.logoFarrwest { width: 125px; height: 55px; }.logoPeak { width: 62px; height: 62px; }.logoQuartexx { width: 135px; }.logoRsg { width: 140px; }
   @keyframes mobile-logos { to { transform: translateX(-38%); } }
-  .heroProduct { width: calc(100vw - 16px); height: 430px; }.heroDashboard { width: 900px; max-width: none; object-fit: cover; object-position: top left; }.heroProduct .productWindow { width: 700px; height: 420px; transform: translateX(-5%); }.productTheater { min-height: 445px; padding: 30px 14px 84px; border-radius: 26px 26px 0 0; }.theaterWindow { width: 720px; transform-origin: top left; }.theaterWindow .productWindow { height: 400px; }.theaterTabs { right: 12px; bottom: 19px; left: 12px; justify-content: flex-start; overflow-x: auto; scrollbar-width: none; }.theaterTabs::-webkit-scrollbar { display: none; }.theaterTabs button { min-height: 39px; padding: 0 17px; white-space: nowrap; }
+  .heroProduct { width: calc(100vw - 16px); height: 430px; }.heroProduct .productWindow { width: 700px; height: 420px; transform: translateX(-5%); }.productTheater { min-height: 445px; padding: 30px 14px 84px; border-radius: 26px 26px 0 0; }.theaterWindow { width: 720px; transform-origin: top left; }.theaterWindow .productWindow { height: 400px; }.theaterTabs { right: 12px; bottom: 19px; left: 12px; justify-content: flex-start; overflow-x: auto; scrollbar-width: none; }.theaterTabs::-webkit-scrollbar { display: none; }.theaterTabs button { min-height: 39px; padding: 0 17px; white-space: nowrap; }
   .productWindow { grid-template-columns: 46px 1fr; }.productRail { gap: 15px; }.productRail b { width: 28px; height: 28px; }.productContent { padding: 17px; }
   .featuresSection { margin: 0 3px; padding: 62px 16px 100px; border-radius: 24px; }.featuresHeading { margin-bottom: 28px; }.featuresHeading h2, .sectionHeading h2, .impactHeading h2 { font-size: clamp(2.65rem, 12vw, 3.75rem); }.featurePills { top: 80px; width: 100%; margin-bottom: 54px; justify-content: flex-start; }.featurePills a { flex: 0 0 auto; white-space: nowrap; }
   .featureStories { gap: 104px; }.featureStory, .featureStory:nth-child(even) { min-height: 0; display: flex; flex-direction: column; align-items: stretch; gap: 34px; }.featureStory:nth-child(even) .featureCopy, .featureStory:nth-child(even) .featureVisual { grid-column: auto; grid-row: auto; }.featureCopy h3 { font-size: clamp(2.35rem, 10vw, 3.2rem); }.featureVisual { width: calc(100% + 8px); min-height: 410px; margin-left: -4px; padding: 17px; overflow: hidden; border-radius: 22px; }.featureVisualDemo { min-height: 0; padding: 11px; border-radius: 14px; }.productDemoFrame { border-radius: 8px; }.featureVisual .productWindow { width: 700px; height: 380px; transform-origin: top left; }.featureStory:nth-child(odd) .productWindow { transform: translateX(-3%); }.featureStory:nth-child(even) .productWindow { transform: translateX(-48%); }
@@ -826,4 +816,21 @@
 @media (prefers-reduced-motion: reduce) {
   .theaterWindow, .testimonialTrack, .logoRow, .chartArea i { animation: none !important; }
   .demoButton, .demoButtonArrow, .demoButtonArrow svg { transition: none; }
+}
+
+/* Shared dark-blue benefit cards and continuous agency logo strip. */
+.advantageGrid { background: var(--blue-deep); color: #fff; border-color: rgb(255 255 255 / 18%); }
+.advantageGrid article:nth-child(odd), .advantageGrid article:nth-child(-n + 2) { border-color: rgb(255 255 255 / 18%); }
+.advantageGrid article > p { color: rgb(255 255 255 / 75%); }
+.globeFade { background: linear-gradient(to top, var(--blue-deep), transparent); }
+.trusted { overflow: hidden; }
+.logoTrack { display: flex; width: max-content; animation: agency-logos 28s linear infinite; }
+.logoTrack .logoRow { flex-shrink: 0; width: max-content; justify-content: flex-start; gap: 64px; padding-right: 64px; animation: none; }
+.trusted:hover .logoTrack { animation-play-state: paused; }
+@keyframes agency-logos { to { transform: translateX(-50%); } }
+@media (max-width: 760px) { .logoTrack .logoRow { gap: 42px; padding-right: 42px; } }
+@media (prefers-reduced-motion: reduce) {
+  .logoTrack { animation: none; width: 100%; }
+  .logoTrack .logoRow { width: 100%; flex-wrap: wrap; justify-content: center; padding-right: 0; gap: 24px; }
+  .logoTrack .logoRow[aria-hidden="true"] { display: none; }
 }

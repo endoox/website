@@ -1,18 +1,15 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
 import { Check } from "lucide-react";
 import { REPORT_REQUEST_URL } from "@/lib/contact";
-import { Brand, DemoButton } from "../page";
+import { DemoButton, SiteFooter, SiteHeader } from "../site-chrome";
 import { DiaGradient } from "../dia-gradient";
-import { FloatingHeader } from "../floating-header";
-import { MobileMenu } from "../mobile-menu";
 import { MotionObserver } from "../motion-observer";
 import { MarketabilityScore } from "./marketability-score";
 import pageStyles from "../page.module.css";
 import styles from "./endo-deals.module.css";
 
-const title = "Endo Deals — Know what the endorsement is worth";
+const title = "endo.deals — Know what the endorsement is worth";
 const description = "Understand an athlete’s marketability, explore comparable deals, and take a defensible endorsement valuation into your next negotiation.";
 
 export const metadata: Metadata = {
@@ -39,35 +36,24 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
 const exampleTotal = DELIVERABLES.reduce((sum, item) => sum + item.total, 0);
 
 const QUESTIONS = [
-  { question: "What does the marketability score tell me?", answer: "It brings social analytics, playing performance, earned media, and league and market context into one view of the athlete. The four factors help explain the score and identify relevant comparable talent. The deal’s specific scope still matters when translating that context into a price." },
+  { question: "What does the marketability score tell me?", answer: "It brings social analytics, performance, earned media, and league and market context into one view of the athlete. The four factors help explain the score and identify relevant comparable talent. The deal’s specific scope still matters when translating that context into a price." },
   { question: "Where do comparable deals fit in?", answer: "Comparable endorsement agreements give the recommendation a market reference. The athlete, deliverable mix, term, territory and exclusivity help explain which agreements are relevant to the opportunity in front of you." },
-  { question: "What if there is no obvious comparable?", answer: "That is a reason to look more closely at the context and confidence behind the recommendation. Bring the opportunity to the Endo team to discuss the available comparisons, the assumptions and what the range can support." },
-  { question: "Can I request a report for a live opportunity?", answer: "Yes. Request an evaluation report and tell us about the athlete, brand and proposed scope. The Endo team will follow up to discuss the opportunity and the details needed for a valuation." },
+  { question: "What if there is no obvious comparable?", answer: "That is a reason to look more closely at the context and confidence behind the recommendation. Bring the opportunity to the endo team to discuss the available comparisons, the assumptions and what the range can support." },
+  { question: "Can I request a report for a live opportunity?", answer: "Yes. Request an endo.deal report and tell us about the athlete, brand and proposed scope. The endo team will follow up to discuss the opportunity and the details needed for a valuation." },
 ] as const;
 
 export default function EndoDealsPage() {
   return (
     <div className={pageStyles.page}>
       <MotionObserver />
-      <FloatingHeader>
-        <Link className={pageStyles.brandLink} href="/" aria-label="Endo home"><Brand /></Link>
-        <nav className={pageStyles.headerNav} aria-label="Primary navigation">
-          <Link href="/#features">Features</Link>
-          <Link href="/#stories">Case studies</Link>
-          <Link className={styles.activeNav} href="/endo-deals" aria-current="page">Endo Deals</Link>
-          <Link href="/#pricing">Pricing</Link>
-          <Link href="/about">About</Link>
-        </nav>
-        <DemoButton className={pageStyles.headerButton} />
-        <div className={pageStyles.mobileMenuSlot}><MobileMenu homePath="/" /></div>
-      </FloatingHeader>
+      <SiteHeader current="/endo-deals" />
 
       <main id="top">
         <section className={styles.hero} aria-labelledby="deals-heading">
-          <h1 id="deals-heading">Know the value.<span>Own the negotiation.</span></h1>
+          <h1 id="deals-heading">Never quote a number you can’t defend</h1>
           <p className={styles.intro}>Negotiate better endorsements with a clear view of your athlete’s value.</p>
           <div className={styles.actions}>
-            <DemoButton href={REPORT_REQUEST_URL} label="Request an evaluation report" />
+            <DemoButton href={REPORT_REQUEST_URL} label="Request an endo.deal report" />
           </div>
         </section>
 
@@ -105,7 +91,7 @@ export default function EndoDealsPage() {
           </div>
           <article className={styles.report} aria-label="Illustrative endorsement valuation report">
             <div className={styles.receiptBrand}>
-              <Image src="/brand/endo-logo-dark.png" alt="Endo" width={2826} height={1214} sizes="80px" />
+              <Image src="/brand/endo-logo-dark.png" alt="endo" width={2826} height={1214} sizes="80px" />
             </div>
             <h3 className={styles.reportTitle}>An annual apparel partnership.</h3>
             <p className={styles.reportSubtitle}>Illustrative basketball athlete · Exclusive · North America · USD</p>
@@ -143,21 +129,10 @@ export default function EndoDealsPage() {
         <section className={pageStyles.closing} aria-labelledby="deals-closing-heading">
           <div className={pageStyles.closingCopy}>
             <h2 id="deals-closing-heading">Bring the opportunity.<br />We’ll bring the context.</h2>
-            <DemoButton href={REPORT_REQUEST_URL} label="Request an evaluation report" />
+            <DemoButton href={REPORT_REQUEST_URL} label="Request an endo.deal report" />
           </div>
         </section>
-        <footer className={pageStyles.footer}>
-          <div className={pageStyles.footerTop}>
-            <Link href="/" aria-label="Endo home"><Brand footer /></Link>
-            <p>The endorsement platform built for sports agencies.</p>
-          </div>
-          <div className={pageStyles.footerLinks}>
-            <div><p>Platform</p><Link href="/#features">Features</Link><Link href="/#stories">Case studies</Link><Link href="/endo-deals">Endo Deals</Link><Link href="/#pricing">Pricing</Link></div>
-            <div><p>Company</p><Link href="/about">About</Link><Link href="/about#team">Our team</Link><a href="mailto:admin@endodeals.com">Contact</a></div>
-            <div><p>Legal</p><a href="https://www.endodeals.com/privacy">Privacy policy</a><a href="https://www.endodeals.com/terms">Terms of service</a></div>
-          </div>
-          <div className={pageStyles.footerBottom}><span>© 2026 Endo. All rights reserved.</span><Link href="#top">Back to top ↑</Link></div>
-        </footer>
+        <SiteFooter />
       </div>
     </div>
   );
