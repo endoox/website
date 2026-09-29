@@ -180,7 +180,7 @@
 .hero {
   position: relative;
   min-height: 980px;
-  padding: clamp(70px, 9vw, 122px) 24px 40px;
+  padding: clamp(70px, 9vw, 122px) 24px 0;
   overflow: hidden;
   background: #fff;
 }
@@ -259,8 +259,8 @@
   to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
 
-/* The mockup's drop shadow runs off the bottom of the PNG; fade it out instead of ending on a hard edge. */
-.heroProduct img { width: 100%; height: auto; display: block; mask-image: linear-gradient(to bottom, #000 95%, transparent 100%); }
+/* Fades out over the ~140px just above where the features card overlaps it (120px, see .featuresSection). */
+.heroProduct img { width: 100%; height: auto; display: block; mask-image: linear-gradient(to bottom, #000 calc(100% - 260px), transparent calc(100% - 120px)); }
 
 .featurePills a {
   min-height: 43px;
@@ -282,7 +282,8 @@
 .featuresSection {
   position: relative;
   z-index: 2;
-  margin: 0 4px;
+  /* Overlaps the bottom of the hero devices, which fade out just above this card (see .heroProduct img). */
+  margin: -120px 4px 0;
   padding: 64px max(32px, calc((100vw - 1400px) / 2)) 120px;
   overflow: hidden;
   border-radius: 30px;
@@ -473,7 +474,7 @@
   .header[data-floating="true"] { top: 9px; width: calc(100% - 18px); height: 60px; padding: 0 8px; }
   .hero { min-height: 840px; padding: 58px 12px 0; }.hero h1 { font-size: clamp(2.6rem, 12vw, 4rem); letter-spacing: -.052em; line-height: 1.01; }.heroSubhead { max-width: 350px; margin-top: 22px; font-size: .96rem; line-height: 1.48; }
   .trusted { margin: 44px auto 34px; overflow: hidden; }.logoItem { width: calc(var(--logo-w) * .76); height: calc(var(--logo-h) * .76); }
-  .heroProduct { width: calc(100vw - 16px); }
+  .heroProduct { width: calc(100vw - 16px); }.heroProduct img { mask-image: linear-gradient(to bottom, #000 95%, transparent 100%); }
   .featuresSection { margin: 0 3px; padding: 62px 16px 100px; border-radius: 24px; }.featuresHeading { margin-bottom: 28px; }.featuresHeading h2, .sectionHeading h2, .impactHeading h2 { font-size: clamp(2.65rem, 12vw, 3.75rem); }.featurePills { top: 80px; width: 100%; margin-bottom: 54px; justify-content: flex-start; }.featurePills a { flex: 0 0 auto; white-space: nowrap; }
   .featureStories { gap: 72px; }.featureStory, .featureStory:nth-child(even) { min-height: 0; display: flex; flex-direction: column; align-items: stretch; gap: 34px; }.featureStory:nth-child(even) .featureCopy, .featureStory:nth-child(even) .featureVisual { grid-column: auto; grid-row: auto; }.featureCopy h3 { font-size: clamp(2.35rem, 10vw, 3.2rem); }
   .testimonials { padding: 90px 16px; }.sectionHeading { margin-bottom: 54px; }
