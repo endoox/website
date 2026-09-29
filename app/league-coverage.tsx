@@ -26,7 +26,6 @@ export function LeagueCoverage() {
       </div>
       <ul className={styles.leagueRow} aria-label="Featured leagues">
         {LEAGUES.map((league) => <li key={league.file}><Image src={`/leagues/${league.file}.png`} alt={league.name} width={500} height={500} sizes="(max-width: 760px) 60px, 100px" /></li>)}
-        <li><span className={styles.leagueText}>Double-A<br />Baseball</span></li>
       </ul>
     </section>
   );

@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import pageStyles from "../page.module.css";
-import { DemoButton, SiteFooter, SiteHeader } from "../site-chrome";
-import { DiaGradient } from "../dia-gradient";
-import { MotionObserver } from "../motion-observer";
+import { SiteFooter, SiteHeader } from "../site-chrome";
 import { DemoRequestForm } from "./demo-request-form";
 import styles from "./request-demo.module.css";
 
@@ -14,7 +12,6 @@ export const metadata: Metadata = {
 export default function RequestDemoPage() {
   return (
     <div className={`${pageStyles.page} ${styles.demoPage}`}>
-      <MotionObserver />
 
       <SiteHeader />
 
@@ -44,17 +41,7 @@ export default function RequestDemoPage() {
         </section>
       </main>
 
-      <div className={`${pageStyles.closingRegion} ${styles.demoClosingRegion}`}>
-        <DiaGradient className={pageStyles.closingGradient} />
-        <section className={pageStyles.closing} aria-labelledby="closing-heading">
-          <div className={`${pageStyles.closingCopy} ${pageStyles.scrollReveal}`} data-scroll-reveal>
-            <h2 id="closing-heading">See what every endorsement is really worth.</h2>
-            <div><DemoButton /></div>
-          </div>
-        </section>
-
-        <SiteFooter />
-      </div>
+      <SiteFooter />
     </div>
   );
 }

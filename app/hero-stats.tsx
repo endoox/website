@@ -7,28 +7,28 @@ import styles from "./page.module.css";
 
 const HERO_STATS = [
   {
-    start: 1_000_000,
-    end: 10_000_000,
+    start: 1_500_000,
+    end: 15_000_000,
     currency: true,
     suffix: "+",
-    label: "endorsements managed on our platform",
-    ariaLabel: "More than 10 million dollars in endorsements managed",
+    label: "in endorsement deals managed on endo",
+    ariaLabel: "More than 15 million dollars in endorsement deals managed on endo",
   },
   {
-    start: 170,
-    end: 170,
+    start: 5,
+    end: 48,
     currency: false,
-    suffix: "%",
-    label: "more value in a Quartexx brand negotiation",
-    ariaLabel: "170 percent more value in a Quartexx brand negotiation",
+    suffix: "",
+    label: "leagues represented across our partner agencies",
+    ariaLabel: "48 leagues represented across our partner agencies",
   },
   {
-    start: 20_000,
-    end: 200_000,
-    currency: true,
-    suffix: "+",
-    label: "value created through valuation tool",
-    ariaLabel: "More than 200 thousand dollars in value created",
+    start: 1,
+    end: 10,
+    currency: false,
+    suffix: "",
+    label: "average hours saved per week using endo",
+    ariaLabel: "10 average hours saved per week using endo",
   },
 ] as const;
 

@@ -1,138 +1,38 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { LeagueCoverage } from "./league-coverage";
 import styles from "./page.module.css";
-import { DiaGradient } from "./dia-gradient";
-import { EndoAnimatedNotifications } from "./endo-animated-notifications";
-import { EndoDealMarquee } from "./endo-deal-marquee";
-import { EndoGlobe } from "./endo-globe";
-import { EndoIntegrationBeam } from "./endo-integration-beam";
 import { HeroStats } from "./hero-stats";
-import { MotionObserver } from "./motion-observer";
-import { ProductDemoMedia } from "./product-demo-media";
+import { ProductDemoMedia, TransparentVideo } from "./product-demo-media";
 import { DemoButton, SiteFooter, SiteHeader } from "./site-chrome";
 import { PricingSection } from "../components/ui/pricing-section";
+import { Wordmark } from "./wordmark";
 
+// box = display size in px (scaled down on mobile). flat = keep tones instead of darkening,
+// for JPEGs with white backgrounds and marks with white detail.
 const TRUSTED_BY_LOGOS = [
-  {
-    name: "FarrWest Management",
-    src: "/trusted-by/farrwest.png",
-    width: 1053,
-    height: 497,
-    className: styles.logoFarrwest,
-  },
-  {
-    name: "Peak Athletes",
-    src: "/trusted-by/peak-athletes.png",
-    width: 1200,
-    height: 1200,
-    className: styles.logoPeak,
-  },
-  {
-    name: "Quartexx Management",
-    src: "/trusted-by/quartexx.png",
-    width: 343,
-    height: 115,
-    className: styles.logoQuartexx,
-  },
-  {
-    name: "RSG Hockey",
-    src: "/trusted-by/rsg-hockey.webp",
-    width: 458,
-    height: 93,
-    className: styles.logoRsg,
-  },
+  { name: "FarrWest Management", src: "/trusted-by/farrwest.png", width: 1053, height: 497, box: [160, 70] },
+  { name: "Peak Athletes", src: "/trusted-by/peak-athletes.png", width: 1200, height: 1200, box: [82, 82] },
+  { name: "Quartexx Management", src: "/trusted-by/quartexx.png", width: 343, height: 115, box: [175, 62] },
+  { name: "RSG Hockey", src: "/trusted-by/rsg-hockey.webp", width: 458, height: 93, box: [178, 62] },
+  { name: "ORR Hockey Group", src: "/trusted-by/orr-hockey-group.jpeg", width: 200, height: 200, box: [92, 92], flat: true },
+  { name: "Tonbara", src: "/trusted-by/tonbara.webp", width: 465, height: 416, box: [62, 56] },
+  { name: "RHSEVEN", src: "/trusted-by/rhseven-white.png", width: 280, height: 77, box: [150, 44] },
+  { name: "Envision Sports & Entertainment", src: "/trusted-by/envision-sports-entertainment.png", width: 300, height: 136, box: [140, 64], flat: true },
+  { name: "Cook Stark Management", src: "/trusted-by/cook-stark.jpeg", width: 200, height: 200, box: [100, 80], flat: true },
+  { name: "US Sports Agency", src: "/trusted-by/us-sports-agency.webp", width: 300, height: 300, box: [72, 72] },
+  { name: "Oasis Sports Group", src: "/trusted-by/oasis-agency.jpeg", width: 522, height: 464, box: [84, 74], flat: true },
 ] as const;
 
 const FEATURES = [
-  {
-    id: "valuation",
-    eyebrow: "endo.deals valuation",
-    title: "Walk into every negotiation knowing the number.",
-    bullets: ["Contract comparables", "Athlete-specific drivers", "Defensible pricing"],
-    mode: "valuation",
-  },
-  {
-    id: "contracts",
-    eyebrow: "Contract management",
-    title: "Every agreement, term, and renewal in one place.",
-    bullets: ["Centralized contracts", "Renewal reminders", "Clear approval history"],
-    mode: "contracts",
-  },
-  {
-    id: "roster",
-    eyebrow: "Roster visibility",
-    title: "See the whole business behind your roster.",
-    bullets: ["Athlete-level views", "Live opportunity status", "Agency-wide visibility"],
-    mode: "roster",
-  },
-  {
-    id: "financials",
-    eyebrow: "Financial tracking",
-    title: "Know exactly what is paid, pending, and overdue.",
-    bullets: ["Payment schedules", "Escalators and bonuses", "Revenue forecasting"],
-    mode: "financials",
-  },
-  {
-    id: "deliverables",
-    eyebrow: "Deliverable tracking",
-    title: "Keep every promise without chasing a spreadsheet.",
-    bullets: ["Live obligation calendar", "Owner and due dates", "Completion history"],
-    mode: "deliverables",
-  },
-  {
-    id: "pipeline",
-    eyebrow: "CRM and pipeline",
-    title: "Turn every brand conversation into momentum.",
-    bullets: ["Purpose-built CRM", "Shared relationship history", "Clear next steps"],
-    mode: "pipeline",
-  },
+  { id: "valuation", eyebrow: "endodeals valuation", title: "Fair market value, finally.", href: "/endo-deals" },
+  { id: "contracts", eyebrow: "Contract management", title: "Every agreement, term, and renewal in one place." },
+  { id: "roster", eyebrow: "Roster visibility", title: "See the whole business behind your roster." },
+  { id: "financials", eyebrow: "Financial tracking", title: "Know exactly what is paid, pending, and overdue." },
+  { id: "deliverables", eyebrow: "Deliverables & Social Analytics", title: "Every post delivered, approved, and measured." },
+  { id: "pipeline", eyebrow: "CRM and pipeline", title: "Turn every conversation into momentum." },
 ] as const;
-
-type FeatureMode = (typeof FEATURES)[number]["mode"];
-
-type FeatureMedia =
-  | { type: "video"; src: string; poster: string; label: string }
-  | { type: "image"; src: string; label: string; width: number; height: number };
-
-const FEATURE_DEMOS: Record<FeatureMode, FeatureMedia> = {
-  valuation: {
-    type: "video",
-    src: "/demos/valuation-demo.mp4",
-    poster: "/demos/valuation-poster.webp",
-    label: "endo valuation workflow product demo",
-  },
-  contracts: {
-    type: "video",
-    src: "/demos/financial-demo.mp4",
-    poster: "/demos/financial-poster.webp",
-    label: "endo contract and deal tracking product demo",
-  },
-  roster: {
-    type: "video",
-    src: "/demos/player-profile-demo.mp4",
-    poster: "/demos/player-profile-poster.webp",
-    label: "endo athlete profile product demo",
-  },
-  financials: {
-    type: "video",
-    src: "/demos/financial-demo.mp4",
-    poster: "/demos/financial-poster.webp",
-    label: "endo financial and deal tracking product demo",
-  },
-  deliverables: {
-    type: "video",
-    src: "/demos/deliverables-demo.mp4",
-    poster: "/demos/deliverables-poster.webp",
-    label: "endo deliverable tracking product demo",
-  },
-  pipeline: {
-    type: "image",
-    src: "/demos/agent-dashboard.webp",
-    label: "endo live agency dashboard showing deals, athletes, revenue, payments, tasks, and notes",
-    width: 1908,
-    height: 922,
-  },
-};
 
 const HERO_VIDEO = {
   src: "/demos/financial-demo.mp4",
@@ -185,7 +85,11 @@ function TrustedBy() {
         {[0, 1].map((copy) => (
           <div className={styles.logoRow} key={copy} aria-hidden={copy === 1 ? true : undefined}>
             {TRUSTED_BY_LOGOS.map((logo) => (
-              <div className={`${styles.logoItem} ${logo.className}`} key={logo.name}>
+              <div
+                className={`${styles.logoItem} ${"flat" in logo ? styles.logoFlat : ""}`}
+                style={{ "--logo-w": `${logo.box[0]}px`, "--logo-h": `${logo.box[1]}px` } as CSSProperties}
+                key={logo.name}
+              >
                 <Image src={logo.src} alt={copy === 1 ? "" : logo.name} width={logo.width} height={logo.height} sizes="(max-width: 720px) 120px, 180px" />
               </div>
             ))}
@@ -205,7 +109,7 @@ function FeatureNav() {
     >
       {FEATURES.map((feature, index) => (
         <a className={index === 0 ? styles.featurePillActive : ""} href={`#${feature.id}`} key={feature.id}>
-          {feature.eyebrow.replace("endo.deals ", "")}
+          {feature.eyebrow.replace("endodeals ", "")}
         </a>
       ))}
     </nav>
@@ -230,7 +134,6 @@ function TestimonialCard({ testimonial }: { testimonial: (typeof TESTIMONIALS)[n
 export default function Home() {
   return (
     <div className={styles.page}>
-      <MotionObserver />
 
       <SiteHeader />
 
@@ -264,145 +167,30 @@ export default function Home() {
             data-scroll-reveal
           >
             <h2 id="features-heading">
-              Packed with features.
+              Built for how agencies actually work.
             </h2>
           </div>
           <FeatureNav />
 
           <div className={styles.featureStories}>
             {FEATURES.map((feature, index) => {
-              const demo = FEATURE_DEMOS[feature.mode];
-
               return (
                 <article id={feature.id} className={styles.featureStory} key={feature.id} data-scroll-reveal>
                   <div className={styles.featureCopy}>
-                    <p>{feature.eyebrow}</p>
+                    <p><Wordmark text={feature.eyebrow} /></p>
                     <h3>{feature.title}</h3>
-                  </div>
-                  <div
-                    className={`${styles.featureVisual} ${index % 2 ? styles.featureVisualAlt : ""} ${demo ? styles.featureVisualDemo : ""}`}
-                    data-scroll-drift={index % 2 ? "-14" : "14"}
-                  >
-                    {demo.type === "video" ? (
-                      <div className={styles.productDemoFrame}>
-                        <ProductDemoMedia label={demo.label} poster={demo.poster} src={demo.src} />
-                      </div>
-                    ) : (
-                      <div className={styles.productDemoFrame}>
-                        <Image
-                          src={demo.src}
-                          alt={demo.label}
-                          width={demo.width}
-                          height={demo.height}
-                          sizes="(max-width: 760px) 100vw, 700px"
-                        />
-                      </div>
+                    {"href" in feature && (
+                      <Link className={styles.featureLink} href={feature.href}>Learn more <span aria-hidden="true">→</span></Link>
                     )}
+                  </div>
+                  <div className={styles.featureVisual} data-scroll-drift={index % 2 ? "-14" : "14"}>
+                    <TransparentVideo className={styles.featureVideo} name={feature.id} />
                   </div>
                 </article>
               );
             })}
           </div>
         </section>
-
-        <section className={styles.advantages} aria-labelledby="advantages-heading">
-          <div
-            className={`${styles.sectionHeading} ${styles.scrollReveal}`}
-            data-scroll-reveal
-          >
-            <h2 id="advantages-heading">Less admin. Better decisions. More leverage.</h2>
-          </div>
-          <div className={styles.advantageGrid}>
-            <article data-scroll-reveal>
-              <h3>Move faster</h3>
-              <p>Replace disconnected spreadsheets, inbox threads, and reminders with one live operating system.</p>
-              <div className={`${styles.advantageVisual} ${styles.integrationVisual}`} aria-hidden="true">
-                <EndoIntegrationBeam />
-              </div>
-            </article>
-            <article data-scroll-reveal>
-              <h3>Price with proof</h3>
-              <p>Ground every recommendation in comparable deals and the value drivers that actually matter.</p>
-              <div className={`${styles.advantageVisual} ${styles.dealMarqueeVisual}`} aria-hidden="true">
-                <EndoDealMarquee />
-              </div>
-            </article>
-            <article data-scroll-reveal>
-              <h3>Build trust</h3>
-              <p>Give agents, athletes, and leadership a shared view of what is happening and what comes next.</p>
-              <div className={`${styles.advantageVisual} ${styles.rosterVisual}`} aria-hidden="true">
-                <EndoAnimatedNotifications />
-              </div>
-            </article>
-            <article data-scroll-reveal>
-              <h3>Grow the roster</h3>
-              <p>Give your team back the time and visibility it needs to create more value for every client.</p>
-              <div className={`${styles.advantageVisual} ${styles.globeVisual}`} aria-hidden="true">
-                <EndoGlobe className={styles.growthGlobe} />
-                <div className={styles.globeFade} />
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section id="stories" className={styles.stories} aria-labelledby="stories-heading">
-          <div
-            className={`${styles.sectionHeading} ${styles.scrollReveal}`}
-            data-scroll-reveal
-          >
-            <h2 id="stories-heading">Success stories.</h2>
-          </div>
-          <article className={styles.story} data-scroll-reveal>
-            <div className={styles.storyCopy}>
-              <p>Quartexx Management</p>
-              <h3>Unlocked 170% more value in a major brand negotiation.</h3>
-              <div className={styles.storyPerson}>
-                <Image src="/testimonials/shelbi-kilcollins.png" alt="" width={80} height={80} />
-                <span><strong>Shelbi Kilcollins</strong>Director of Marketing</span>
-              </div>
-            </div>
-            <div className={styles.storyPanel} data-scroll-drift="14">
-              <p>Negotiation snapshot</p>
-              <strong>170%</strong>
-              <span>more value unlocked</span>
-              <div className={styles.storyBars} aria-hidden="true"><i /><i /></div>
-            </div>
-          </article>
-          <article className={`${styles.story} ${styles.storyReverse}`} data-scroll-reveal>
-            <div className={styles.storyCopy}>
-              <p>FarrWest Management</p>
-              <h3>Made off-field success part of the athlete service model.</h3>
-              <div className={styles.storyPerson}>
-                <Image src="/testimonials/farren-benjamin.png" alt="" width={80} height={80} />
-                <span><strong>Farren Benjamin</strong>Founder</span>
-              </div>
-            </div>
-            <div className={styles.storyPanelLight} data-scroll-drift="-14">
-              <Image
-                className={styles.storyLaptopImage}
-                src="/demos/dashboard-laptop.webp"
-                alt="endo agent dashboard displayed on a laptop"
-                width={2200}
-                height={1466}
-                sizes="(max-width: 760px) 100vw, 700px"
-              />
-            </div>
-          </article>
-        </section>
-
-        <section
-          className={styles.impact}
-          aria-labelledby="impact-heading"
-          data-scroll-reveal
-        >
-          <div className={styles.impactHeading}>
-            <h2 id="impact-heading">Built around the business of athlete value.</h2>
-          </div>
-          <HeroStats />
-          <DemoButton className={styles.impactButton} />
-        </section>
-
-        <LeagueCoverage />
 
         <section id="testimonials" className={styles.testimonials} aria-labelledby="testimonials-heading">
           <div
@@ -425,23 +213,24 @@ export default function Home() {
           </div>
         </section>
 
+        <LeagueCoverage />
+
+        <section
+          className={styles.impact}
+          aria-labelledby="impact-heading"
+          data-scroll-reveal
+        >
+          <div className={styles.impactHeading}>
+            <h2 id="impact-heading">Built around the business of athlete value.</h2>
+          </div>
+          <HeroStats />
+          <DemoButton className={styles.impactButton} />
+        </section>
+
         <PricingSection />
       </main>
 
-      <div className={styles.closingRegion}>
-        <DiaGradient className={styles.closingGradient} />
-        <section className={styles.closing} aria-labelledby="closing-heading">
-          <div
-            className={`${styles.closingCopy} ${styles.scrollReveal}`}
-            data-scroll-reveal
-          >
-            <h2 id="closing-heading">See what every endorsement is really worth.</h2>
-            <div><DemoButton /></div>
-          </div>
-        </section>
-
-        <SiteFooter />
-      </div>
+      <SiteFooter />
     </div>
   );
 }

@@ -3,13 +3,10 @@ import Image from "next/image";
 import { Check } from "lucide-react";
 import { REPORT_REQUEST_URL } from "@/lib/contact";
 import { DemoButton, SiteFooter, SiteHeader } from "../site-chrome";
-import { DiaGradient } from "../dia-gradient";
-import { MotionObserver } from "../motion-observer";
-import { MarketabilityScore } from "./marketability-score";
 import pageStyles from "../page.module.css";
 import styles from "./endo-deals.module.css";
 
-const title = "endo.deals — Know what the endorsement is worth";
+const title = "endo — The software behind the modern sports agency";
 const description = "Understand an athlete’s marketability, explore comparable deals, and take a defensible endorsement valuation into your next negotiation.";
 
 export const metadata: Metadata = {
@@ -36,40 +33,29 @@ const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD
 const exampleTotal = DELIVERABLES.reduce((sum, item) => sum + item.total, 0);
 
 const QUESTIONS = [
-  { question: "What does the marketability score tell me?", answer: "It brings social analytics, performance, earned media, and league and market context into one view of the athlete. The four factors help explain the score and identify relevant comparable talent. The deal’s specific scope still matters when translating that context into a price." },
   { question: "Where do comparable deals fit in?", answer: "Comparable endorsement agreements give the recommendation a market reference. The athlete, deliverable mix, term, territory and exclusivity help explain which agreements are relevant to the opportunity in front of you." },
   { question: "What if there is no obvious comparable?", answer: "That is a reason to look more closely at the context and confidence behind the recommendation. Bring the opportunity to the endo team to discuss the available comparisons, the assumptions and what the range can support." },
-  { question: "Can I request a report for a live opportunity?", answer: "Yes. Request an endo.deal report and tell us about the athlete, brand and proposed scope. The endo team will follow up to discuss the opportunity and the details needed for a valuation." },
+  { question: "Can I request a report for a live opportunity?", answer: "Yes. Request an endodeals report and tell us about the athlete, brand and proposed scope. The endo team will follow up to discuss the opportunity and the details needed for a valuation." },
 ] as const;
 
 export default function EndoDealsPage() {
   return (
     <div className={pageStyles.page}>
-      <MotionObserver />
       <SiteHeader current="/endo-deals" />
 
       <main id="top">
         <section className={styles.hero} aria-labelledby="deals-heading">
-          <h1 id="deals-heading">Never quote a number you can’t defend</h1>
+          <h1 id="deals-heading">Never quote a number you can’t defend.</h1>
           <p className={styles.intro}>Negotiate better endorsements with a clear view of your athlete’s value.</p>
           <div className={styles.actions}>
-            <DemoButton href={REPORT_REQUEST_URL} label="Request an endo.deal report" />
+            <DemoButton href={REPORT_REQUEST_URL} label="Request an endodeals report" />
           </div>
-        </section>
-
-        <section className={styles.scoreSection} aria-labelledby="score-heading">
-          <div className={styles.scoreHeading}>
-            <h2 id="score-heading">A fuller picture of marketability.</h2>
-            <p>Four perspectives on an athlete’s value, brought into one score out of 100. Explore what goes into each.</p>
-          </div>
-          <MarketabilityScore />
-          <p className={styles.exampleNote}>Illustrative score and factor values. This example does not represent a client or a live valuation.</p>
         </section>
 
         <section id="how-it-works" className={styles.section} aria-labelledby="method-heading">
           <div className={styles.sectionHeading}>
             <h2 id="method-heading">The reasoning behind the number.</h2>
-            <p>A score starts the conversation. The deal’s scope and comparable agreements put the opportunity in context.</p>
+            <p>The deal’s scope and comparable agreements put the opportunity in context.</p>
           </div>
           <div className={styles.steps}>
             {STEPS.map((step) => (
@@ -97,7 +83,6 @@ export default function EndoDealsPage() {
             <p className={styles.reportSubtitle}>Illustrative basketball athlete · Exclusive · North America · USD</p>
             <dl className={styles.reportMeta}>
               <div><dt>Deal term</dt><dd>12 months</dd></div>
-              <div><dt>Marketability</dt><dd>87 / 100</dd></div>
               <div><dt>Confidence</dt><dd>91%</dd></div>
             </dl>
             <table className={styles.table}>
@@ -124,16 +109,10 @@ export default function EndoDealsPage() {
         </section>
       </main>
 
-      <div className={pageStyles.closingRegion}>
-        <DiaGradient className={pageStyles.closingGradient} />
-        <section className={pageStyles.closing} aria-labelledby="deals-closing-heading">
-          <div className={pageStyles.closingCopy}>
-            <h2 id="deals-closing-heading">Bring the opportunity.<br />We’ll bring the context.</h2>
-            <DemoButton href={REPORT_REQUEST_URL} label="Request an endo.deal report" />
-          </div>
-        </section>
-        <SiteFooter />
-      </div>
+      <SiteFooter
+        title={<>Bring the opportunity.<br />We’ll bring the context.</>}
+        action={<DemoButton href={REPORT_REQUEST_URL} label="Request an endodeals report" />}
+      />
     </div>
   );
 }

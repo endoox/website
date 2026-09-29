@@ -275,3 +275,6 @@ html:not([data-motion-ready]) .t-stagger-line {
     @apply font-sans;
   }
 }
+
+.endodeals { white-space: nowrap; }
+.endodeals > span { color: var(--endodeals-accent, #4b7cd1); }

@@ -3,6 +3,7 @@
 import { ArrowRight, Check } from "lucide-react";
 import { DEMO_URL } from "@/lib/contact";
 import styles from "./pricing-section.module.css";
+import { Wordmark } from "@/app/wordmark";
 
 type PricingPlan = {
   name: string;
@@ -19,7 +20,7 @@ const PLANS: PricingPlan[] = [
     description: "A focused operating system for smaller agencies and lean teams.",
     features: [
       { label: "Seats", value: "Up to 3" },
-      { label: "endo.deals valuation reports", value: "2 / month" },
+      { label: "endodeals valuation reports", value: "2 / month" },
       { label: "Talent uploads", value: "Up to 15" },
       { label: "Contracts and deliverables", value: "Unlimited" },
       { label: "Commissions and payments", value: "Unlimited" },
@@ -35,7 +36,7 @@ const PLANS: PricingPlan[] = [
     description: "For established agencies managing a growing roster and deal volume.",
     features: [
       { label: "Seats", value: "Unlimited" },
-      { label: "endo.deals valuation reports", value: "15 / month" },
+      { label: "endodeals valuation reports", value: "15 / month" },
       { label: "Talent uploads", value: "Unlimited" },
       { label: "Contracts and deliverables", value: "Unlimited" },
       { label: "Commissions and payments", value: "Unlimited" },
@@ -106,7 +107,7 @@ export function PricingSection() {
                 {plan.features.map((feature) => (
                   <li key={feature.label}>
                     <Check aria-hidden="true" size={16} />
-                    <span>{feature.label}</span>
+                    <span><Wordmark text={feature.label} /></span>
                     <strong>{feature.value}</strong>
                   </li>
                 ))}

@@ -1,7 +1,5 @@
 import pageStyles from "../page.module.css";
-import { DemoButton, SiteFooter, SiteHeader } from "../site-chrome";
-import { DiaGradient } from "../dia-gradient";
-import { MotionObserver } from "../motion-observer";
+import { SiteFooter, SiteHeader } from "../site-chrome";
 import { TeamPhotoTexture } from "./team-photo-texture";
 import styles from "./about.module.css";
 
@@ -9,21 +7,18 @@ const TEAM = [
   {
     name: "Michael Boushy",
     role: "Co-founder & CEO",
-    bio: "Ex-Consultant at Wasserman · U Sports athlete and Academic All-Canadian",
     image: "/team/michael-boushy-upscaled.png",
     linkedin: "https://www.linkedin.com/in/michaelboushy/",
   },
   {
     name: "Jack Lavorato",
     role: "Co-founder & COO",
-    bio: "Founder at Paper Route Publishing · 2× house league all-star",
     image: "/team/jack-lavorato-upscaled.png",
     linkedin: "https://www.linkedin.com/in/jackalavorto/",
   },
   {
     name: "Anthony Baxter",
     role: "Co-founder & Founding Engineer",
-    bio: "UMass & RPI graduate · NCAA Division I athlete",
     image: "/team/anthony-baxter-upscaled.png",
     linkedin: "https://www.linkedin.com/in/anthonybax/",
   },
@@ -51,14 +46,13 @@ const TALKING_POINTS = [
 export default function AboutPage() {
   return (
     <div className={`${pageStyles.page} ${styles.aboutPage}`}>
-      <MotionObserver />
 
       <SiteHeader current="/about" />
 
       <main id="top">
         <section className={`${pageStyles.hero} ${styles.aboutHero}`} aria-labelledby="about-heading">
           <div className={`${pageStyles.heroCopy} ${styles.aboutHeroCopy}`}>
-            <h1 id="about-heading">Athletes are undervalued. Agents are on their own. We’re changing both.</h1>
+            <h1 id="about-heading">Athletes are undervalued. Agents are on their own. <span className={styles.aboutHeroAccent}>We’re changing both.</span></h1>
             <div className={styles.aboutHeroBody}>
               <p>
                 Endorsement pricing has always happened in the dark. We think the people doing the work deserve to see the same numbers as the people paying for it.
@@ -73,7 +67,7 @@ export default function AboutPage() {
         <section className={styles.talkSection} aria-labelledby="talk-heading">
           <div className={styles.talkInner}>
             <div className={`${styles.talkHeading} ${pageStyles.scrollReveal}`} data-scroll-reveal>
-              <h2 id="talk-heading">Why we built endo</h2>
+              <h2 id="talk-heading">Our why</h2>
             </div>
             <div className={styles.talkGrid}>
               {TALKING_POINTS.map((point) => (
@@ -97,7 +91,6 @@ export default function AboutPage() {
                 <div className={styles.teamCardBody}>
                   <h3>{member.name}</h3>
                   <p className={styles.teamRole}>{member.role}</p>
-                  <p className={styles.teamBio}>{member.bio}</p>
                   <a className={styles.teamLinkedIn} href={member.linkedin} target="_blank" rel="noreferrer">
                     <span className={styles.linkedinIcon} aria-hidden="true">in</span>
                     <span>LinkedIn</span>
@@ -110,21 +103,8 @@ export default function AboutPage() {
 
 
 
-        <div className={`${pageStyles.closingRegion} ${styles.aboutClosingRegion}`}>
-          <DiaGradient className={pageStyles.closingGradient} />
-          <section className={pageStyles.closing} aria-labelledby="closing-heading">
-            <div
-              className={`${pageStyles.closingCopy} ${pageStyles.scrollReveal}`}
-              data-scroll-reveal
-            >
-              <h2 id="closing-heading">See what every endorsement is really worth.</h2>
-              <div><DemoButton /></div>
-            </div>
-          </section>
-
-          <SiteFooter />
-        </div>
       </main>
+      <SiteFooter />
     </div>
   );
 }

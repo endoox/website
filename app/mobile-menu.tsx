@@ -5,6 +5,7 @@ import { DEMO_URL } from "@/lib/contact";
 import { NAV_LINKS } from "@/lib/nav";
 import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
+import { Wordmark } from "./wordmark";
 
 
 type MenuPhase = "closed" | "open" | "closing";
@@ -155,7 +156,7 @@ export function MobileMenu() {
               onClick={() => closeMenu()}
               key={link.label}
             >
-              <strong>{link.label}</strong>
+              <strong><Wordmark text={link.label} /></strong>
             </a>
           ))}
         </nav>

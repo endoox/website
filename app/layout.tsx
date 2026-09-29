@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "endo — Endorsement management for sports agencies",
+  title: "endo — The software behind the modern sports agency",
   description:
     "endo helps sports agencies value, manage, and grow every endorsement deal.",
 };

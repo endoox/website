@@ -273,10 +273,6 @@
   color: var(--ink);
 }
 
-.demoClosingRegion {
-  margin-top: 0;
-}
-
 @media (max-width: 900px) {
   .demoHeroInner {
     grid-template-columns: 1fr;

@@ -3,9 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { PRESS } from "@/lib/press";
 import pageStyles from "../page.module.css";
-import { DemoButton, SiteFooter, SiteHeader } from "../site-chrome";
-import { DiaGradient } from "../dia-gradient";
-import { MotionObserver } from "../motion-observer";
+import { SiteFooter, SiteHeader } from "../site-chrome";
 import styles from "./press.module.css";
 
 export const metadata: Metadata = {
@@ -21,7 +19,6 @@ export default function PressPage() {
 
   return (
     <div className={`${pageStyles.page} ${styles.pressPage}`}>
-      <MotionObserver />
       <SiteHeader />
 
       <main id="top" className={styles.main}>
@@ -40,16 +37,7 @@ export default function PressPage() {
         </div>
       </main>
 
-      <div className={pageStyles.closingRegion}>
-        <DiaGradient className={pageStyles.closingGradient} />
-        <section className={pageStyles.closing} aria-labelledby="closing-heading">
-          <div className={`${pageStyles.closingCopy} ${pageStyles.scrollReveal}`} data-scroll-reveal>
-            <h2 id="closing-heading">See what every endorsement is really worth.</h2>
-            <div><DemoButton /></div>
-          </div>
-        </section>
-        <SiteFooter />
-      </div>
+      <SiteFooter />
     </div>
   );
 }
