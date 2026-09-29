@@ -297,7 +297,7 @@
   position: relative;
   z-index: 2;
   margin: 0 4px;
-  padding: 64px max(32px, calc((100vw - 1320px) / 2)) 120px;
+  padding: 64px max(32px, calc((100vw - 1400px) / 2)) 120px;
   overflow: hidden;
   border-radius: 30px;
   background: var(--blue);
@@ -331,8 +331,8 @@
 .featurePills a { background: transparent; text-transform: capitalize; }
 
 .featureStories { display: flex; flex-direction: column; gap: 80px; }
-.featureStory { display: grid; grid-template-columns: .7fr 1.3fr; align-items: center; gap: 40px; scroll-margin-top: 160px; }
-.featureStory:nth-child(even) { grid-template-columns: 1.3fr .7fr; }
+.featureStory { display: grid; grid-template-columns: .6fr 1.4fr; align-items: center; gap: 32px; scroll-margin-top: 160px; }
+.featureStory:nth-child(even) { grid-template-columns: 1.4fr .6fr; }
 .featureStory:nth-child(even) .featureCopy { grid-column: 2; grid-row: 1; }
 .featureStory:nth-child(even) .featureVisual { grid-column: 1; grid-row: 1; }
 .featureCopy > p { --endodeals-accent: var(--blue-deep); margin: 0 0 18px; color: rgb(255 255 255 / 80%); font-size: 1rem; font-weight: 520; }
