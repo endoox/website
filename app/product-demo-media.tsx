@@ -94,7 +94,7 @@ const transparentSrc = (name: string) => () =>
 export function TransparentVideo({ className, name }: { className?: string; name: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const src = useMemo(() => transparentSrc(name), [name]);
-  useInViewVideo(videoRef, src, 3000);
+  useInViewVideo(videoRef, src, 5000);
 
   return <video ref={videoRef} className={className} aria-hidden="true" muted playsInline />;
 }
