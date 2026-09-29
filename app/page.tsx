@@ -4,7 +4,7 @@ import Link from "next/link";
 import { LeagueCoverage } from "./league-coverage";
 import styles from "./page.module.css";
 import { HeroStats } from "./hero-stats";
-import { ProductDemoMedia, TransparentVideo } from "./product-demo-media";
+import { TransparentVideo } from "./product-demo-media";
 import { DemoButton, SiteFooter, SiteHeader } from "./site-chrome";
 import { PricingSection } from "../components/ui/pricing-section";
 import { Wordmark } from "./wordmark";
@@ -33,12 +33,6 @@ const FEATURES = [
   { id: "deliverables", eyebrow: "Deliverables & Social Analytics", title: "Every post delivered, approved, and measured." },
   { id: "pipeline", eyebrow: "CRM and pipeline", title: "Turn every conversation into momentum." },
 ] as const;
-
-const HERO_VIDEO = {
-  src: "/demos/financial-demo.mp4",
-  poster: "/demos/financial-poster.webp",
-  label: "endo platform overview showing financial tracking and payment workflows",
-} as const;
 
 const TESTIMONIALS = [
   {
@@ -152,11 +146,13 @@ export default function Home() {
             className={styles.heroProduct}
             data-scroll-drift="20"
           >
-            <ProductDemoMedia
-              className={styles.heroVideo}
-              label={HERO_VIDEO.label}
-              poster={HERO_VIDEO.poster}
-              src={HERO_VIDEO.src}
+            <Image
+              src="/hero/hero-devices.png"
+              alt="endo on a laptop and a phone: the agency home dashboard with the day's schedule, earned media, commissions and deals needing attention, and the mobile app's Today view"
+              width={3000}
+              height={1770}
+              sizes="(max-width: 760px) 100vw, 1200px"
+              priority
             />
           </div>
         </section>

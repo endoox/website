@@ -14,6 +14,9 @@
 }
 
 .hero h1 span { display: block; }
+/* Score graphic above the headline. Its artwork ends ~85% down the 1920x1080 frame, so crop the empty bottom strip. */
+.heroVisual { width: min(1100px, 100%); aspect-ratio: 1920 / 930; margin: 0 auto 36px; overflow: hidden; }
+.heroVideo { width: 100%; height: auto; aspect-ratio: 16 / 9; display: block; }
 .intro { max-width: 620px; margin: 28px auto 0; color: var(--muted); font-size: 1.13rem; line-height: 1.6; text-wrap: pretty; }
 .actions { margin-top: 32px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px; }
 .faq summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 6px; }

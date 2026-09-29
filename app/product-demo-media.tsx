@@ -72,20 +72,6 @@ function useInViewVideo(videoRef: RefObject<HTMLVideoElement | null>, src: strin
   }, [videoRef, src, replayAfter]);
 }
 
-type ProductDemoMediaProps = {
-  className?: string;
-  label: string;
-  poster: string;
-  src: string;
-};
-
-export function ProductDemoMedia({ className, label, poster, src }: ProductDemoMediaProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  useInViewVideo(videoRef, src);
-
-  return <video ref={videoRef} className={className} aria-label={label} loop muted playsInline poster={poster} />;
-}
-
 // Transparent clips: WebKit only renders alpha from HEVC (.mov); everyone else gets VP9 (.webm).
 // Picked at runtime because Chrome also claims HEVC support but drops the alpha channel.
 const transparentSrc = (name: string) => () =>

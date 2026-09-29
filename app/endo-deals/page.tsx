@@ -5,6 +5,7 @@ import { REPORT_REQUEST_URL } from "@/lib/contact";
 import { DemoButton, SiteFooter, SiteHeader } from "../site-chrome";
 import pageStyles from "../page.module.css";
 import styles from "./endo-deals.module.css";
+import { TransparentVideo } from "../product-demo-media";
 
 const title = "endo — The software behind the modern sports agency";
 const description = "Understand an athlete’s marketability, explore comparable deals, and take a defensible endorsement valuation into your next negotiation.";
@@ -45,6 +46,9 @@ export default function EndoDealsPage() {
 
       <main id="top">
         <section className={styles.hero} aria-labelledby="deals-heading">
+          <div className={styles.heroVisual}>
+            <TransparentVideo className={styles.heroVideo} name="endodeals-score" />
+          </div>
           <h1 id="deals-heading">Never quote a number you can’t defend.</h1>
           <p className={styles.intro}>Negotiate better endorsements with a clear view of your athlete’s value.</p>
           <div className={styles.actions}>
