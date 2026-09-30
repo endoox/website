@@ -1,9 +1,9 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { DEMO_URL } from "@/lib/contact";
 import styles from "./request-demo.module.css";
 
-const CALENDLY_URL = "https://calendly.com/will-8qc/30min";
 
 export function DemoRequestForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -19,7 +19,7 @@ export function DemoRequestForm() {
         <span className={styles.successMark} aria-hidden="true">✓</span>
         <h2>Thanks — we have the context.</h2>
         <p>Choose a time that works and we&apos;ll come prepared for the conversation.</p>
-        <a className={styles.formButton} href={CALENDLY_URL} target="_blank" rel="noreferrer">
+        <a className={styles.formButton} href={DEMO_URL} target="_blank" rel="noreferrer">
           Choose a time <span aria-hidden="true">↗</span>
         </a>
         <button className={styles.editButton} type="button" onClick={() => setSubmitted(false)}>
