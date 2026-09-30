@@ -1,333 +1,82 @@
-.aboutPage {
-  --about-ink: var(--ink);
-  --about-muted: var(--muted);
-  --about-blue: var(--blue);
-  --about-navy: var(--blue-deep);
-  --about-light: var(--sky);
-  --about-line: var(--line);
-  min-height: 100vh;
-  background: #f7f9fc;
-  color: var(--about-ink);
-}
-.aboutTeam h2 { margin: 0; font-size: clamp(2.3rem, 4.4vw, 4.4rem); font-weight: 500; letter-spacing: -.065em; line-height: .98; }
+/* About page, ported from the client's about-page-full-new-headshot.html onto the home page's section rhythm. */
+.aboutPage { --body: #4d5563; --soft-bg: #f5f7fa; }
 
-.aboutTeam { max-width: 1200px; margin: 0 auto; padding: 120px max(28px, calc((100vw - 1200px) / 2)); }
-.teamHeading { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 52px; }
-.teamHeading p { max-width: 390px; margin: 0; color: var(--about-muted); line-height: 1.5; }
-.teamGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; max-width: 1030px; margin: 0 auto; }
-.teamCard { overflow: hidden; padding: 30px 24px 26px; border: 1px solid var(--about-line); border-radius: 22px; background: #fff; box-shadow: 0 18px 34px rgb(7 20 38 / 6%); text-align: center; }
-.teamPhoto {
-  display: block;
-  width: calc(100% + 56px);
-  height: 250px;
-  margin: -34px -28px 0;
-  overflow: hidden;
-  border-radius: 0;
-  background: #e8eef5;
-}
-.teamPhoto :global(canvas) { display: block; width: 100%; height: 100%; }
-.teamCardBody { padding: 22px 0 0; }
-.teamCardBody h3 { margin: 0 0 7px; font-size: 1.18rem; letter-spacing: -.03em; }
-.teamCardBody p { margin: 0; color: var(--about-muted); font-size: .88rem; line-height: 1.4; }
-.teamRole { color: var(--about-blue) !important; font-size: .72rem !important; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-.teamLinkedIn { display: inline-flex; align-items: center; gap: 7px; margin-top: 20px; padding: 9px 14px; border-radius: 999px; background: #edf3fc; color: var(--about-ink); font-size: .82rem; font-weight: 650; text-decoration: none; transition: background 180ms ease, color 180ms ease, transform 180ms ease; }
-.linkedinIcon { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 3px; background: var(--about-blue); color: #fff; font-family: Arial, sans-serif; font-size: .66rem; font-weight: 800; letter-spacing: -.08em; line-height: 1; }
-.teamLinkedIn:hover { background: var(--about-navy); color: #fff; transform: translateY(-2px); }
-.teamLinkedIn:hover .linkedinIcon { background: #fff; color: var(--about-blue); }
+.in { max-width: 1200px; margin: 0 auto; padding-inline: 30px; }
+.light { padding-block: 104px; background: #fff; }
+.head { max-width: 850px; margin: 0 auto 56px; text-align: center; }
+.head h2 { margin: 0; font-size: clamp(3.2rem, 5vw, 5rem); font-weight: 480; letter-spacing: -.045em; line-height: 1.02; text-wrap: balance; }
+.head > p:last-child { max-width: 650px; margin: 24px auto 0; color: #7a828d; font-size: clamp(1rem, 1.35vw, 1.2rem); line-height: 1.55; text-wrap: balance; }
 
-@media (max-width: 900px) {
-  .teamGrid { grid-template-columns: repeat(2, 1fr); }
-  .teamHeading { align-items: start; flex-direction: column; }
-}
+/* ---------- Hero ---------- */
+.hero { padding-block: 176px 64px; }
+.hero h1 { margin: 0; font-size: clamp(2.6rem, 6.4vw, 5.6rem); font-weight: 500; letter-spacing: -.055em; line-height: .98; }
+.hero h1 span, .hero h1 em { display: block; white-space: nowrap; }
+.hero h1 em { margin-top: .14em; padding-bottom: .12em; background: linear-gradient(90deg, var(--blue), #6b9be6); -webkit-background-clip: text; background-clip: text; color: transparent; font-style: normal; }
+.heroSide { margin-top: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px 48px; }
+.heroSide p { max-width: 42ch; margin: 0; color: var(--body); font-size: clamp(1.02rem, 1.3vw, 1.14rem); line-height: 1.65; }
+.heroActions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.secondary { min-height: 48px; padding: 0 23px; display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--ink); font-size: .94rem; font-weight: 610; text-decoration: none; transition: border-color 200ms ease; }
+.secondary:hover { border-color: #c6cfdc; }
 
-@media (max-width: 600px) {
-  .aboutTeam { padding-top: 78px; padding-bottom: 78px; }
-  .teamGrid { gap: 12px; }
-  .teamCard { padding: 22px 16px 20px; }
-  .teamPhoto { width: 132px; height: 132px; }
-  .teamCardBody { padding-top: 16px; }
-  .teamCardBody h3 { font-size: .92rem; }
-  .teamCardBody p { font-size: .76rem; }
-}
+/* Launch film slot: a plain 16:9 frame until the video arrives. */
+.filmSection { padding-bottom: 104px; }
+.film { width: 100%; aspect-ratio: 16 / 9; display: block; border-radius: 28px; background: var(--soft-bg); }
 
-/* Keep the About page on the same visual system and vertical rhythm as the index. */
-.aboutPage {
-  background: #fff;
-}
+/* ---------- Our why (dark card; clip, not hidden, so the heading can stay sticky) ---------- */
+.why { margin: 0 4px; padding: 120px max(30px, calc((100vw - 1200px) / 2)); overflow: clip; border-radius: 30px; background: radial-gradient(700px 420px at 90% 0%, rgb(75 124 209 / 45%), transparent 70%), var(--blue-deep); color: #fff; }
+.whyGrid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px clamp(48px, 7vw, 120px); }
+.whySticky { position: sticky; top: clamp(100px, 16vh, 160px); }
+.whySticky h2 { max-width: 15ch; margin: 0; color: rgb(255 255 255 / 50%); font-size: clamp(2rem, 3.4vw, 3.1rem); font-weight: 480; letter-spacing: -.045em; line-height: 1.08; text-wrap: balance; }
+.whySticky h2 span { color: #fff; }
+.whyRows { border-top: 1px solid rgb(255 255 255 / 16%); }
+.whyRow { padding: clamp(36px, 4.4vw, 56px) 0; display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px 32px; border-bottom: 1px solid rgb(255 255 255 / 16%); opacity: .38; transition: opacity 500ms ease; }
+.whyRowOn { opacity: 1; }
+.whyRow > p { margin: .7em 0 0; color: var(--sky); font-size: .74rem; font-weight: 650; letter-spacing: .14em; text-transform: uppercase; }
+.whyRow h3 { margin: 0 0 14px; font-size: clamp(1.8rem, 3.1vw, 2.8rem); font-weight: 500; letter-spacing: -.045em; line-height: 1.04; text-wrap: balance; }
+.whyRow div p { max-width: 46ch; margin: 0; color: rgb(255 255 255 / 74%); font-size: clamp(1rem, 1.25vw, 1.12rem); line-height: 1.65; }
 
-.aboutTeam h2 {
-  margin: 0;
-  font-size: clamp(3.2rem, 5vw, 5rem);
-  font-weight: 480;
-  letter-spacing: -.045em;
-  line-height: 1.02;
-}
+/* ---------- How we build ---------- */
+.principles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.principles article { padding: clamp(24px, 3vw, 36px); border: 1px solid var(--line); border-radius: 22px; background: var(--soft-bg); }
+.principles h3 { margin: 0 0 12px; font-size: 1.35rem; font-weight: 540; letter-spacing: -.03em; line-height: 1.15; }
+.principles p { margin: 0; color: var(--body); font-size: .98rem; line-height: 1.6; }
 
-.aboutTeam {
-  max-width: none;
-  margin: 0;
-  padding: 120px max(30px, calc((100vw - 1200px) / 2));
-  background: #fff;
-}
+/* ---------- Team ---------- */
+.team { padding-top: 0; }
+.teamGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.founder { overflow: hidden; border: 1px solid var(--line); border-radius: 22px; background: #fff; color: var(--ink); text-decoration: none; transition: transform 300ms ease, box-shadow 300ms ease; }
+.founder:hover { box-shadow: 0 30px 60px -36px rgb(36 45 109 / 40%); transform: translateY(-4px); }
+.founder:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.founderPhoto { position: relative; aspect-ratio: 4 / 4.2; overflow: hidden; background: linear-gradient(180deg, #edf3fc, #dce7f8); }
+.founderPhoto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: contrast(1.08); transition: transform 600ms cubic-bezier(.2, .8, .2, 1); }
+.founder:hover .founderPhoto img { transform: scale(1.03); }
+.founderMeta { padding: 20px 22px; display: flex; justify-content: space-between; align-items: center; }
+.founderMeta b { display: block; font-size: 1.12rem; font-weight: 580; letter-spacing: -.02em; }
+.founderMeta span { color: var(--muted); font-size: .9rem; }
+.linkedin { width: 38px; height: 38px; display: grid; flex: none; border: 1px solid var(--line); border-radius: 50%; color: var(--body) !important; place-items: center; transition: background 200ms ease, border-color 200ms ease, color 200ms ease; }
+.founder:hover .linkedin { border-color: var(--blue); background: var(--blue); color: #fff !important; }
 
-.teamHeading {
-  display: block;
-  max-width: 850px;
-  margin: 0 auto 64px;
+/* ---------- Responsive ---------- */
+@media (max-width: 980px) {
+  .whyGrid { grid-template-columns: 1fr; }
+  .whySticky { position: static; }
+  .whySticky h2 { max-width: 22ch; }
+  .whyRow { grid-template-columns: 1fr; opacity: 1; }
+  .whyRow > p { margin: 0; }
+  .principles, .teamGrid { grid-template-columns: 1fr; }
+  .teamGrid { max-width: 460px; margin-inline: auto; }
 }
-
-.teamGrid {
-  max-width: 1200px;
-  margin: 0 auto;
-  gap: 18px;
-}
-
-.teamCard {
-  padding: 34px 28px 30px;
-  border-radius: 28px;
-  box-shadow: none;
-}
-
-.teamLinkedIn:hover {
-  background: var(--about-blue);
-}
-
-@media (max-width: 900px) {
-  .teamGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 760px) {
-
-  .aboutTeam {
-    padding-top: 90px;
-    padding-bottom: 90px;
-  }
-
-  .aboutTeam h2 {
-    font-size: clamp(2.65rem, 12vw, 3.75rem);
-  }
-
-  .teamGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .teamCard {
-    padding: 28px 22px 24px;
-  }
-
-  .teamGrid {
-    gap: 12px;
-  }
-
-  .teamPhoto {
-    width: calc(100% + 44px);
-    height: 190px;
-    margin: -28px -22px 0;
-  }
+  .in { padding-inline: 16px; }
+  .hero { padding-block: 132px 48px; }
+  .filmSection { padding-bottom: 80px; }
+  .film { border-radius: 20px; }
+  .hero h1 span, .hero h1 em { white-space: normal; }
+  .light { padding-block: 80px; }
+  .head h2 { font-size: clamp(2.65rem, 12vw, 3.75rem); }
+  .why { margin: 0 3px; padding: 80px 20px; border-radius: 24px; }
+  .founderPhoto { aspect-ratio: 16 / 10; }
 }
-
-/* Keep the About hero scoped against the shared root hero rules in production CSS extraction. */
-
-/* Team cards use one full-bleed portrait surface with the details layered over it. */
-.teamCard {
-  position: relative;
-  min-height: 500px;
-  padding: 0;
-  overflow: hidden;
-  border-radius: 28px;
-  background: #e8eef5;
-  text-align: left;
-}
-
-.teamPhoto {
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  border-radius: inherit;
-  background: #e8eef5;
-}
-
-.teamPhoto::after {
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgb(20 27 39 / 80%) 0%, rgb(20 27 39 / 42%) 48%, rgb(20 27 39 / 8%) 100%),
-    linear-gradient(0deg, rgb(20 27 39 / 34%) 0%, transparent 62%);
-  content: "";
-  pointer-events: none;
-}
-
-.teamCard::after {
-  position: absolute;
-  z-index: 1;
-  right: -10%;
-  bottom: -14%;
-  left: -10%;
-  height: 68%;
-  background: rgb(20 27 39 / 42%);
-  content: "";
-  filter: blur(22px);
-  mask-image: linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 70%) 38%, #000 76%);
-  pointer-events: none;
-}
-
-.teamCardBody {
-  position: relative;
-  z-index: 2;
-  min-height: 500px;
-  padding: 34px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  color: #fff;
-  text-align: left;
-}
-
-.teamCardBody h3 {
-  margin: 0 0 4px;
-  color: #fff;
-  font-size: 1.35rem;
-}
-
-.teamCardBody p {
-  color: rgb(255 255 255 / 76%);
-}
-
-.teamRole {
-  color: var(--about-light) !important;
-}
-
-.teamLinkedIn {
-  margin-top: 16px;
-  align-self: flex-start;
-}
-
-@media (max-width: 760px) {
-  .teamCard,
-  .teamCardBody {
-    min-height: 440px;
-  }
-
-  .teamCardBody {
-    padding: 28px 22px 24px;
-  }
-}
-
-/* The About page is intentionally editorial: one clear point of view, one flat principles section, and the team. */
-
-.talkSection {
-  position: relative;
-  z-index: 2;
-  margin: 0 4px;
-  padding: 72px max(32px, calc((100vw - 1200px) / 2)) 110px;
-  overflow: hidden;
-  border-radius: 30px;
-  background: var(--about-navy);
-  color: #fff;
-}
-
-.talkInner {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.talkHeading {
-  max-width: 820px;
-  margin: 0 auto 64px;
-  text-align: center;
-}
-
-.talkHeading h2 {
-  margin: 0;
-  color: #fff;
-  font-size: clamp(3.2rem, 5vw, 5rem);
-  font-weight: 480;
-  letter-spacing: -.045em;
-  line-height: 1.02;
-  text-wrap: balance;
-}
-
-.talkGrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-inline: 1px solid rgb(255 255 255 / 15%);
-  border-top: 1px solid rgb(255 255 255 / 15%);
-}
-
-.talkItem {
-  min-height: 210px;
-  padding: 34px 42px 38px;
-  border-bottom: 1px solid rgb(255 255 255 / 15%);
-}
-
-.talkItem:nth-child(odd) {
-  padding-right: 42px;
-  border-right: 1px solid rgb(255 255 255 / 15%);
-}
-
-.talkItem:nth-child(even) {
-  padding-left: 42px;
-}
-
-.talkItem h3 {
-  margin: 0 0 14px;
-  color: #fff;
-  font-size: 1.55rem;
-  font-weight: 500;
-  letter-spacing: -.04em;
-}
-
-.talkItem p {
-  max-width: 470px;
-  margin: 0;
-  color: rgb(255 255 255 / 68%);
-  font-size: 1rem;
-  line-height: 1.55;
-}
-
-@media (max-width: 760px) {
-
-  .talkSection {
-    margin: 0 3px;
-    padding: 90px 22px;
-    border-radius: 26px;
-  }
-
-  .talkHeading {
-    margin-bottom: 44px;
-  }
-
-  .talkGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .talkItem,
-  .talkItem:nth-child(odd),
-  .talkItem:nth-child(even) {
-    min-height: 0;
-    padding: 28px 20px;
-    border-right: 0;
-  }
-}
-
-/* About hero: headline across the full width, the two paragraphs side by side beneath it. */
-.aboutPage .aboutHero { min-height: 0; padding: 176px max(28px, calc((100vw - 1200px) / 2)) 112px; }
-.aboutPage .aboutHeroCopy { width: 100%; max-width: 1200px; margin: 0 auto; display: block; text-align: left; }
-.aboutPage .aboutHeroCopy h1 { max-width: 1100px; margin: 0; font-size: clamp(3rem, 5.8vw, 6rem); font-weight: 500; letter-spacing: -.055em; line-height: 1; text-align: left; text-wrap: balance; }
-.aboutHeroAccent { display: block; color: var(--about-blue); }
-.aboutPage .aboutHeroBody { max-width: 1100px; margin: 56px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; }
-.aboutPage .aboutHeroBody p { margin: 0; color: var(--about-muted); font-size: clamp(1.05rem, 1.4vw, 1.2rem); line-height: 1.6; text-align: left; text-wrap: pretty; }
-
-@media (max-width: 760px) {
-  .aboutPage .aboutHero { padding: 132px 20px 72px; }
-  .aboutPage .aboutHeroCopy h1 { font-size: clamp(2.6rem, 11vw, 3.6rem); }
-  .aboutPage .aboutHeroBody { margin-top: 32px; grid-template-columns: 1fr; gap: 18px; }
-  .aboutPage .aboutHeroBody p { font-size: 1rem; }
+@media (prefers-reduced-motion: reduce) {
+  .whyRow, .founder, .founderPhoto img, .linkedin, .secondary { transition: none; }
 }

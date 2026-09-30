@@ -1,6 +1,6 @@
 import Image from "next/image";
 import pageStyles from "./page.module.css";
-import styles from "./endo-deals/endo-deals.module.css";
+import styles from "./league-coverage.module.css";
 
 // Leagues named in the supplied reference; no unverified coverage total.
 const LEAGUES = [
