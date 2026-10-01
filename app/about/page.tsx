@@ -8,6 +8,7 @@ const TEAM = [
   { name: "Michael Boushy", role: "Co-founder & CEO", image: "/team/michael-boushy.png", linkedin: "https://www.linkedin.com/in/michaelboushy/" },
   { name: "Jack Lavorato", role: "Co-founder & COO", image: "/team/jack-lavorato.png", linkedin: "https://www.linkedin.com/in/jackalavorto/" },
   { name: "Anthony Baxter", role: "Co-founder & Founding Engineer", image: "/team/anthony-baxter.png", linkedin: "https://www.linkedin.com/in/anthonybax/" },
+  { name: "Matteo Tanzi", role: "Senior Product Engineer", image: "/team/matteo-tanzi.png", linkedin: "https://www.linkedin.com/in/matteospencertanzi/" },
 ] as const;
 
 const PRINCIPLES = [
@@ -73,7 +74,7 @@ export default function AboutPage() {
               {TEAM.map((member) => (
                 <a className={`${styles.founder} ${pageStyles.scrollReveal}`} data-scroll-reveal href={member.linkedin} target="_blank" rel="noreferrer" aria-label={`${member.name}, ${member.role}, on LinkedIn`} key={member.name}>
                   <div className={styles.founderPhoto}>
-                    <Image src={member.image} alt={member.name} width={720} height={756} sizes="(max-width: 980px) 90vw, 400px" />
+                    <Image src={member.image} alt={member.name} width={720} height={756} sizes="(max-width: 760px) 90vw, (max-width: 980px) 45vw, 270px" />
                   </div>
                   <div className={styles.founderMeta}>
                     <div><b>{member.name}</b><span>{member.role}</span></div>
