@@ -6,10 +6,10 @@ import { OurWhy } from "./our-why";
 import styles from "./about.module.css";
 
 const TEAM = [
-  { name: "Michael Boushy", role: "Co-founder & CEO", image: "/team/michael-boushy.png", cropY: "3.6%", mobileCropY: "11%", linkedin: "https://www.linkedin.com/in/michaelboushy/" },
-  { name: "Jack Lavorato", role: "Co-founder & COO", image: "/team/jack-lavorato.png", cropY: "27.7%", mobileCropY: "20.6%", linkedin: "https://www.linkedin.com/in/jackalavorto/" },
-  { name: "Anthony Baxter", role: "Co-founder & Founding Engineer", image: "/team/anthony-baxter.png", cropY: "40.3%", mobileCropY: "25.9%", linkedin: "https://www.linkedin.com/in/anthonybax/" },
-  { name: "Matteo Tanzi", role: "Senior Product Engineer", image: "/team/matteo-tanzi.png", cropY: "25%", mobileCropY: "19.6%", linkedin: "https://www.linkedin.com/in/matteospencertanzi/" },
+  { name: "Michael Boushy", role: "Co-founder & CEO", image: "/team/michael-boushy-portrait.png", cropY: "3.5%", mobileCropY: "11%", linkedin: "https://www.linkedin.com/in/michaelboushy/" },
+  { name: "Jack Lavorato", role: "Co-founder & COO", image: "/team/jack-lavorato-portrait.png", cropY: "31.6%", mobileCropY: "22.2%", linkedin: "https://www.linkedin.com/in/jackalavorto/" },
+  { name: "Anthony Baxter", role: "Co-founder & Founding Engineer", image: "/team/anthony-baxter-portrait.png", cropY: "39.4%", mobileCropY: "25.4%", linkedin: "https://www.linkedin.com/in/anthonybax/" },
+  { name: "Matteo Tanzi", role: "Senior Product Engineer", image: "/team/matteo-tanzi-portrait.png", cropY: "23.7%", mobileCropY: "19.1%", linkedin: "https://www.linkedin.com/in/matteospencertanzi/" },
 ] as const;
 
 const PRINCIPLES = [

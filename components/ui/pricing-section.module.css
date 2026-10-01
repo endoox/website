@@ -9,12 +9,12 @@
 .pricingInner {
   max-width: 1200px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .pricingHeader {
   max-width: 760px;
-  margin: 0 auto 64px;
-  text-align: center;
+  margin: 0 auto 36px;
 }
 
 .pricingHeader h2 {
@@ -26,195 +26,16 @@
   text-wrap: balance;
 }
 
-.pricingGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.pricingCard {
-  position: relative;
-  min-height: 470px;
-  padding: 32px 30px 28px;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  background: #fafbfc;
-  transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
-}
-
-.pricingCard:hover {
-  border-color: #c5d2e0;
-  transform: translateY(-3px);
-}
-
-.pricingCardHead {
-  max-width: 270px;
-  min-height: 96px;
-}
-
-.pricingCardHead h3 {
-  margin: 0;
-  font-size: 1.3rem;
-  font-weight: 560;
-  letter-spacing: -.03em;
-}
-
-.pricingCardHead p {
-  margin: 10px 0 0;
-  color: var(--muted);
-  font-size: .88rem;
-  line-height: 1.45;
-}
-
-.pricingPrice {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  margin: 28px 0 28px;
-}
-
-.pricingPrice strong {
-  font-size: 2.45rem;
-  font-weight: 500;
-  letter-spacing: -.06em;
-}
-
-.pricingPrice span {
-  color: #697383;
-  font-size: .78rem;
-}
-
-.pricingButton {
-  min-height: 44px;
-  padding: 0 16px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  border: 1px solid var(--blue);
-  border-radius: 999px;
-  background: var(--blue);
-  color: #fff;
-  font-size: .87rem;
-  font-weight: 650;
-  text-decoration: none;
-  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
-}
-
-.pricingButtonOutline {
-  border-color: var(--blue);
-  background: transparent;
-  color: var(--blue);
-}
-
-.pricingButtonOutline:hover {
-  border-color: var(--blue);
-  background: var(--blue);
-  color: #fff;
-}
-
-.pricingButton:hover {
-  border-color: var(--blue-deep);
-  background: var(--blue-deep);
-  color: #fff;
-  transform: translateY(-1px);
-}
-
-.pricingDivider {
-  height: 1px;
-  margin: 28px 0 22px;
-  background: var(--line);
-}
-
-.pricingCard ul {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin: 0;
-  padding: 0;
-  color: var(--ink);
-  font-size: .94rem;
-  list-style: none;
-}
-
-.pricingCard li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.pricingFeatures {
-  gap: 12px !important;
-}
-
-.pricingFeatures li {
-  display: grid;
-  grid-template-columns: 16px minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 10px;
-}
-
-.pricingFeatures li span {
-  min-width: 0;
-}
-
-.pricingFeatures li strong {
-  color: var(--ink);
-  font-size: .84rem;
-  font-weight: 650;
-  text-align: right;
-  white-space: nowrap;
-}
-
-.pricingCard li svg {
-  flex: 0 0 auto;
-  margin-top: 1px;
-  color: var(--blue);
-}
-
-@media (max-width: 900px) {
-  .pricingGrid {
-    grid-template-columns: 1fr;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .pricingCard {
-    min-height: 0;
-  }
-}
-
 @media (max-width: 760px) {
   .pricing {
-    margin: 0;
     padding: 82px 16px 96px;
   }
 
   .pricingHeader {
-    margin-bottom: 44px;
+    margin-bottom: 32px;
   }
 
   .pricingHeader h2 {
     font-size: clamp(2.65rem, 12vw, 3.75rem);
-  }
-
-  .pricingCard {
-    padding: 28px 22px 24px;
-    border-radius: 20px;
-  }
-
-  .pricingCardHead {
-    min-height: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .pricingCard,
-  .pricingButton {
-    transition: none;
   }
 }

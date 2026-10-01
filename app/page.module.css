@@ -379,8 +379,8 @@
   transform: translateX(-34px) scale(.988);
 }
 
-:global(html[data-motion-ready]) .featureStory[data-visible="true"] .featureCopy,
-:global(html[data-motion-ready]) .featureStory[data-visible="true"] .featureVisual {
+:global(html[data-motion-ready]) .featureStory[data-scroll-reveal][data-visible="true"] .featureCopy,
+:global(html[data-motion-ready]) .featureStory[data-scroll-reveal][data-visible="true"] .featureVisual {
   opacity: 1;
   transform: translateX(0) translateY(0) scale(1);
   filter: blur(0);
@@ -471,13 +471,16 @@
 }
 
 @media (max-width: 760px) {
+  .page { --hero-overlap: clamp(32px, 8vw, 60px); }
   .header { height: 68px; padding: 0 16px 0 19px; grid-template-columns: 1fr auto; }.brandLink { width: 112px; height: 44px; }.headerNav, .headerButton { display: none; }.mobileMenuSlot { display: block; }
   .header[data-floating="true"] { top: 9px; width: calc(100% - 18px); height: 60px; padding: 0 8px; }
-  .hero { min-height: 840px; padding: 58px 12px 0; }.hero h1 { font-size: clamp(2.6rem, 12vw, 4rem); letter-spacing: -.052em; line-height: 1.01; }.heroSubhead { max-width: 350px; margin-top: 22px; font-size: .96rem; line-height: 1.48; }
+  .hero { min-height: 0; padding: 58px 12px 0; }.hero h1 { font-size: clamp(2.6rem, 12vw, 4rem); letter-spacing: -.052em; line-height: 1.01; }.heroSubhead { max-width: 350px; margin-top: 22px; font-size: .96rem; line-height: 1.48; }
   .trusted { margin: 44px auto 34px; overflow: hidden; }.logoItem { width: calc(var(--logo-w) * .76); height: calc(var(--logo-h) * .76); }
-  .heroProduct { width: calc(100vw - 16px); }.heroProduct img { mask-image: linear-gradient(to bottom, #000 95%, transparent 100%); }
-  .featuresSection { margin: 0 3px; padding: 62px 16px 100px; border-radius: 24px; }.featuresHeading { margin-bottom: 28px; }.featuresHeading h2, .sectionHeading h2, .impactHeading h2 { font-size: clamp(2.65rem, 12vw, 3.75rem); }.featurePills { top: 80px; width: 100%; margin-bottom: 54px; justify-content: flex-start; }.featurePills a { flex: 0 0 auto; white-space: nowrap; }
+  .heroProduct { width: 100%; }.heroProduct img { mask-image: linear-gradient(to bottom, #000 calc(100% - var(--hero-overlap) - 32px), transparent calc(100% - var(--hero-overlap))); }
+  .featuresSection { margin: calc(-1 * var(--hero-overlap)) 3px 0; padding: 62px 16px 100px; border-radius: 24px; }.featuresHeading { margin-bottom: 28px; }.featuresHeading h2, .sectionHeading h2, .impactHeading h2 { font-size: clamp(2.65rem, 12vw, 3.75rem); }.featurePills { top: 80px; width: 100%; margin-bottom: 54px; justify-content: flex-start; }.featurePills a { flex: 0 0 auto; white-space: nowrap; }
   .featureStories { gap: 72px; }.featureStory, .featureStory:nth-child(even) { min-height: 0; display: flex; flex-direction: column; align-items: stretch; gap: 34px; }.featureStory:nth-child(even) .featureCopy, .featureStory:nth-child(even) .featureVisual { grid-column: auto; grid-row: auto; }.featureCopy h3 { font-size: clamp(2.35rem, 10vw, 3.2rem); }
+  /* The artwork sits 70px left of center in the 1920px-wide deliverables clip. */
+  .featureStory[id="deliverables"] .featureVideo { translate: 3.65% 0; }
   .testimonials { padding: 90px 16px; }.sectionHeading { margin-bottom: 54px; }
   .impact { min-height: 980px; margin: 0 3px; padding: 90px 20px; border-radius: 26px; }.heroStats { margin: 75px 0 65px; grid-template-columns: 1fr; gap: 0; }.heroStat { padding: 30px 0; }.heroStat dd { font-size: clamp(4rem, 18vw, 5.5rem); }
   .testimonials { padding-right: 0; padding-left: 0; }.testimonials .sectionHeading { padding: 0 20px; }.testimonialCard { width: 320px; padding: 27px; }.testimonialViewport { mask-image: none; }
