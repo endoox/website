@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Terms of Service — endo",
 };
 
-// Copied verbatim from https://www.endodeals.com/terms.
+// From https://www.endodeals.com/terms, with brand capitalization normalized to "endo".
 export default function TermsPage() {
   return (
     <div className={pageStyles.page}>
@@ -16,11 +16,11 @@ export default function TermsPage() {
       <main id="top" className={styles.legal}>
         <article>
           <header>
-            <h1>ENDO Services Agreement</h1>
-            <p>ENDO Sports and Entertainment Inc.</p>
+            <h1>endo Services Agreement</h1>
+            <p>endo Sports and Entertainment Inc.</p>
             <p>Terms of Service — Version V1.1 (v1.1-2026-06)</p>
           </header>
-          <p>This ENDO Services Agreement (the &quot;Agreement&quot;) is between ENDO Sports and Entertainment Inc. (&quot;endo&quot;) and the individual or entity that creates an account, starts a trial, or otherwise accesses or uses the Services (&quot;You&quot; or &quot;Your&quot;). By creating an account or using the Services, You accept and agree to be bound by this Agreement. This Agreement sets forth the terms and conditions that govern Your access to and use of the Services.</p>
+          <p>This endo Services Agreement (the &quot;Agreement&quot;) is between endo Sports and Entertainment Inc. (&quot;endo&quot;) and the individual or entity that creates an account, starts a trial, or otherwise accesses or uses the Services (&quot;You&quot; or &quot;Your&quot;). By creating an account or using the Services, You accept and agree to be bound by this Agreement. This Agreement sets forth the terms and conditions that govern Your access to and use of the Services.</p>
           <h2>1. Use of the Services</h2>
           <p>
             <strong>1.1 Services.</strong> We will make the endo services described on our website (the &quot;Services&quot;) available to You pursuant to this Agreement. You have the non-exclusive, worldwide, limited, nonsublicensable, nontransferable right to access and use the Services to manage athlete marketing partnerships during the Services Period, solely for Your internal business operations. You may allow Your Users (as defined below) to use the Services for this purpose, and You are responsible for their compliance with this Agreement. &quot;Services Period&quot; means the period beginning on the date You create an account, including during any free trial we offer, and continuing for as long as Your subscription remains active, unless earlier terminated in accordance with this Agreement.

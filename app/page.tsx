@@ -40,7 +40,7 @@ const TESTIMONIALS = [
     role: "Director of Marketing · Quartexx Management",
     image: "/testimonials/shelbi-kilcollins.png",
     quote:
-      "Endo has anchored Quartexx's marketing efforts and has been key to our team's strategic growth. It's helped us streamline the high volume of administrative work that comes with endorsement deals, made our sales outreach more efficient and left us better prepared for negotiations. When we look back on our marketing wins in a few years, Endo will be a big part of the 'why.'",
+      "endo has anchored Quartexx's marketing efforts and has been key to our team's strategic growth. It's helped us streamline the high volume of administrative work that comes with endorsement deals, made our sales outreach more efficient and left us better prepared for negotiations. When we look back on our marketing wins in a few years, endo will be a big part of the 'why.'",
   },
   {
     name: "Tyler Wagner",
@@ -61,7 +61,7 @@ const TESTIMONIALS = [
     role: "Vice President · KHG Sports Management",
     image: "/testimonials/drew-harde.png",
     quote:
-      "Endo and the team there, have helped create a hub for our agency enhancing our processes to provide the highest level of service to our clients.",
+      "endo and the team there, have helped create a hub for our agency enhancing our processes to provide the highest level of service to our clients.",
   },
   {
     name: "Nic Métayer",

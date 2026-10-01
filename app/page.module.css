@@ -430,7 +430,7 @@
 .testimonialTrack { width: max-content; display: flex; background: #fff; animation: testimonial-scroll 55s linear infinite; will-change: transform; }
 .testimonialGroup { display: flex; gap: 18px; padding-right: 18px; }
 .testimonialCard { width: clamp(330px, 34vw, 470px); padding: 34px; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 26px; background: #fff; }
-.testimonialPerson { min-height: 58px; display: flex; align-items: center; gap: 13px; }.testimonialPerson img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }.testimonialPerson > div { display: flex; flex-direction: column; }.testimonialPerson strong { font-size: .95rem; }.testimonialPerson span { max-width: 260px; color: #8a929d; font-size: .75rem; line-height: 1.35; }
+.testimonialPerson { min-height: 58px; display: flex; align-items: center; gap: 13px; }.testimonialPerson img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; filter: grayscale(1); }.testimonialPerson > div { display: flex; flex-direction: column; }.testimonialPerson strong { font-size: .95rem; }.testimonialPerson span { max-width: 260px; color: #8a929d; font-size: .75rem; line-height: 1.35; }
 .testimonialCard blockquote { margin: 28px 0 0; font-size: clamp(1.35rem, 2vw, 1.8rem); font-weight: 450; letter-spacing: -.035em; line-height: 1.25; }
 @keyframes testimonial-scroll { to { transform: translateX(-50%); } }
 .testimonialViewport:hover .testimonialTrack { animation-play-state: paused; }

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy — endo",
 };
 
-// Copied verbatim from https://www.endodeals.com/privacy.
+// From https://www.endodeals.com/privacy, with brand capitalization normalized to "endo".
 export default function PrivacyPage() {
   return (
     <div className={pageStyles.page}>
@@ -17,10 +17,10 @@ export default function PrivacyPage() {
         <article>
           <header>
             <h1>Privacy Policy</h1>
-            <p>ENDO Sports and Entertainment Inc.</p>
+            <p>endo Sports and Entertainment Inc.</p>
             <p>Effective Date: June 26, 2025</p>
           </header>
-          <p>ENDO Sports and Entertainment Inc. (&quot;endo,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) provides an endorsement and athlete marketing partnership management platform built for sports agencies (the &quot;Services&quot;). This Privacy Policy describes how we collect, use, store, and protect information in connection with your use of the Services.</p>
+          <p>endo Sports and Entertainment Inc. (&quot;endo,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) provides an endorsement and athlete marketing partnership management platform built for sports agencies (the &quot;Services&quot;). This Privacy Policy describes how we collect, use, store, and protect information in connection with your use of the Services.</p>
           <p>By creating an account or using the Services, you accept and agree to this Privacy Policy.</p>
           <h2>1. Information We Collect</h2>
           <h3>1.1 Customer Data You Provide</h3>
