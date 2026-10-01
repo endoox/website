@@ -70,6 +70,13 @@ const TESTIMONIALS = [
     quote:
       "This wasn't off-the-shelf. It was built with us, around the way a modern sports agency actually works.",
   },
+  {
+    name: "Dave Stark",
+    role: "Co-Founder · Cook Stark Management",
+    image: "/testimonials/dave-stark.png",
+    quote:
+      "endo has significantly streamlined our fast-growing business and made it easier to see the full picture without having to check multiple different places to reconcile schedules, values, or other information. The user interface is accessible and simple and it provides us with ways to track timelines and deliverables across our team of agents.",
+  },
 ] as const;
 
 function TrustedBy() {
