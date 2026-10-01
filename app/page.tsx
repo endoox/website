@@ -6,7 +6,6 @@ import styles from "./page.module.css";
 import { HeroStats } from "./hero-stats";
 import { TransparentVideo } from "./product-demo-media";
 import { DemoButton, SiteFooter, SiteHeader } from "./site-chrome";
-import { PricingSection } from "../components/ui/pricing-section";
 import { Wordmark } from "./wordmark";
 import { TestimonialCarousel } from "./testimonial-carousel";
 
@@ -221,7 +220,10 @@ export default function Home() {
           <DemoButton className={styles.impactButton} />
         </section>
 
-        <PricingSection />
+        <section id="pricing" className={styles.pricing} aria-labelledby="pricing-heading">
+          <h2 id="pricing-heading">Pricing that grows with your roster.</h2>
+          <DemoButton label="Book a demo" />
+        </section>
       </main>
 
       <SiteFooter />
