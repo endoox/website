@@ -48,7 +48,8 @@
 .founder:hover { box-shadow: 0 30px 60px -36px rgb(36 45 109 / 40%); transform: translateY(-4px); }
 .founder:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
 .founderPhoto { position: relative; aspect-ratio: 4 / 4.2; overflow: hidden; background: linear-gradient(180deg, #edf3fc, #dce7f8); }
-.founderPhoto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: contrast(1.08); transition: transform 600ms cubic-bezier(.2, .8, .2, 1); }
+/* Per-photo crops align head tops at 16% of the frame; hover zoom keeps that line fixed. */
+.founderPhoto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center var(--portrait-y); transform-origin: center 16%; filter: contrast(1.08); transition: transform 600ms cubic-bezier(.2, .8, .2, 1); }
 .founder:hover .founderPhoto img { transform: scale(1.03); }
 .founderMeta { padding: 20px 22px; display: flex; justify-content: space-between; align-items: center; }
 .founderMeta b { display: block; font-size: 1.12rem; font-weight: 580; letter-spacing: -.02em; }
@@ -77,6 +78,7 @@
   .why { margin: 0 3px; padding: 80px 20px; border-radius: 24px; }
   .teamGrid { grid-template-columns: 1fr; max-width: 460px; }
   .founderPhoto { aspect-ratio: 16 / 10; }
+  .founderPhoto img { object-position: center var(--portrait-mobile-y); }
 }
 @media (prefers-reduced-motion: reduce) {
   .whyRow, .founder, .founderPhoto img, .linkedin, .secondary { transition: none; }
