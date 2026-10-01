@@ -426,14 +426,15 @@
 .impactButton { --button-bg: var(--blue); color: #fff; box-shadow: 0 15px 35px rgb(0 0 0 / 25%); }.impactButton .demoButtonArrow { background: #fff; color: var(--blue-deep); }.impactButton:hover { color: #fff; }
 
 .testimonials { overflow: hidden; background: #fff; }
-.testimonialViewport { width: 100vw; margin-left: calc(50% - 50vw); overflow: hidden; background: #fff; mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent); }
-.testimonialTrack { width: max-content; display: flex; background: #fff; animation: testimonial-scroll 55s linear infinite; will-change: transform; }
-.testimonialGroup { display: flex; gap: 18px; padding-right: 18px; }
-.testimonialCard { width: clamp(330px, 34vw, 470px); padding: 34px; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 26px; background: #fff; }
+.testimonialViewport { width: 100vw; margin-left: calc(50% - 50vw); overflow-x: auto; overflow-y: hidden; scrollbar-width: none; overscroll-behavior-x: contain; cursor: grab; background: #fff; mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent); }
+.testimonialViewport::-webkit-scrollbar { display: none; }
+.testimonialViewport[data-dragging="true"] { cursor: grabbing; user-select: none; }
+.testimonialViewport:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; }
+.testimonialTrack { width: max-content; display: flex; background: #fff; }
+.testimonialGroup { display: flex; flex: 0 0 auto; gap: 18px; padding-right: 18px; }
+.testimonialCard { width: clamp(330px, 34vw, 470px); padding: 34px; display: flex; flex: 0 0 auto; flex-direction: column; border: 1px solid var(--line); border-radius: 26px; background: #fff; }
 .testimonialPerson { min-height: 58px; display: flex; align-items: center; gap: 13px; }.testimonialPerson img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; filter: grayscale(1); }.testimonialPerson > div { display: flex; flex-direction: column; }.testimonialPerson strong { font-size: .95rem; }.testimonialPerson span { max-width: 260px; color: #8a929d; font-size: .75rem; line-height: 1.35; }
 .testimonialCard blockquote { margin: 28px 0 0; font-size: clamp(1.35rem, 2vw, 1.8rem); font-weight: 450; letter-spacing: -.035em; line-height: 1.25; }
-@keyframes testimonial-scroll { to { transform: translateX(-50%); } }
-.testimonialViewport:hover .testimonialTrack { animation-play-state: paused; }
 
 .footer { --endodeals-accent: var(--sky); position: relative; z-index: 1; margin: 0 4px 4px; padding: 0 max(40px, calc((100vw - 1200px) / 2)) 28px; overflow: hidden; border-radius: 32px; background: var(--blue-deep); color: #fff; }
 .footer::before { position: absolute; top: -260px; left: 50%; width: min(1100px, 120%); height: 560px; background: radial-gradient(closest-side, rgb(75 124 209 / 55%), transparent); content: ""; pointer-events: none; transform: translateX(-50%); }
@@ -509,7 +510,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .testimonialTrack, .logoRow { animation: none !important; }
+  .logoRow { animation: none !important; }
   .demoButton, .demoButtonArrow, .demoButtonArrow svg { transition: none; }
 }
 

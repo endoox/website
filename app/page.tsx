@@ -8,6 +8,7 @@ import { TransparentVideo } from "./product-demo-media";
 import { DemoButton, SiteFooter, SiteHeader } from "./site-chrome";
 import { PricingSection } from "../components/ui/pricing-section";
 import { Wordmark } from "./wordmark";
+import { TestimonialCarousel } from "./testimonial-carousel";
 
 // box = display size in px (scaled down on mobile). flat preserves tones in detailed marks.
 const TRUSTED_BY_LOGOS = [
@@ -70,9 +71,9 @@ const TESTIMONIALS = [
       "This wasn't off-the-shelf. It was built with us, around the way a modern sports agency actually works.",
   },
   {
-    name: "Dave Stark",
-    role: "Co-Founder · Cook Stark Management",
-    image: "/testimonials/dave-stark.png",
+    name: "Lander Cook",
+    role: "Co-Founder, CEO · Cook Stark Management",
+    image: "/testimonials/lander-cook.png",
     quote:
       "endo has significantly streamlined our fast-growing business and made it easier to see the full picture without having to check multiple different places to reconcile schedules, values, or other information. The user interface is accessible and simple and it provides us with ways to track timelines and deliverables across our team of agents.",
   },
@@ -201,18 +202,9 @@ export default function Home() {
           >
             <h2 id="testimonials-heading">In the agency’s words.</h2>
           </div>
-          <div
-            className={`${styles.testimonialViewport} ${styles.scrollReveal}`}
-            data-scroll-reveal
-          >
-            <div className={styles.testimonialTrack}>
-              {[false, true].map((duplicate) => (
-                <div className={styles.testimonialGroup} aria-hidden={duplicate || undefined} key={String(duplicate)}>
-                  {TESTIMONIALS.map((testimonial) => <TestimonialCard testimonial={testimonial} key={`${duplicate}-${testimonial.name}`} />)}
-                </div>
-              ))}
-            </div>
-          </div>
+          <TestimonialCarousel>
+            {TESTIMONIALS.map((testimonial) => <TestimonialCard testimonial={testimonial} key={testimonial.name} />)}
+          </TestimonialCarousel>
         </section>
 
         <LeagueCoverage />
