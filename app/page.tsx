@@ -40,7 +40,7 @@ const TESTIMONIALS = [
     role: "Director of Marketing · Quartexx Management",
     image: "/testimonials/shelbi-kilcollins.png",
     quote:
-      "endo was the catalyst in our latest negotiation, helping us unlock 170% more value with a major blue-chip partner.",
+      "Endo has anchored Quartexx's marketing efforts and has been key to our team's strategic growth. It's helped us streamline the high volume of administrative work that comes with endorsement deals, made our sales outreach more efficient and left us better prepared for negotiations. When we look back on our marketing wins in a few years, Endo will be a big part of the 'why.'",
   },
   {
     name: "Tyler Wagner",
@@ -50,18 +50,18 @@ const TESTIMONIALS = [
       "Instead of going into brand conversations with assumptions, we now have credible data to support our pricing. It gives us real leverage.",
   },
   {
-    name: "Farren Benjamin",
-    role: "Founder · FarrWest Management",
-    image: "/testimonials/farren-benjamin.png",
+    name: "Patrik Darabont",
+    role: "Founder & Principal · Tonbara Sports & Entertainment",
+    image: "/testimonials/patrik-darabont.png",
     quote:
-      "Providing elite service means supporting the athlete's entire career. endo was the missing piece that let us demonstrate that commitment.",
+      "Representing athletes across a dozen sports means no two deals look alike. endo gives us one consistent, data-backed read on value across all of them.",
   },
   {
-    name: "Charlie Di Bratto",
-    role: "Marketing · Quartexx Management",
-    image: "/testimonials/charlie-di-bratto.png",
+    name: "Drew Harde",
+    role: "Vice President · KHG Sports Management",
+    image: "/testimonials/drew-harde.png",
     quote:
-      "endo saves us around 10 hours a week, and as our agency grows, that number is only going to increase.",
+      "Endo and the team there, have helped create a hub for our agency enhancing our processes to provide the highest level of service to our clients.",
   },
   {
     name: "Nic Métayer",
@@ -84,7 +84,7 @@ function TrustedBy() {
                 style={{ "--logo-w": `${logo.box[0]}px`, "--logo-h": `${logo.box[1]}px` } as CSSProperties}
                 key={logo.name}
               >
-                <Image src={logo.src} alt={copy === 1 ? "" : logo.name} width={logo.width} height={logo.height} sizes="(max-width: 720px) 120px, 180px" />
+                <Image className={logo.name === "ORR Hockey Group" ? styles.logoOrr : undefined} src={logo.src} alt={copy === 1 ? "" : logo.name} width={logo.width} height={logo.height} sizes="(max-width: 720px) 120px, 180px" />
               </div>
             ))}
           </div>
