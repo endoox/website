@@ -17,12 +17,11 @@ const TRUSTED_BY_LOGOS = [
   { name: "Quartexx Management", src: "/trusted-by/quartexx.png", width: 343, height: 115, box: [175, 62] },
   { name: "Peak Athletes", src: "/trusted-by/peak-athletes.png", width: 1200, height: 1200, box: [82, 82] },
   { name: "KHG Sports Management", src: "/trusted-by/khg-sports-management.png", width: 447, height: 447, box: [76, 76], flat: true },
-  { name: "FarrWest Management", src: "/trusted-by/farrwest.png", width: 1053, height: 497, box: [160, 70] },
-  { name: "RSG Hockey", src: "/trusted-by/rsg-hockey.png", width: 458, height: 93, box: [178, 62] },
-  { name: "Tonbara", src: "/trusted-by/tonbara.png", width: 465, height: 416, box: [62, 56] },
   { name: "Cook Stark Management", src: "/trusted-by/cook-stark.png", width: 200, height: 200, box: [100, 80], flat: true },
-  { name: "US Sports Agency", src: "/trusted-by/us-sports-agency.png", width: 300, height: 300, box: [72, 72] },
   { name: "Oasis Sports Group", src: "/trusted-by/oasis-agency.png", width: 522, height: 464, box: [84, 74], flat: true },
+  { name: "US Sports Agency", src: "/trusted-by/us-sports-agency.png", width: 300, height: 300, box: [72, 72] },
+  { name: "Tonbara", src: "/trusted-by/tonbara.png", width: 465, height: 416, box: [62, 56] },
+  { name: "RSG Hockey", src: "/trusted-by/rsg-hockey.png", width: 458, height: 93, box: [178, 62] },
 ] as const;
 
 const FEATURES = [
