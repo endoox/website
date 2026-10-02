@@ -4,6 +4,7 @@ import Link from "next/link";
 import { LeagueCoverage } from "./league-coverage";
 import styles from "./page.module.css";
 import { HeroStats } from "./hero-stats";
+import { LogoTrack } from "./logo-track";
 import { TransparentVideo } from "./product-demo-media";
 import { DemoButton, SiteFooter, SiteHeader } from "./site-chrome";
 import { Wordmark } from "./wordmark";
@@ -81,7 +82,7 @@ const TESTIMONIALS = [
 function TrustedBy() {
   return (
     <div className={styles.trusted} aria-label="Trusted by leading sports agencies">
-      <div className={styles.logoTrack}>
+      <LogoTrack className={styles.logoTrack}>
         {[0, 1].map((copy) => (
           <div className={styles.logoRow} key={copy} aria-hidden={copy === 1 ? true : undefined}>
             {TRUSTED_BY_LOGOS.map((logo) => (
@@ -90,12 +91,12 @@ function TrustedBy() {
                 style={{ "--logo-w": `${logo.box[0]}px`, "--logo-h": `${logo.box[1]}px` } as CSSProperties}
                 key={logo.name}
               >
-                <Image className={logo.name === "ORR Hockey Group" ? styles.logoOrr : logo.name === "Cook Stark Management" ? styles.logoCookStark : undefined} src={logo.src} alt={copy === 1 ? "" : logo.name} width={logo.width} height={logo.height} sizes="(max-width: 720px) 120px, 180px" />
+                <Image className={logo.name === "ORR Hockey Group" ? styles.logoOrr : logo.name === "Cook Stark Management" ? styles.logoCookStark : undefined} src={logo.src} alt={copy === 1 ? "" : logo.name} width={logo.width} height={logo.height} sizes="(max-width: 720px) 120px, 180px" loading="eager" />
               </div>
             ))}
           </div>
         ))}
-      </div>
+      </LogoTrack>
     </div>
   );
 }
