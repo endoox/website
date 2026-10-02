@@ -11,14 +11,15 @@ import { TestimonialCarousel } from "./testimonial-carousel";
 
 // box = display size in px (scaled down on mobile). flat preserves tones in detailed marks.
 const TRUSTED_BY_LOGOS = [
-  { name: "FarrWest Management", src: "/trusted-by/farrwest.png", width: 1053, height: 497, box: [160, 70] },
-  { name: "Peak Athletes", src: "/trusted-by/peak-athletes.png", width: 1200, height: 1200, box: [82, 82] },
-  { name: "Quartexx Management", src: "/trusted-by/quartexx.png", width: 343, height: 115, box: [175, 62] },
-  { name: "RSG Hockey", src: "/trusted-by/rsg-hockey.png", width: 458, height: 93, box: [178, 62] },
   { name: "ORR Hockey Group", src: "/trusted-by/orr-hockey-group.png", width: 200, height: 200, box: [92, 92], flat: true },
-  { name: "Tonbara", src: "/trusted-by/tonbara.png", width: 465, height: 416, box: [62, 56] },
   { name: "RHSEVEN", src: "/trusted-by/rhseven-white.png", width: 280, height: 77, box: [150, 44] },
   { name: "Envision Sports & Entertainment", src: "/trusted-by/envision-sports-entertainment.png", width: 300, height: 136, box: [140, 64], flat: true },
+  { name: "Quartexx Management", src: "/trusted-by/quartexx.png", width: 343, height: 115, box: [175, 62] },
+  { name: "Peak Athletes", src: "/trusted-by/peak-athletes.png", width: 1200, height: 1200, box: [82, 82] },
+  { name: "KHG Sports Management", src: "/trusted-by/khg-sports-management.png", width: 447, height: 447, box: [76, 76], flat: true },
+  { name: "FarrWest Management", src: "/trusted-by/farrwest.png", width: 1053, height: 497, box: [160, 70] },
+  { name: "RSG Hockey", src: "/trusted-by/rsg-hockey.png", width: 458, height: 93, box: [178, 62] },
+  { name: "Tonbara", src: "/trusted-by/tonbara.png", width: 465, height: 416, box: [62, 56] },
   { name: "Cook Stark Management", src: "/trusted-by/cook-stark.png", width: 200, height: 200, box: [100, 80], flat: true },
   { name: "US Sports Agency", src: "/trusted-by/us-sports-agency.png", width: 300, height: 300, box: [72, 72] },
   { name: "Oasis Sports Group", src: "/trusted-by/oasis-agency.png", width: 522, height: 464, box: [84, 74], flat: true },
@@ -90,7 +91,7 @@ function TrustedBy() {
                 style={{ "--logo-w": `${logo.box[0]}px`, "--logo-h": `${logo.box[1]}px` } as CSSProperties}
                 key={logo.name}
               >
-                <Image className={logo.name === "ORR Hockey Group" ? styles.logoOrr : undefined} src={logo.src} alt={copy === 1 ? "" : logo.name} width={logo.width} height={logo.height} sizes="(max-width: 720px) 120px, 180px" />
+                <Image className={logo.name === "ORR Hockey Group" ? styles.logoOrr : logo.name === "Cook Stark Management" ? styles.logoCookStark : undefined} src={logo.src} alt={copy === 1 ? "" : logo.name} width={logo.width} height={logo.height} sizes="(max-width: 720px) 120px, 180px" />
               </div>
             ))}
           </div>
