@@ -447,15 +447,14 @@
 }
 
 .testimonials { overflow: hidden; background: #fff; }
-.testimonialViewport { width: 100vw; margin-left: calc(50% - 50vw); overflow-x: auto; overflow-y: hidden; scrollbar-width: none; overscroll-behavior-x: contain; cursor: grab; background: #fff; mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent); }
-.testimonialViewport::-webkit-scrollbar { display: none; }
+.testimonialViewport { width: 100vw; margin-left: calc(50% - 50vw); overflow: hidden; touch-action: pan-y; cursor: grab; background: #fff; mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent); }
 .testimonialViewport[data-dragging="true"] { cursor: grabbing; user-select: none; }
 .testimonialViewport:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; }
-/* iOS Safari stops painting a filtered or will-change scroller mid-fling, so this reveal skips the blur and drops its layer hints once shown. */
+/* A blur on the carousel would re-filter the moving track every frame, so its reveal skips it and drops the layer hints once shown. */
 .testimonialViewport.scrollReveal { filter: none; }
 :global(html[data-motion-ready]) .testimonialViewport.scrollReveal:not([data-visible="true"]) { filter: none; }
 :global(html[data-motion-ready]) .testimonialViewport.scrollReveal[data-visible="true"] { transform: none; will-change: auto; }
-.testimonialTrack { width: max-content; display: flex; background: #fff; }
+.testimonialTrack { width: max-content; display: flex; background: #fff; will-change: transform; }
 .testimonialGroup { display: flex; flex: 0 0 auto; gap: 18px; padding-right: 18px; }
 .testimonialCard { width: clamp(330px, 34vw, 470px); padding: 34px; display: flex; flex: 0 0 auto; flex-direction: column; border: 1px solid var(--line); border-radius: 26px; background: #fff; }
 .testimonialPerson { min-height: 58px; display: flex; align-items: center; gap: 13px; }.testimonialPerson img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; filter: grayscale(1); }.testimonialPerson > div { display: flex; flex-direction: column; }.testimonialPerson strong { font-size: .95rem; }.testimonialPerson span { max-width: 260px; color: #8a929d; font-size: .75rem; line-height: 1.35; }
