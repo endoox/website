@@ -16,8 +16,8 @@ if (!key) {
 const ATTRIBUTES = [
   { api_slug: "stage", title: "Stage", type: "status", description: "Where the lead is in booking.", statuses: ["Form submitted", "Booked", "Canceled"] },
   { api_slug: "interest", title: "Interested in", type: "select", description: "What they asked to see.", options: ["Demo", "Valuation", "Both"] },
-  { api_slug: "agency", title: "Agency", type: "text", description: "Agency name as typed on the form." },
-  { api_slug: "roster_size", title: "Roster size", type: "select", description: "Athletes the agency represents.", options: ["1–10", "11–25", "26–50", "51–100", "100+"] },
+  { api_slug: "agency", title: "Agency / company", type: "text", description: "Agency or company name as typed on the form." },
+  { api_slug: "roster_size", title: "Roster size", type: "select", description: "Athletes the agency represents.", options: ["1–10", "11–50", "51–150", "150+"] },
   { api_slug: "sports", title: "Sports", type: "text", description: "Sports they represent." },
   { api_slug: "heard_about", title: "Heard about us", type: "text", description: "How they heard about endo." },
   { api_slug: "submitted_at", title: "Form submitted at", type: "timestamp", description: "Last time they submitted the booking form." },

@@ -8,13 +8,13 @@ import { TransparentVideo } from "../product-demo-media";
 import { Pillars } from "./pillars";
 import styles from "./endo-deals.module.css";
 
-const title = "endo — The software behind the modern sports agency";
+const title = "endodeals — Endorsement valuations for sports agencies";
 const description = "Score the talent, price the deal and show the brand why it fits. One endodeals report, back in 24 hours.";
 
 export const metadata: Metadata = {
   title,
   description,
-  openGraph: { title, description, type: "website" },
+  openGraph: { title, description, url: "./", siteName: "endo", type: "website" },
   twitter: { card: "summary", title, description },
 };
 

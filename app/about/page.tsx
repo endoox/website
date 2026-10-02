@@ -1,9 +1,21 @@
+import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import Image from "next/image";
+import { SOCIAL_LINKS } from "@/lib/contact";
 import pageStyles from "../page.module.css";
 import { DemoButton, SiteFooter, SiteHeader } from "../site-chrome";
 import { OurWhy } from "./our-why";
 import styles from "./about.module.css";
+
+const title = "About — endo";
+const description = "endo is built by operators and agents who’ve lived the business. Meet the team giving sports agencies the tools to run their business and value their talent.";
+
+export const metadata: Metadata = {
+  title,
+  description,
+  openGraph: { title, description, url: "./", siteName: "endo", type: "website" },
+  twitter: { card: "summary", title, description },
+};
 
 const TEAM = [
   { name: "Michael Boushy", role: "Co-founder & CEO", image: "/team/michael-boushy-portrait.png", cropY: "3.5%", mobileCropY: "11%", linkedin: "https://www.linkedin.com/in/michaelboushy/" },
@@ -88,11 +100,32 @@ export default function AboutPage() {
                 </a>
               ))}
             </div>
+            {SOCIAL_LINKS.some((link) => link.href) && (
+              <div className={`${styles.follow} ${pageStyles.scrollReveal}`} data-scroll-reveal>
+                <p>Follow along as we build endo.</p>
+                <div>
+                  {SOCIAL_LINKS.filter((link) => link.href).map((link) => (
+                    <a className={styles.secondary} href={link.href} target="_blank" rel="noreferrer" key={link.label}>
+                      <SocialIcon label={link.label} />
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </section>
       </main>
 
       <SiteFooter />
     </div>
+  );
+}
+
+function SocialIcon({ label }: { label: string }) {
+  return label === "LinkedIn" ? (
+    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3zM9.5 9.75h3.8v1.5h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1v5.45h-4v-4.83c0-1.15-.02-2.63-1.6-2.63-1.6 0-1.85 1.25-1.85 2.55v4.91h-4z" /></svg>
+  ) : (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" /></svg>
   );
 }

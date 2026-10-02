@@ -128,7 +128,7 @@ export function BookFlow({ initialInterest }: { initialInterest: string }) {
             <label>First name<input name="firstName" autoComplete="given-name" required /></label>
             <label>Last name<input name="lastName" autoComplete="family-name" required /></label>
             <label className={styles.wide}>Work email<input name="email" type="email" autoComplete="email" required /></label>
-            <label>Agency<input name="agency" autoComplete="organization" required /></label>
+            <label>Agency / company<input name="agency" autoComplete="organization" required /></label>
             <label>Your role<input name="role" autoComplete="organization-title" placeholder="e.g. Founder, Agent" /></label>
             <label>
               Roster size

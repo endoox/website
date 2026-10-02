@@ -8,6 +8,8 @@ import styles from "./book.module.css";
 export const metadata: Metadata = {
   title: "Book a demo — endo",
   description: "Tell us about your agency, then pick a time to see endo.",
+  openGraph: { title: "Book a demo — endo", description: "Tell us about your agency, then pick a time to see endo.", url: "./", siteName: "endo", type: "website" },
+  twitter: { card: "summary", title: "Book a demo — endo", description: "Tell us about your agency, then pick a time to see endo." },
 };
 
 // "Get a valuation" style links can preselect the interest with ?interest=Valuation.

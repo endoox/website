@@ -5,6 +5,8 @@ import styles from "../legal.module.css";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — endo",
+  openGraph: { title: "Privacy Policy — endo", url: "./", siteName: "endo", type: "website" },
+  twitter: { card: "summary", title: "Privacy Policy — endo" },
 };
 
 // From https://www.endodeals.com/privacy, with brand capitalization normalized to "endo".

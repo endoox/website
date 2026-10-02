@@ -18,7 +18,7 @@ export async function POST(request: Request) {
   const lead = Object.fromEntries(FIELDS.map((field) => [field, String(body[field] ?? "").trim().slice(0, 500)])) as Lead;
   lead.email = lead.email.toLowerCase();
   if (!lead.firstName || !lead.lastName || !lead.agency || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email)) {
-    return Response.json({ error: "Please fill in your name, work email and agency." }, { status: 400 });
+    return Response.json({ error: "Please fill in your name, work email and agency or company." }, { status: 400 });
   }
   if (!(INTERESTS as readonly string[]).includes(lead.interest)) lead.interest = "";
   if (!(ROSTER_SIZES as readonly string[]).includes(lead.rosterSize)) lead.rosterSize = "";

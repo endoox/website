@@ -12,10 +12,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const title = "endo — The software behind the modern sports agency";
+const description =
+  "endo is the software behind modern sports agencies. Never miss a payment or deliverable, price every deal right, and get more time to do what you do best.";
+
+// Site-wide defaults; pages override title and description. metadataBase makes relative URLs absolute
+// for search engines and link previews.
 export const metadata: Metadata = {
-  title: "endo — The software behind the modern sports agency",
-  description:
-    "endo helps sports agencies value, manage, and grow every endorsement deal.",
+  metadataBase: new URL("https://www.endodeals.com"),
+  title,
+  description,
+  alternates: { canonical: "./" },
+  openGraph: { title, description, url: "./", siteName: "endo", type: "website" },
+  twitter: { card: "summary", title, description },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
