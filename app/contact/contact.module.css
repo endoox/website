@@ -1,0 +1,101 @@
+.contactPage { background: #fff; }
+
+.main { max-width: 1200px; margin: 0 auto; padding: 156px max(28px, calc((100vw - 1200px) / 2)) 120px; }
+
+.layout { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+
+.intro { position: sticky; top: 128px; padding-top: 12px; }
+.intro h1 { margin: 0 0 22px; font-size: clamp(2.8rem, 5vw, 4.6rem); font-weight: 500; letter-spacing: -.06em; line-height: .98; }
+.intro p { max-width: 30ch; margin: 0; color: var(--muted); font-size: 1.12rem; line-height: 1.55; }
+
+.panel { overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: #fff; box-shadow: 0 24px 60px rgb(7 20 38 / 7%); }
+
+.form { display: grid; gap: 26px; padding: clamp(28px, 4vw, 44px); }
+
+.field { display: grid; gap: 9px; min-width: 0; margin: 0; padding: 0; border: 0; }
+.label, .field legend { padding: 0; color: var(--ink); font-size: .94rem; font-weight: 600; }
+.field legend { margin-bottom: 12px; }
+
+.field input[type="text"],
+.field input[type="email"],
+.field select {
+  width: 100%;
+  height: 50px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 1rem;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.field select {
+  padding-right: 44px;
+  appearance: none;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23697383' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 16px center / 18px;
+  cursor: pointer;
+}
+.field select:invalid { color: var(--muted); }
+.field input::placeholder { color: #a3abb8; }
+.field input:focus-visible,
+.field select:focus-visible { border-color: var(--blue); outline: none; box-shadow: 0 0 0 4px rgb(75 124 209 / 16%); }
+.field[data-invalid] input,
+.field[data-invalid] select { border-color: #c4413a; }
+
+.choices { display: grid; gap: 10px; }
+.choice { display: flex; align-items: center; gap: 12px; padding: 13px 16px; border: 1px solid var(--line); border-radius: 12px; cursor: pointer; transition: border-color 160ms ease, background 160ms ease; }
+.choice:hover { border-color: #c5cfdd; }
+.choice:has(input:checked) { border-color: var(--blue); background: rgb(75 124 209 / 6%); }
+.choice:has(input:focus-visible) { box-shadow: 0 0 0 4px rgb(75 124 209 / 16%); }
+.choice input { width: 18px; height: 18px; margin: 0; flex: none; accent-color: var(--blue); }
+.choice span { font-size: .98rem; }
+
+.error { margin: 0; color: #c4413a; font-size: .86rem; }
+
+.honeypot { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.submit {
+  justify-self: start;
+  min-width: 184px;
+  min-height: 50px;
+  padding: 0 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 10px 24px rgb(7 20 38 / 14%);
+  font: inherit;
+  font-size: .96rem;
+  font-weight: 610;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 200ms ease, box-shadow 200ms ease, transform 120ms ease;
+}
+.submit:hover { background: #4168b8; box-shadow: 0 15px 34px rgb(75 124 209 / 32%); }
+.submit:active { transform: scale(.98); }
+.submit:disabled { opacity: .7; cursor: progress; }
+
+/* Calendly sizes its iframe to this box. */
+.calendar { height: 760px; }
+.calendarFallback { display: grid; gap: 18px; justify-items: start; padding: 44px; }
+.calendarFallback p { margin: 0; color: var(--muted); }
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; gap: 32px; }
+  .intro { position: static; padding-top: 0; }
+  .intro p { max-width: 46ch; }
+}
+@media (max-width: 600px) {
+  .main { padding: 120px 16px 72px; }
+  .panel { border-radius: 20px; }
+  .form { padding: 24px 20px; }
+  .submit { justify-self: stretch; }
+  .calendar { height: 1000px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .field input, .field select, .choice, .submit { transition: none; }
+}

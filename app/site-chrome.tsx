@@ -6,7 +6,6 @@ import { NAV_LINKS } from "@/lib/nav";
 import { PRESS } from "@/lib/press";
 import { FloatingHeader } from "./floating-header";
 import { MobileMenu } from "./mobile-menu";
-import { CalendlyPopup } from "./calendly-popup";
 import { MotionObserver } from "./motion-observer";
 import styles from "./page.module.css";
 import { Wordmark } from "./wordmark";
@@ -47,7 +46,6 @@ export function SiteHeader({ current }: { current?: string }) {
   return (
     <>
       <MotionObserver />
-      <CalendlyPopup />
       <FloatingHeader>
         <Link className={styles.brandLink} href="/" aria-label="endo home"><Brand /></Link>
         <nav className={styles.headerNav} aria-label="Primary navigation">
@@ -79,7 +77,7 @@ export function SiteFooter({
         </div>
         <nav className={styles.footerLinks} aria-label="Footer">
           <div><p>Platform</p><Link href="/#features">Features</Link><Link href="/endo-deals"><Wordmark text="endodeals" /></Link><Link href="/#pricing">Pricing</Link><Link href="/#testimonials">Testimonials</Link></div>
-          <div><p>Company</p><Link href="/about">About</Link><Link href="/about#team">Our team</Link>{PRESS.length > 0 && <Link href="/press">Press</Link>}<a href="mailto:admin@endodeals.com">Contact</a></div>
+          <div><p>Company</p><Link href="/about">About</Link><Link href="/about#team">Our team</Link>{PRESS.length > 0 && <Link href="/press">Press</Link>}<Link href="/contact">Contact</Link></div>
           <div><p>Legal</p><Link href="/privacy">Privacy policy</Link><Link href="/terms">Terms of service</Link></div>
         </nav>
       </div>
