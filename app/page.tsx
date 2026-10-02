@@ -214,7 +214,7 @@ export default function Home() {
           data-scroll-reveal
         >
           <div className={styles.impactHeading}>
-            <h2 id="impact-heading">Built around the business of <em>athlete value.</em></h2>
+            <h2 id="impact-heading">Built around the business of athlete value.</h2>
           </div>
           <HeroStats />
           <DemoButton className={styles.impactButton} />
