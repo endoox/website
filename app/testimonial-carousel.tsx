@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
-import { wrapTestimonialScroll } from "@/lib/testimonial-scroll";
+import { needsEdgeWrap, TESTIMONIAL_COPIES, TESTIMONIAL_HOME, wrapTestimonialScroll } from "@/lib/testimonial-scroll";
 import styles from "./page.module.css";
 
 export function TestimonialCarousel({ children }: { children: ReactNode }) {
@@ -25,12 +25,34 @@ export function TestimonialCarousel({ children }: { children: ReactNode }) {
     let previousTime = performance.now();
     let remainder = 0;
     let frame = 0;
-    viewport.scrollLeft = groupWidth;
+    let touches = 0;
+    let settleTimer = 0;
+    viewport.scrollLeft = groupWidth * TESTIMONIAL_HOME;
 
     const wrap = () => {
-      if (viewport.scrollLeft < groupWidth || viewport.scrollLeft >= groupWidth * 2) {
-        viewport.scrollLeft = wrapTestimonialScroll(viewport.scrollLeft, groupWidth);
+      const position = viewport.scrollLeft;
+      if (position < groupWidth * TESTIMONIAL_HOME || position >= groupWidth * (TESTIMONIAL_HOME + 1)) {
+        viewport.scrollLeft = wrapTestimonialScroll(position, groupWidth);
       }
+    };
+    // Moves we drive ourselves (wheel, drag, autoplay) wrap straight away.
+    const move = (pixels: number) => {
+      remainder += pixels;
+      const whole = Math.trunc(remainder);
+      remainder -= whole;
+      viewport.scrollLeft += whole;
+      wrap();
+    };
+    // Jumping scrollLeft mid-fling cancels or fights the browser's momentum, so native
+    // scrolls wrap once they settle, unless they are about to run out of track.
+    const settle = () => {
+      window.clearTimeout(settleTimer);
+      if (!touches) wrap();
+    };
+    const onNativeScroll = () => {
+      if (needsEdgeWrap(viewport.scrollLeft, groupWidth, viewport.clientWidth)) wrap();
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(settle, 150);
     };
     const pause = () => { resumeAt = performance.now() + 5000; };
     const endDrag = (event: PointerEvent) => {
@@ -41,7 +63,25 @@ export function TestimonialCarousel({ children }: { children: ReactNode }) {
       else resumeAt = 0;
     };
 
-    viewport.addEventListener("scroll", wrap, { signal, passive: true });
+    viewport.addEventListener("scroll", onNativeScroll, { signal, passive: true });
+    viewport.addEventListener("scrollend", settle, { signal });
+    viewport.addEventListener("touchstart", (event) => { touches = event.touches.length; }, { signal, passive: true });
+    const endTouch = (event: TouchEvent) => {
+      touches = event.touches.length;
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(settle, 150);
+    };
+    viewport.addEventListener("touchend", endTouch, { signal, passive: true });
+    viewport.addEventListener("touchcancel", endTouch, { signal, passive: true });
+    // Apply trackpad and shift+wheel deltas directly instead of letting the browser
+    // animate towards a target that the wrap jump would invalidate.
+    viewport.addEventListener("wheel", (event) => {
+      const horizontal = Math.abs(event.deltaX) > Math.abs(event.deltaY);
+      const delta = horizontal ? event.deltaX : event.shiftKey ? event.deltaY : 0;
+      if (!delta) return;
+      event.preventDefault();
+      move(delta * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? viewport.clientWidth : 1));
+    }, { signal, passive: false });
     viewport.addEventListener("pointerenter", (event) => { hovered = event.pointerType === "mouse"; }, { signal });
     viewport.addEventListener("pointerleave", (event) => {
       if (event.pointerType !== "mouse") return;
@@ -62,9 +102,8 @@ export function TestimonialCarousel({ children }: { children: ReactNode }) {
     }, { signal });
     viewport.addEventListener("pointermove", (event) => {
       if (dragX === null) return;
-      viewport.scrollLeft += dragX - event.clientX;
+      move(dragX - event.clientX);
       dragX = event.clientX;
-      wrap();
     }, { signal });
     viewport.addEventListener("pointerup", endDrag, { signal });
     viewport.addEventListener("pointercancel", endDrag, { signal });
@@ -84,11 +123,7 @@ export function TestimonialCarousel({ children }: { children: ReactNode }) {
       const elapsed = Math.min(now - previousTime, 50);
       previousTime = now;
       if (visible && !document.hidden && !reducedMotion.matches && !hovered && !viewport.matches(":focus-visible") && !interacting && now >= resumeAt) {
-        remainder += elapsed * groupWidth / 55000;
-        const pixels = Math.floor(remainder);
-        remainder -= pixels;
-        viewport.scrollLeft += pixels;
-        wrap();
+        move(elapsed * groupWidth / 55000);
       }
       frame = requestAnimationFrame(advance);
     };
@@ -97,6 +132,7 @@ export function TestimonialCarousel({ children }: { children: ReactNode }) {
     return () => {
       controller.abort();
       cancelAnimationFrame(frame);
+      window.clearTimeout(settleTimer);
       resizeObserver.disconnect();
       visibilityObserver.disconnect();
     };
@@ -113,8 +149,8 @@ export function TestimonialCarousel({ children }: { children: ReactNode }) {
       tabIndex={0}
     >
       <div className={styles.testimonialTrack}>
-        {[0, 1, 2].map((copy) => (
-          <div ref={copy === 1 ? groupRef : undefined} className={styles.testimonialGroup} aria-hidden={copy !== 1 || undefined} key={copy}>
+        {Array.from({ length: TESTIMONIAL_COPIES }, (_, copy) => (
+          <div ref={copy === TESTIMONIAL_HOME ? groupRef : undefined} className={styles.testimonialGroup} aria-hidden={copy !== TESTIMONIAL_HOME || undefined} key={copy}>
             {children}
           </div>
         ))}
