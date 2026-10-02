@@ -42,7 +42,9 @@ export default function AboutPage() {
         <section className={styles.filmSection} id="film" aria-label="Launch film">
           <div className={styles.in}>
             {/* Launch film goes here: replace this div with <video src="…" poster="…" controls playsInline className={styles.film} />. */}
-            <div className={styles.film} />
+            <div className={styles.film}>
+              <p className={styles.filmSoon}>Launch video coming soon</p>
+            </div>
           </div>
         </section>
 

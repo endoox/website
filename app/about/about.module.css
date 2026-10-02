@@ -20,7 +20,8 @@
 
 /* Launch film slot: a plain 16:9 frame until the video arrives. */
 .filmSection { padding-bottom: 104px; }
-.film { width: 100%; aspect-ratio: 16 / 9; display: block; border-radius: 28px; background: var(--soft-bg); }
+.film { width: 100%; aspect-ratio: 16 / 9; display: grid; place-items: center; border-radius: 28px; background: var(--soft-bg); }
+.filmSoon { margin: 0; padding: 0 24px; color: #7a828d; font-size: clamp(1.1rem, 2vw, 1.6rem); font-weight: 500; letter-spacing: -.02em; text-align: center; }
 
 /* ---------- Our why (dark card; clip, not hidden, so the heading can stay sticky) ---------- */
 .why { margin: 0 4px; padding: 120px max(30px, calc((100vw - 1200px) / 2)); overflow: clip; border-radius: 30px; background: radial-gradient(700px 420px at 90% 0%, rgb(75 124 209 / 45%), transparent 70%), var(--blue-deep); color: #fff; }
