@@ -9,3 +9,4 @@
 .legal li + li { margin-top: 6px; }
 .legal strong { color: var(--ink); font-weight: 600; }
 @media (max-width: 600px) { .legal { padding: 132px 16px 80px; } }
+.legal .item { margin-left: 22px; }
