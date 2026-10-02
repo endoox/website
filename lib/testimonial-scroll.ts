@@ -1,15 +1,19 @@
-// Identical groups rendered side by side; the middle one is "home".
-export const TESTIMONIAL_COPIES = 5;
-export const TESTIMONIAL_HOME = Math.floor(TESTIMONIAL_COPIES / 2);
+// Identical groups rendered side by side; the first is the real one, the rest fill the loop.
+export const TESTIMONIAL_COPIES = 3;
 
-// Keep the same visible position, moved into the home group.
-export function wrapTestimonialScroll(position: number, groupWidth: number) {
-  if (groupWidth <= 0) return position;
-  return groupWidth * TESTIMONIAL_HOME + ((position % groupWidth) + groupWidth) % groupWidth;
+// Track offset inside one group, so every position shows the same cards.
+export function wrapTestimonialOffset(offset: number, groupWidth: number) {
+  if (groupWidth <= 0) return offset;
+  return ((offset % groupWidth) + groupWidth) % groupWidth;
 }
 
-// Native scrolling (touch momentum, arrow-key animation) is left alone while it runs:
-// only wrap mid-scroll when it gets within a group of either end.
-export function needsEdgeWrap(position: number, groupWidth: number, viewportWidth: number) {
-  return position < groupWidth || position > groupWidth * (TESTIMONIAL_COPIES - 1) - viewportWidth;
+// Fling speed in px/ms from recent drag samples, capped so a flick can't outrun the eye.
+export function releaseVelocity(samples: { x: number; t: number }[], now: number, max = 4) {
+  const recent = samples.filter((sample) => now - sample.t <= 100);
+  if (recent.length < 2) return 0;
+  const first = recent[0];
+  const last = recent[recent.length - 1];
+  if (now - last.t > 50 || last.t === first.t) return 0;
+  const velocity = (first.x - last.x) / (last.t - first.t);
+  return Math.max(-max, Math.min(max, velocity));
 }
