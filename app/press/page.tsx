@@ -7,10 +7,10 @@ import { SiteFooter, SiteHeader } from "../site-chrome";
 import styles from "./press.module.css";
 
 export const metadata: Metadata = {
-  title: "Press — endo",
+  title: "Press · endo",
   description: "News and coverage of endo, the software behind modern sports agencies.",
-  openGraph: { title: "Press — endo", description: "News and coverage of endo, the software behind modern sports agencies.", url: "./", siteName: "endo", type: "website" },
-  twitter: { card: "summary", title: "Press — endo", description: "News and coverage of endo, the software behind modern sports agencies." },
+  openGraph: { title: "Press · endo", description: "News and coverage of endo, the software behind modern sports agencies.", url: "./", siteName: "endo", type: "website" },
+  twitter: { card: "summary", title: "Press · endo", description: "News and coverage of endo, the software behind modern sports agencies." },
 };
 
 const formatDate = (date: string) =>

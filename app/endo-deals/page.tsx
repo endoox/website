@@ -8,7 +8,7 @@ import { TransparentVideo } from "../product-demo-media";
 import { Pillars } from "./pillars";
 import styles from "./endo-deals.module.css";
 
-const title = "endodeals — Endorsement valuations for sports agencies";
+const title = "endodeals · Endorsement valuations for sports agencies";
 const description = "Score the talent, price the deal and show the brand why it fits. One endodeals report, back in 24 hours.";
 
 export const metadata: Metadata = {

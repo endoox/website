@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const title = "endo — The software behind the modern sports agency";
+const title = "endo · The software behind the modern sports agency";
 const description =
   "endo is the software behind modern sports agencies. Never miss a payment or deliverable, price every deal right, and get more time to do what you do best.";
 

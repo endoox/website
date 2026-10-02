@@ -4,9 +4,9 @@ import { SiteFooter, SiteHeader } from "../site-chrome";
 import styles from "../legal.module.css";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — endo",
-  openGraph: { title: "Terms of Service — endo", url: "./", siteName: "endo", type: "website" },
-  twitter: { card: "summary", title: "Terms of Service — endo" },
+  title: "Terms of Service · endo",
+  openGraph: { title: "Terms of Service · endo", url: "./", siteName: "endo", type: "website" },
+  twitter: { card: "summary", title: "Terms of Service · endo" },
 };
 
 // From https://www.endodeals.com/terms, with brand capitalization normalized to "endo".

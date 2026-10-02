@@ -7,7 +7,7 @@ import { DemoButton, SiteFooter, SiteHeader } from "../site-chrome";
 import { OurWhy } from "./our-why";
 import styles from "./about.module.css";
 
-const title = "About — endo";
+const title = "About · endo";
 const description = "endo is built by operators and agents who’ve lived the business. Meet the team giving sports agencies the tools to run their business and value their talent.";
 
 export const metadata: Metadata = {
