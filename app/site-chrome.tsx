@@ -6,7 +6,7 @@ import { NAV_LINKS } from "@/lib/nav";
 import { PRESS } from "@/lib/press";
 import { FloatingHeader } from "./floating-header";
 import { MobileMenu } from "./mobile-menu";
-import { CalendlyPopup } from "./calendly-popup";
+import { AttributionCapture } from "./attribution";
 import { MotionObserver } from "./motion-observer";
 import styles from "./page.module.css";
 import { Wordmark } from "./wordmark";
@@ -47,7 +47,7 @@ export function SiteHeader({ current }: { current?: string }) {
   return (
     <>
       <MotionObserver />
-      <CalendlyPopup />
+      <AttributionCapture />
       <FloatingHeader>
         <Link className={styles.brandLink} href="/" aria-label="endo home"><Brand /></Link>
         <nav className={styles.headerNav} aria-label="Primary navigation">

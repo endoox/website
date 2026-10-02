@@ -279,10 +279,3 @@ html:not([data-motion-ready]) .t-stagger-line {
 .endodeals { white-space: nowrap; }
 .endodeals > span { color: var(--endodeals-accent, #4b7cd1); }
 
-/* Override Calendly's 700px desktop cap, keeping 24px of space above and below. */
-@media (min-width: 976px) {
-  body .calendly-overlay .calendly-popup {
-    height: calc(100dvh - 48px);
-    max-height: none !important;
-  }
-}

@@ -1,0 +1,58 @@
+/* Booking page: the site's white cards, thin grey borders and blue pill buttons. */
+.book { max-width: 880px; margin: 0 auto; padding: 168px 28px 120px; }
+.head { margin-bottom: 40px; text-align: center; }
+.head h1 { margin: 0; font-size: clamp(2.6rem, 5vw, 4.2rem); font-weight: 500; letter-spacing: -.05em; line-height: 1.02; text-wrap: balance; }
+.head p { max-width: 520px; margin: 20px auto 0; color: #7a828d; font-size: clamp(1rem, 1.35vw, 1.15rem); line-height: 1.55; text-wrap: balance; }
+
+.steps { margin: 0 0 20px; padding: 0; display: flex; justify-content: center; gap: 28px; list-style: none; color: var(--muted); font-size: .92rem; font-weight: 520; }
+.steps li { display: flex; align-items: center; gap: 10px; }
+.steps span { width: 28px; height: 28px; display: grid; border: 1px solid var(--line); border-radius: 50%; background: #fff; font-size: .82rem; place-items: center; }
+.steps li[data-state="current"] { color: var(--ink); }
+.steps li[data-state="current"] span { border-color: var(--blue); background: var(--blue); color: #fff; }
+.steps li[data-state="done"] span { border-color: var(--blue-deep); background: var(--blue-deep); color: #fff; }
+
+.card { padding: 40px; border: 1px solid var(--line); border-radius: 26px; background: #fff; box-shadow: 0 24px 60px rgb(7 20 38 / 7%); }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.wide { grid-column: 1 / -1; }
+.grid label, .grid legend { display: flex; flex-direction: column; gap: 8px; color: var(--ink); font-size: .9rem; font-weight: 560; }
+.grid em { color: var(--muted); font-style: normal; font-weight: 450; }
+.grid input, .grid select { width: 100%; min-height: 50px; padding: 0 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--soft); color: var(--ink); font: inherit; font-size: 1rem; font-weight: 450; outline: none; transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease; }
+.grid select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='%23697383' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-position: right 16px center; background-repeat: no-repeat; }
+.grid input::placeholder { color: #a3abb7; }
+.grid input:focus, .grid select:focus { border-color: var(--blue); background-color: #fff; box-shadow: 0 0 0 4px rgb(75 124 209 / 14%); }
+
+.grid fieldset { margin: 0; padding: 0; border: 0; }
+.grid legend { margin-bottom: 8px; padding: 0; }
+.pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.pills label { min-height: 44px; padding: 0 18px; display: inline-flex; flex-direction: row; align-items: center; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--ink); font-weight: 520; cursor: pointer; transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease; }
+.pills label:hover { border-color: #c6cfdc; }
+.pills label[data-checked] { border-color: var(--blue-deep); background: var(--blue-deep); color: #fff; }
+.pills label:has(input:focus-visible) { box-shadow: 0 0 0 4px rgb(75 124 209 / 22%); }
+.pills label { position: relative; }
+.pills input { position: absolute; inset: 0; width: 1px; min-height: 0; height: 1px; padding: 0; opacity: 0; pointer-events: none; }
+
+/* Honeypot: hidden from people and screen readers, filled in only by bots. */
+.trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.trap input { width: 1px; }
+
+.actions { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; }
+.actions p { margin: 0; color: var(--muted); font-size: .88rem; }
+.submit { font: inherit; font-size: .94rem; font-weight: 610; cursor: pointer; }
+.submit:disabled { opacity: .7; cursor: progress; }
+.error { margin: 20px 0 0; color: #b42318; font-size: .92rem; }
+.error a { color: inherit; }
+
+.calendarCard { padding: 28px 12px 12px; }
+.calendarIntro { margin: 0 0 8px; padding: 0 20px; color: var(--ink); font-size: 1.1rem; font-weight: 520; text-align: center; }
+.calendar { min-height: 700px; }
+.calendar :global(.calendly-inline-widget), .calendar iframe { width: 100%; min-height: 700px; }
+.loading { margin: 0; padding-top: 120px; color: var(--muted); text-align: center; }
+
+@media (max-width: 640px) {
+  .book { padding: 128px 16px 80px; }
+  .card { padding: 26px 20px; border-radius: 22px; }
+  .grid { grid-template-columns: 1fr; gap: 16px; }
+  .steps { gap: 18px; font-size: .86rem; }
+  .calendarCard { padding: 22px 0 0; }
+  .calendar, .calendar :global(.calendly-inline-widget), .calendar iframe { min-height: 1020px; }
+}
