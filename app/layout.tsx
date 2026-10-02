@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { shareMetadata } from "@/lib/share-metadata";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,8 +24,7 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: "./" },
-  openGraph: { title, description, url: "./", siteName: "endo", type: "website" },
-  twitter: { card: "summary", title, description },
+  ...shareMetadata(title, description),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

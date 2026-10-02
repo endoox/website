@@ -4,12 +4,12 @@ import pageStyles from "../page.module.css";
 import { DemoButton, SiteFooter, SiteHeader } from "../site-chrome";
 import { BookFlow } from "./book-flow";
 import styles from "./book.module.css";
+import { shareMetadata } from "@/lib/share-metadata";
 
 export const metadata: Metadata = {
   title: "Book a demo · endo",
   description: "Tell us about your agency, then pick a time to see endo.",
-  openGraph: { title: "Book a demo · endo", description: "Tell us about your agency, then pick a time to see endo.", url: "./", siteName: "endo", type: "website" },
-  twitter: { card: "summary", title: "Book a demo · endo", description: "Tell us about your agency, then pick a time to see endo." },
+  ...shareMetadata("Book a demo · endo", "Tell us about your agency, then pick a time to see endo."),
 };
 
 // "Get a valuation" style links can preselect the interest with ?interest=Valuation.

@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import pageStyles from "../page.module.css";
 import { SiteFooter, SiteHeader } from "../site-chrome";
 import styles from "../legal.module.css";
+import { shareMetadata } from "@/lib/share-metadata";
 
 export const metadata: Metadata = {
   title: "Privacy Policy · endo",
-  openGraph: { title: "Privacy Policy · endo", url: "./", siteName: "endo", type: "website" },
-  twitter: { card: "summary", title: "Privacy Policy · endo" },
+  ...shareMetadata("Privacy Policy · endo"),
 };
 
 // From https://www.endodeals.com/privacy, with brand capitalization normalized to "endo".
