@@ -451,6 +451,10 @@
 .testimonialViewport::-webkit-scrollbar { display: none; }
 .testimonialViewport[data-dragging="true"] { cursor: grabbing; user-select: none; }
 .testimonialViewport:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; }
+/* iOS Safari stops painting a filtered or will-change scroller mid-fling, so this reveal skips the blur and drops its layer hints once shown. */
+.testimonialViewport.scrollReveal { filter: none; }
+:global(html[data-motion-ready]) .testimonialViewport.scrollReveal:not([data-visible="true"]) { filter: none; }
+:global(html[data-motion-ready]) .testimonialViewport.scrollReveal[data-visible="true"] { transform: none; will-change: auto; }
 .testimonialTrack { width: max-content; display: flex; background: #fff; }
 .testimonialGroup { display: flex; flex: 0 0 auto; gap: 18px; padding-right: 18px; }
 .testimonialCard { width: clamp(330px, 34vw, 470px); padding: 34px; display: flex; flex: 0 0 auto; flex-direction: column; border: 1px solid var(--line); border-radius: 26px; background: #fff; }
