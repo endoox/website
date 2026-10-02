@@ -6,6 +6,7 @@ import pageStyles from "../page.module.css";
 import { DemoButton, SiteFooter, SiteHeader } from "../site-chrome";
 import { OurWhy } from "./our-why";
 import styles from "./about.module.css";
+import { shareMetadata } from "@/lib/share-metadata";
 
 const title = "About · endo";
 const description = "endo is built by operators and agents who’ve lived the business. Meet the team giving sports agencies the tools to run their business and value their talent.";
@@ -13,8 +14,7 @@ const description = "endo is built by operators and agents who’ve lived the bu
 export const metadata: Metadata = {
   title,
   description,
-  openGraph: { title, description, url: "./", siteName: "endo", type: "website" },
-  twitter: { card: "summary", title, description },
+  ...shareMetadata(title, description),
 };
 
 const TEAM = [

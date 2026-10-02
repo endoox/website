@@ -7,6 +7,7 @@ import pageStyles from "../page.module.css";
 import { TransparentVideo } from "../product-demo-media";
 import { Pillars } from "./pillars";
 import styles from "./endo-deals.module.css";
+import { shareMetadata } from "@/lib/share-metadata";
 
 const title = "endodeals · Endorsement valuations for sports agencies";
 const description = "Score the talent, price the deal and show the brand why it fits. One endodeals report, back in 24 hours.";
@@ -14,8 +15,7 @@ const description = "Score the talent, price the deal and show the brand why it 
 export const metadata: Metadata = {
   title,
   description,
-  openGraph: { title, description, url: "./", siteName: "endo", type: "website" },
-  twitter: { card: "summary", title, description },
+  ...shareMetadata(title, description),
 };
 
 const STEPS = [

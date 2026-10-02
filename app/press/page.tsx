@@ -5,12 +5,12 @@ import { PRESS } from "@/lib/press";
 import pageStyles from "../page.module.css";
 import { SiteFooter, SiteHeader } from "../site-chrome";
 import styles from "./press.module.css";
+import { shareMetadata } from "@/lib/share-metadata";
 
 export const metadata: Metadata = {
   title: "Press · endo",
   description: "News and coverage of endo, the software behind modern sports agencies.",
-  openGraph: { title: "Press · endo", description: "News and coverage of endo, the software behind modern sports agencies.", url: "./", siteName: "endo", type: "website" },
-  twitter: { card: "summary", title: "Press · endo", description: "News and coverage of endo, the software behind modern sports agencies." },
+  ...shareMetadata("Press · endo", "News and coverage of endo, the software behind modern sports agencies."),
 };
 
 const formatDate = (date: string) =>
