@@ -20,7 +20,7 @@ const TRUSTED_BY_LOGOS = [
   { name: "Cook Stark Management", src: "/trusted-by/cook-stark.png", width: 200, height: 200, box: [100, 80], flat: true },
   { name: "Oasis Sports Group", src: "/trusted-by/oasis-agency.png", width: 522, height: 464, box: [84, 74], flat: true },
   { name: "US Sports Agency", src: "/trusted-by/us-sports-agency.png", width: 300, height: 300, box: [72, 72] },
-  { name: "Tonbara", src: "/trusted-by/tonbara.png", width: 465, height: 416, box: [62, 56] },
+  { name: "Tonbara", src: "/trusted-by/tonbara-wordmark.png", width: 794, height: 183, box: [175, 46] },
   { name: "RSG Hockey", src: "/trusted-by/rsg-hockey.png", width: 458, height: 93, box: [178, 62] },
 ] as const;
 
@@ -214,7 +214,7 @@ export default function Home() {
           data-scroll-reveal
         >
           <div className={styles.impactHeading}>
-            <h2 id="impact-heading">Built around the business of athlete value.</h2>
+            <h2 id="impact-heading">Built around the business of <em>athlete value.</em></h2>
           </div>
           <HeroStats />
           <DemoButton className={styles.impactButton} />

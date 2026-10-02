@@ -110,14 +110,23 @@ export function HeroStats() {
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
+    // Replays every time the stats scroll back into view; resets only once fully off screen so the
+    // drop back to the start values is never visible.
+    let counted = false;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.intersectionRatio >= 0.35 && !counted) {
+          counted = true;
           startAnimation();
-          observer.disconnect();
+        } else if (!entry.isIntersecting && counted) {
+          counted = false;
+          if (animationFrameRef.current !== null) {
+            cancelAnimationFrame(animationFrameRef.current);
+          }
+          setValues(HERO_STATS.map((stat) => stat.start));
         }
       },
-      { threshold: 0.35 },
+      { threshold: [0, 0.35] },
     );
 
     observer.observe(list);
