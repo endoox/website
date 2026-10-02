@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, type RefObject } from "react";
 
 // Downloads the clip whole and plays it from a blob URL. Safari will only stream <video> from servers
-// that answer byte-range requests, which some hosts (e.g. Cloudflare static assets) don't; a blob
+// that answer byte-range requests, which some hosts don't; a blob
 // sidesteps that on any host. Clips are small (~1MB). Plays only while on screen, never under
 // reduced motion. `replayAfter` (ms): hold on the last frame that long, then restart from the top.
 function useInViewVideo(videoRef: RefObject<HTMLVideoElement | null>, src: string | (() => string), replayAfter?: number) {

@@ -6,17 +6,10 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint",
-    "build:cloudflare": "opennextjs-cloudflare build",
-    "deploy:cloudflare": "opennextjs-cloudflare deploy",
-    "upload:cloudflare": "opennextjs-cloudflare upload",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+    "lint": "eslint"
   },
   "dependencies": {
     "@number-flow/react": "^0.6.2",
-    "@opennextjs/cloudflare": "^1.20.2",
     "lucide-react": "^1.31.0",
     "next": "16.3.0",
     "react": "19.2.8",
@@ -32,7 +25,6 @@
     "eslint": "^9",
     "eslint-config-next": "16.3.0",
     "tailwindcss": "^4",
-    "typescript": "^5",
-    "wrangler": "^4.119.0"
+    "typescript": "^5"
   }
 }
