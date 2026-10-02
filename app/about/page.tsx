@@ -53,10 +53,8 @@ export default function AboutPage() {
 
         <section className={styles.filmSection} id="film" aria-label="Launch film">
           <div className={styles.in}>
-            {/* Launch film goes here: replace this div with <video src="…" poster="…" controls playsInline className={styles.film} />. */}
-            <div className={styles.film}>
-              <p className={styles.filmSoon}>Launch video coming soon</p>
-            </div>
+            {/* 1080p web encode of Endo_Ad_4K.mp4; loads only once someone presses play. */}
+            <video className={styles.film} src="/about/launch-film.mp4" poster="/about/launch-film-poster.jpg" controls playsInline preload="none" aria-label="endo launch film" />
           </div>
         </section>
 
