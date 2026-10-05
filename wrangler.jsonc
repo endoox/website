@@ -1,0 +1,25 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "endo-lander",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-08-05",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "workers_dev": true,
+  "routes": [
+    { "pattern": "www.endodeals.com", "custom_domain": true },
+    { "pattern": "endodeals.com", "custom_domain": true }
+  ],
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "endo-lander"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}

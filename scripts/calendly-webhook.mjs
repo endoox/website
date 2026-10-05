@@ -4,7 +4,7 @@
 //   node scripts/calendly-webhook.mjs https://www.endodeals.com
 //
 // Reads CALENDLY_TOKEN from the environment or .env.local. Creates CALENDLY_WEBHOOK_SIGNING_KEY in
-// .env.local if it isn't there yet; the live site needs that same value as a Vercel environment variable.
+// .env.local if it isn't there yet; the live site needs that same value as a Cloudflare secret.
 
 import { appendFileSync, readFileSync } from "node:fs";
 import { randomBytes } from "node:crypto";
@@ -61,7 +61,7 @@ await calendly("POST", "/webhook_subscriptions", {
   signing_key: signingKey,
 });
 console.log(`Calendly will now send bookings and cancellations to ${url}.`);
-console.log("Add the same CALENDLY_WEBHOOK_SIGNING_KEY to the Vercel project's environment variables, then redeploy.");
+console.log("Give the live site the same key: npx wrangler secret put CALENDLY_WEBHOOK_SIGNING_KEY");
 
 function readEnvFile(path) {
   try {
