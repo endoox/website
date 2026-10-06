@@ -1,4 +1,4 @@
-# endo-lander
+# endo-website
 
 Marketing site for Endo, built with Next.js and deployed to Cloudflare Workers via OpenNext.
 
