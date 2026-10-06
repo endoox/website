@@ -57,9 +57,9 @@ const TESTIMONIALS = [
       "Representing athletes across a dozen sports means no two deals look alike. endo gives us one consistent, data-backed read on value across all of them.",
   },
   {
-    name: "Drew Harde",
+    name: "Drew Hardee",
     role: "Vice President · KHG Sports Management",
-    image: "/testimonials/drew-harde.png",
+    image: "/testimonials/drew-hardee.png",
     quote:
       "endo and the team there, have helped create a hub for our agency enhancing our processes to provide the highest level of service to our clients.",
   },
