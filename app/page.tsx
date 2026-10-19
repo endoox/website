@@ -6,7 +6,7 @@ import styles from "./page.module.css";
 import { HeroStats } from "./hero-stats";
 import { LogoTrack } from "./logo-track";
 import { TransparentVideo } from "./product-demo-media";
-import { SiteFooter, SiteHeader } from "./site-chrome";
+import { DemoButton, SiteFooter, SiteHeader } from "./site-chrome";
 import { Wordmark } from "./wordmark";
 import { TestimonialCarousel } from "./testimonial-carousel";
 
@@ -218,8 +218,12 @@ export default function Home() {
             <h2 id="impact-heading">Built around the business of athlete value.</h2>
           </div>
           <HeroStats />
+          <DemoButton className={styles.impactButton} />
         </section>
 
+        <section id="pricing" className={styles.pricing} aria-labelledby="pricing-heading">
+          <h2 id="pricing-heading">Pricing that grows with your roster.</h2>
+        </section>
       </main>
 
       <SiteFooter />

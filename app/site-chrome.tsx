@@ -80,7 +80,7 @@ export function SiteFooter({
           <NewsletterForm />
         </div>
         <nav className={styles.footerLinks} aria-label="Footer">
-          <div><p>Platform</p><Link href="/#features">Features</Link><Link href="/endo-deals"><Wordmark text="endodeals" /></Link><Link href="/#testimonials">Testimonials</Link></div>
+          <div><p>Platform</p><Link href="/#features">Features</Link><Link href="/endo-deals"><Wordmark text="endodeals" /></Link><Link href="/#pricing">Pricing</Link><Link href="/#testimonials">Testimonials</Link></div>
           <div><p>Company</p><Link href="/about">About</Link><Link href="/about#team">Our team</Link>{PRESS.length > 0 && <Link href="/press">Press</Link>}<a href="mailto:admin@endodeals.com">Contact</a></div>
           <div><p>Legal</p><Link href="/privacy">Privacy policy</Link><Link href="/terms">Terms of service</Link></div>
         </nav>
