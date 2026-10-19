@@ -29,8 +29,8 @@ export default function PressPage() {
         <div className={styles.grid}>
           {PRESS.map((item) => (
             <a className={`${styles.card} ${pageStyles.scrollReveal}`} data-scroll-reveal href={item.href} target="_blank" rel="noreferrer" key={item.href}>
-              <span className={styles.image}>
-                <Image src={item.image} alt="" fill sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 400px" />
+              <span className={item.image ? styles.image : `${styles.image} ${styles.logo}`}>
+                <Image src={item.image ?? "/brand/endo-logo-white-gradient.png"} alt="" fill sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 400px" />
               </span>
               <h2>{item.title}</h2>
               <p>{item.outlet} · <time dateTime={item.date}>{formatDate(item.date)}</time></p>

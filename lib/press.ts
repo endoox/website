@@ -1,7 +1,8 @@
 // Newest first. Drop the image in public/press/ and add an entry, e.g.
 // { title: "…", date: "2026-09-12", outlet: "Sportico", href: "https://…", image: "/press/sportico.jpg" }
 // The /press page and its footer link only appear once this has entries.
-export const PRESS: { title: string; date: string; outlet: string; href: string; image: string }[] = [
+// Leave out `image` to show the endo logo instead.
+export const PRESS: { title: string; date: string; outlet: string; href: string; image?: string }[] = [
   {
     title: "Toronto Startup endo is Transforming How Sports Agencies Manage Athlete Endorsements",
     date: "2026-10-18",
@@ -15,6 +16,12 @@ export const PRESS: { title: string; date: string; outlet: string; href: string;
     outlet: "Sports Business Journal",
     href: "https://www.sportsbusinessjournal.com/Articles/2026/10/09/former-the-team-consultant-launches-endo-to-streamline-sports-agency-operations/",
     image: "/press/sbj.jpg",
+  },
+  {
+    title: "Athlete-founded Endo lands $573,000 to drag sports agencies out of spreadsheets",
+    date: "2026-10-07",
+    outlet: "Dealroom",
+    href: "https://dealroom.co/news/160721-athlete-founded-endo-lands-573-000-to-drag-sports-agencies-out-of-spread/",
   },
   {
     title: "Athlete-led Endo launches with $815,000 to modernize sports agencies",
