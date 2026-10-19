@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { DEMO_URL } from "@/lib/contact";
+import { DEMO_URL, VALUATION_URL } from "@/lib/contact";
 import { DemoButton, SiteFooter, SiteHeader } from "../site-chrome";
 import pageStyles from "../page.module.css";
 import { TransparentVideo } from "../product-demo-media";
+import { JsonLd, VALUATION_SERVICE } from "../structured-data";
 import { Pillars } from "./pillars";
 import styles from "./endo-deals.module.css";
 import { shareMetadata } from "@/lib/share-metadata";
@@ -79,6 +80,7 @@ function TrustIcon({ children }: { children: ReactNode }) {
 export default function EndoDealsPage() {
   return (
     <div className={pageStyles.page}>
+      <JsonLd data={VALUATION_SERVICE} />
       <SiteHeader current="/endo-deals" />
 
       <main id="top">
@@ -91,7 +93,7 @@ export default function EndoDealsPage() {
             <h1>Never quote a number you can’t defend.</h1>
             <p>Score the talent, price the deal and show the brand why it fits. One report, back in 24 hours.</p>
             <div className={styles.heroActions}>
-              <DemoButton href="#get" label="Get a valuation" />
+              <DemoButton href={VALUATION_URL} label="Get a valuation" />
               <a className={styles.secondary} href={DEMO_URL}>Talk to our team</a>
             </div>
             <div className={styles.heroVisual}>
@@ -246,6 +248,7 @@ export default function EndoDealsPage() {
                       </li>
                     ))}
                   </ul>
+                  <div className={styles.reportAction}><DemoButton href={VALUATION_URL} label="Request a valuation" /></div>
                 </div>
               </div>
             </div>
@@ -253,7 +256,7 @@ export default function EndoDealsPage() {
         </div>
       </main>
 
-      <SiteFooter />
+      <SiteFooter title="Price your next deal before the brand does." action={<DemoButton href={VALUATION_URL} label="Get a valuation" />} />
     </div>
   );
 }

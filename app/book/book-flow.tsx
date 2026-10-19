@@ -129,15 +129,15 @@ export function BookFlow({ initialInterest }: { initialInterest: string }) {
             <label>Last name<input name="lastName" autoComplete="family-name" required /></label>
             <label className={styles.wide}>Work email<input name="email" type="email" autoComplete="email" required /></label>
             <label>Agency / company<input name="agency" autoComplete="organization" required /></label>
-            <label>Your role<input name="role" autoComplete="organization-title" placeholder="e.g. Founder, Agent" /></label>
+            <label><span>Your role <em>Optional</em></span><input name="role" autoComplete="organization-title" placeholder="e.g. Founder, Agent" /></label>
             <label>
-              Roster size
+              <span>Roster size <em>Optional</em></span>
               <select name="rosterSize" defaultValue="">
                 <option value="" disabled>Select</option>
                 {ROSTER_SIZES.map((size) => <option key={size}>{size}</option>)}
               </select>
             </label>
-            <label>Sports you represent<input name="sports" placeholder="e.g. Hockey, Basketball" /></label>
+            <label><span>Sports you represent <em>Optional</em></span><input name="sports" placeholder="e.g. Hockey, Basketball" /></label>
             <fieldset className={styles.wide}>
               <legend>Interested in</legend>
               <div className={styles.pills}>

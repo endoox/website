@@ -193,6 +193,7 @@
 .reportCard ul { margin: 0; padding: 0; list-style: none; }
 .reportCard li { padding: 20px 0; display: grid; grid-template-columns: 30px 1fr; gap: 14px; border-bottom: 1px solid var(--card-line); }
 .reportCard li:last-child { border-bottom: 0; }
+.reportAction { padding: 18px 0 16px; display: flex; justify-content: center; border-top: 1px solid var(--card-line); }
 .reportCard li i { width: 30px; height: 30px; display: grid; border-radius: 50%; background: #e6eefb; color: var(--blue); place-items: center; }
 .reportCard li b { display: block; font-size: 17px; font-weight: 600; letter-spacing: -.015em; }
 .reportCard li p { margin: 4px 0 0; color: var(--body); font-size: 14.5px; line-height: 1.55; }
