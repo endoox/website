@@ -45,6 +45,8 @@
 .grid input:focus, .grid select:focus { border-color: var(--blue); background-color: #fff; box-shadow: 0 0 0 4px rgb(75 124 209 / 14%); }
 
 .grid fieldset { margin: 0; padding: 0; border: 0; }
+.grid .deal { padding: 22px; border: 1px solid var(--line); border-radius: 18px; background: #fafbfd; }
+.deal .grid { gap: 16px; }
 .grid legend { margin-bottom: 8px; padding: 0; }
 .pills { display: flex; flex-wrap: wrap; gap: 10px; }
 .pills label { min-height: 44px; padding: 0 18px; display: inline-flex; flex-direction: row; align-items: center; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--ink); font-weight: 520; cursor: pointer; transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease; }

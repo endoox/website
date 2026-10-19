@@ -8,6 +8,10 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
+  // Lets next/image resize and convert images; without it OpenNext serves every original at full size.
+  "images": {
+    "binding": "IMAGES"
+  },
   "workers_dev": true,
   "routes": [
     { "pattern": "www.endodeals.com", "custom_domain": true },

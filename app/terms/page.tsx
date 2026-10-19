@@ -7,7 +7,8 @@ import { shareMetadata } from "@/lib/share-metadata";
 
 export const metadata: Metadata = {
   title: "Terms of Service · endo",
-  ...shareMetadata("Terms of Service · endo"),
+  description: "The terms that govern use of endo and endodeals, including subscriptions, data, confidentiality and valuation outputs.",
+  ...shareMetadata("Terms of Service · endo", "The terms that govern use of endo and endodeals, including subscriptions, data, confidentiality and valuation outputs."),
 };
 
 // Terms of Service, September 2026 revision (endo - Terms of Service_Sept 2026, redline accepted).

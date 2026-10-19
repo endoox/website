@@ -6,7 +6,8 @@ import { shareMetadata } from "@/lib/share-metadata";
 
 export const metadata: Metadata = {
   title: "Privacy Policy · endo",
-  ...shareMetadata("Privacy Policy · endo"),
+  description: "How endo collects, uses and protects personal information, including agency and athlete data in the endo platform.",
+  ...shareMetadata("Privacy Policy · endo", "How endo collects, uses and protects personal information, including agency and athlete data in the endo platform."),
 };
 
 // From https://www.endodeals.com/privacy, with brand capitalization normalized to "endo".
