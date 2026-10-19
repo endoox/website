@@ -393,8 +393,7 @@
 
 .impact {
   position: relative;
-  min-height: 900px;
-  margin: 0 4px;
+  margin: 0 4px 4px;
   padding: 120px max(32px, calc((100vw - 1200px) / 2));
   overflow: hidden;
   border-radius: 32px;
@@ -404,47 +403,25 @@
 }
 /* Same top glow as the footer. */
 .impact::before { position: absolute; top: -260px; left: 50%; width: min(1100px, 120%); height: 560px; background: radial-gradient(closest-side, rgb(75 124 209 / 55%), transparent); content: ""; pointer-events: none; transform: translateX(-50%); }
-.impactHeading, .impact .heroStats, .impactButton { position: relative; z-index: 2; }
-.impact[data-scroll-reveal] .impactHeading,
-.impact[data-scroll-reveal] .impactButton {
+.impactHeading, .impact .heroStats { position: relative; z-index: 2; }
+.impact[data-scroll-reveal] .impactHeading {
   opacity: 1;
   transform: translateY(0);
 }
-:global(html[data-motion-ready]) .impact[data-scroll-reveal]:not([data-visible="true"]) .impactHeading,
-:global(html[data-motion-ready]) .impact[data-scroll-reveal]:not([data-visible="true"]) .impactButton {
+:global(html[data-motion-ready]) .impact[data-scroll-reveal]:not([data-visible="true"]) .impactHeading {
   opacity: 0;
   transform: translateY(24px);
 }
-:global(html[data-motion-ready]) .impact[data-scroll-reveal] .impactHeading,
-:global(html[data-motion-ready]) .impact[data-scroll-reveal] .impactButton {
+:global(html[data-motion-ready]) .impact[data-scroll-reveal] .impactHeading {
   transition: opacity 700ms cubic-bezier(.22, 1, .36, 1), transform 700ms cubic-bezier(.22, 1, .36, 1);
 }
-:global(html[data-motion-ready]) .impact[data-scroll-reveal] .impactButton { transition-delay: 180ms; }
 .impactHeading { max-width: 850px; margin: 0 auto; }.impactHeading h2 { font-size: clamp(3.2rem, 5vw, 5rem); }
-.heroStats { margin: 100px 0 80px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.heroStats { margin: 100px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .heroStat { min-width: 0; padding: 44px 28px 40px; display: flex; flex-direction: column; align-items: center; gap: 20px; border: 1px solid var(--line); border-radius: 26px; background: #fff; color: var(--blue-deep); box-shadow: 0 24px 50px rgb(7 12 45 / 28%); }
 .heroStat dt { max-width: 230px; margin: 0 auto; color: #7a828d; font-size: .95rem; line-height: 1.45; text-wrap: balance; }
 .heroStat dd { order: -1; margin: 0; font-size: clamp(3.4rem, 6.2vw, 6.2rem); font-weight: 510; letter-spacing: -.065em; line-height: .9; white-space: nowrap; }
 .heroStatNumber { font-variant-numeric: tabular-nums; }
-.impactButton { --button-bg: var(--blue); color: #fff; box-shadow: 0 15px 35px rgb(0 0 0 / 25%); }.impactButton .demoButtonArrow { background: #fff; color: var(--blue-deep); }.impactButton:hover { color: #fff; }
 
-.pricing {
-  margin: 0;
-  padding: clamp(86px, 10vw, 140px) max(20px, calc((100vw - 1200px) / 2));
-  overflow: hidden;
-  background: #fff;
-  color: var(--ink);
-  text-align: center;
-}
-.pricing h2 {
-  max-width: 760px;
-  margin: 0 auto 36px;
-  font-size: clamp(3rem, 5vw, 5rem);
-  font-weight: 480;
-  letter-spacing: -.055em;
-  line-height: .98;
-  text-wrap: balance;
-}
 
 .testimonials { overflow: hidden; background: #fff; }
 .testimonialViewport { width: 100vw; margin-left: calc(50% - 50vw); overflow: hidden; touch-action: pan-y; cursor: grab; background: #fff; mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent); }
@@ -466,9 +443,22 @@
 .footerCta { padding: 120px 0 104px; display: flex; flex-direction: column; align-items: center; border-bottom: 1px solid rgb(255 255 255 / 14%); text-align: center; }
 .footerCta h2 { max-width: 900px; margin: 0 0 36px; font-size: clamp(3rem, 5.6vw, 5.4rem); font-weight: 480; letter-spacing: -.055em; line-height: 1; text-wrap: balance; }
 .footerMain { margin-top: 72px; display: flex; justify-content: space-between; gap: 64px; }
-.footerBrand { max-width: 280px; }
+.footerBrand { max-width: 330px; }
 .footerBrand > a { width: 132px; height: 50px; margin-left: -11px; display: block; }
 .footerBrand p { margin: 14px 0 0; color: rgb(255 255 255 / 62%); font-size: .98rem; line-height: 1.5; }
+.newsletter { margin-top: 30px; }
+.newsletter label { display: block; margin-bottom: 10px; color: #fff; font-size: .92rem; font-weight: 550; }
+.newsletter div { display: flex; padding: 4px; border: 1px solid rgb(255 255 255 / 18%); border-radius: 999px; background: rgb(255 255 255 / 8%); transition: border-color 160ms ease; }
+.newsletter div:focus-within { border-color: var(--sky); }
+.newsletter input { min-width: 0; flex: 1; padding: 0 14px; border: 0; background: none; color: #fff; font: inherit; font-size: .92rem; outline: none; }
+.newsletter input::placeholder { color: rgb(255 255 255 / 45%); }
+.newsletter button { padding: 10px 18px; border: 0; border-radius: 999px; background: #fff; color: var(--blue-deep); font: inherit; font-size: .88rem; font-weight: 600; cursor: pointer; transition: background-color 160ms ease; }
+.newsletter button:hover { background: var(--sky); }
+.newsletter button:disabled { cursor: wait; opacity: .7; }
+.newsletter p, .newsletterDone { margin: 10px 0 0; color: rgb(255 255 255 / 55%); font-size: .8rem; line-height: 1.45; }
+.newsletter p[role="alert"] { color: #ffb4b4; }
+.newsletterDone { margin-top: 30px; color: var(--sky); font-size: .95rem; font-weight: 550; }
+.newsletterTrap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .footerLinks { display: grid; grid-template-columns: repeat(3, minmax(140px, auto)); gap: 64px; }
 .footerLinks div { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
 .footerLinks p { margin: 0 0 4px; color: rgb(255 255 255 / 45%); font-size: .72rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
@@ -496,8 +486,6 @@
 }
 
 @media (max-width: 760px) {
-  .pricing { padding: 82px 16px 96px; }
-  .pricing h2 { margin-bottom: 32px; font-size: clamp(2.65rem, 12vw, 3.75rem); }
   .page { --hero-overlap: clamp(32px, 8vw, 60px); }
   .header { height: 68px; padding: 0 16px 0 19px; grid-template-columns: 1fr auto; }.brandLink { width: 112px; height: 44px; }.headerNav, .headerButton { display: none; }.mobileMenuSlot { display: block; }
   .header[data-floating="true"] { top: 9px; width: calc(100% - 18px); height: 60px; padding: 0 8px; }
@@ -509,7 +497,7 @@
   /* The artwork sits 70px left of center in the 1920px-wide deliverables clip. */
   .featureStory[id="deliverables"] .featureVideo { translate: 3.65% 0; }
   .testimonials { padding: 90px 16px; }.sectionHeading { margin-bottom: 54px; }
-  .impact { min-height: 980px; margin: 0 3px; padding: 90px 20px; border-radius: 26px; }.heroStats { margin: 64px 0 56px; grid-template-columns: 1fr; gap: 14px; }.heroStat { padding: 40px 20px 34px; border-radius: 22px; }.heroStat dd { font-size: clamp(4rem, 18vw, 5.5rem); }
+  .impact { margin: 0 3px 3px; padding: 90px 20px; border-radius: 26px; }.heroStats { margin: 64px 0 0; grid-template-columns: 1fr; gap: 14px; }.heroStat { padding: 40px 20px 34px; border-radius: 22px; }.heroStat dd { font-size: clamp(4rem, 18vw, 5.5rem); }
   .testimonials { padding-right: 0; padding-left: 0; }.testimonials .sectionHeading { padding: 0 20px; }.testimonialCard { width: 320px; padding: 27px; }.testimonialViewport { mask-image: none; }
   .footer { margin: 0 3px 3px; padding: 0 22px 24px; border-radius: 26px; }.footerCta { padding: 80px 0 72px; }.footerCta h2 { font-size: clamp(2.6rem, 11vw, 3.6rem); }.footerMain { margin-top: 52px; }.footerMain { flex-direction: column; gap: 44px; }.footerLinks { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 24px; }.footerBottom { margin-top: 44px; flex-direction: column; gap: 10px; }
 }
@@ -526,8 +514,7 @@
   .scrollReveal,
   .featureStory[data-scroll-reveal] .featureCopy,
   .featureStory[data-scroll-reveal] .featureVisual,
-  .impact[data-scroll-reveal] .impactHeading,
-  .impact[data-scroll-reveal] .impactButton {
+  .impact[data-scroll-reveal] .impactHeading {
     opacity: 1 !important;
     transform: none !important;
     filter: none !important;

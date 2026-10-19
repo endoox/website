@@ -8,6 +8,7 @@ import { FloatingHeader } from "./floating-header";
 import { MobileMenu } from "./mobile-menu";
 import { AttributionCapture } from "./attribution";
 import { MotionObserver } from "./motion-observer";
+import { NewsletterForm } from "./newsletter-form";
 import styles from "./page.module.css";
 import { Wordmark } from "./wordmark";
 
@@ -76,9 +77,10 @@ export function SiteFooter({
         <div className={styles.footerBrand}>
           <Link href="/" aria-label="endo home"><Brand footer /></Link>
           <p>The software behind modern sports agencies.</p>
+          <NewsletterForm />
         </div>
         <nav className={styles.footerLinks} aria-label="Footer">
-          <div><p>Platform</p><Link href="/#features">Features</Link><Link href="/endo-deals"><Wordmark text="endodeals" /></Link><Link href="/#pricing">Pricing</Link><Link href="/#testimonials">Testimonials</Link></div>
+          <div><p>Platform</p><Link href="/#features">Features</Link><Link href="/endo-deals"><Wordmark text="endodeals" /></Link><Link href="/#testimonials">Testimonials</Link></div>
           <div><p>Company</p><Link href="/about">About</Link><Link href="/about#team">Our team</Link>{PRESS.length > 0 && <Link href="/press">Press</Link>}<a href="mailto:admin@endodeals.com">Contact</a></div>
           <div><p>Legal</p><Link href="/privacy">Privacy policy</Link><Link href="/terms">Terms of service</Link></div>
         </nav>
