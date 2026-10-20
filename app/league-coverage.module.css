@@ -3,6 +3,12 @@
 .leagueRow li { display: grid; flex: 0 0 calc((100% - (var(--cols) - 1) * 28px) / var(--cols)); place-items: center; }
 .leagueRow img { display: block; width: 100%; max-width: 100px; height: 72px; object-fit: contain; filter: grayscale(1); opacity: .66; transition: filter 180ms ease, opacity 180ms ease; }
 .leagueRow li:hover img { filter: grayscale(0); opacity: 1; }
+.press { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 14px 36px; padding: 34px 24px 0; }
+.press > a { color: var(--muted); font-size: .78rem; font-weight: 550; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
+.press ul { display: contents; }
+.press li { list-style: none; }
+.press li a { color: #9aa1ab; font-size: 1.3rem; font-weight: 600; letter-spacing: -.03em; text-decoration: none; transition: color 180ms ease; }
+.press a:hover, .press li a:hover { color: var(--ink); }
 
 @media (max-width: 1300px) {
   .coverage { margin-inline: 30px; }
@@ -11,7 +17,10 @@
   .coverage { margin-inline: 22px; padding-block: 76px; }
   .leagueRow { --cols: 3; gap: 26px 28px; padding: 32px 0; }
   .leagueRow img { height: 54px; }
+  .press { gap: 10px 24px; padding-inline: 0; }
+  .press > a { flex-basis: 100%; }
+  .press li a { font-size: 1.05rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .leagueRow img { transition: none; }
+  .leagueRow img, .press li a { transition: none; }
 }

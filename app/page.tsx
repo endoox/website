@@ -223,7 +223,6 @@ export default function Home() {
 
         <section id="pricing" className={styles.pricing} aria-labelledby="pricing-heading">
           <h2 id="pricing-heading">Pricing that grows with your roster.</h2>
-          <DemoButton label="Book a demo" />
         </section>
       </main>
 

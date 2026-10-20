@@ -1,8 +1,8 @@
-// Server-only Attio client for booking leads. Each lead is a Person (matched on email, linked to their
+// Server-only Attio client for booking leads and newsletter signups. Each lead is a Person (matched on email, linked to their
 // agency's Company when the email is on a company domain) plus one entry in the "Demo requests" list,
 // which holds the form answers, attribution and booking stage. The booking form writes the lead
 // (app/api/book); Calendly's webhook moves it to Booked or Canceled (app/api/calendly).
-// scripts/attio-setup.mjs creates the list.
+// Footer signups go to the "Newsletter" list instead. scripts/attio-setup.mjs creates both lists.
 
 const API = "https://api.attio.com/v2";
 export const LEADS_LIST = "demo_requests";
@@ -93,6 +93,32 @@ export async function saveLead(lead: Lead) {
         utm_source: lead.utmSource,
         utm_medium: lead.utmMedium,
         utm_campaign: lead.utmCampaign,
+      }),
+    },
+  });
+}
+
+export const NEWSLETTER_LIST = "newsletter";
+
+export type Subscriber = Pick<Lead, "email" | "sourcePage" | "landingPage" | "referrer" | "utmSource" | "utmMedium" | "utmCampaign">;
+
+/** Upserts the person and their "Newsletter" entry (the footer email signup, app/api/subscribe). */
+export async function saveSubscriber(subscriber: Subscriber) {
+  const person = await attio<RecordResponse>("PUT", "/objects/people/records?matching_attribute=email_addresses", {
+    data: { values: { email_addresses: [subscriber.email] } },
+  });
+  await attio("PUT", `/lists/${NEWSLETTER_LIST}/entries`, {
+    data: {
+      parent_record_id: person.data.id.record_id,
+      parent_object: "people",
+      entry_values: present({
+        subscribed_at: new Date().toISOString(),
+        source_page: subscriber.sourcePage,
+        landing_page: subscriber.landingPage,
+        referrer: subscriber.referrer,
+        utm_source: subscriber.utmSource,
+        utm_medium: subscriber.utmMedium,
+        utm_campaign: subscriber.utmCampaign,
       }),
     },
   });

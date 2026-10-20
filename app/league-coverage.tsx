@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { PRESS } from "@/lib/press";
 import pageStyles from "./page.module.css";
 import styles from "./league-coverage.module.css";
 
@@ -27,6 +29,14 @@ export function LeagueCoverage() {
       <ul className={styles.leagueRow} aria-label="Featured leagues">
         {LEAGUES.map((league) => <li key={league.file}><Image src={`/leagues/${league.file}.png`} alt={league.name} width={500} height={500} sizes="(max-width: 760px) 60px, 100px" /></li>)}
       </ul>
+      {PRESS.length > 0 && (
+        <div className={styles.press}>
+          <Link href="/press">As seen in</Link>
+          <ul aria-label="Press coverage">
+            {PRESS.map((item) => <li key={item.href}><a href={item.href} target="_blank" rel="noreferrer">{item.outlet}</a></li>)}
+          </ul>
+        </div>
+      )}
     </section>
   );
 }
