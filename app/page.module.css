@@ -319,6 +319,8 @@
 .featurePills::-webkit-scrollbar { display: none; }
 .featurePills .featurePillActive { background: #fff; color: var(--blue-deep); }
 .featurePills a { background: transparent; text-transform: capitalize; }
+/* Phones swap in the short labels (see the 760px breakpoint). */
+.pillShort { display: none; }
 
 /* Feature tour (app/feature-tour.tsx). Narrow or short screens: a plain stacked list under sticky pills.
    Wide screens: the heading, pills and current story pin together as one frame, centered in the space
@@ -539,7 +541,7 @@
   .hero { min-height: 0; padding: 58px 12px 0; }.hero h1 { font-size: clamp(2.6rem, 12vw, 4rem); letter-spacing: -.052em; line-height: 1.01; }.heroSubhead { max-width: 350px; margin-top: 22px; font-size: .96rem; line-height: 1.48; }
   .trusted { margin: 44px auto 34px; overflow: hidden; }.logoItem { width: calc(var(--logo-w) * .76); height: calc(var(--logo-h) * .76); }
   .heroProduct { width: 100%; }.heroProduct img { mask-image: linear-gradient(to bottom, #000 calc(100% - var(--hero-overlap) - 32px), transparent calc(100% - var(--hero-overlap))); }
-  .featuresSection { margin: calc(-1 * var(--hero-overlap)) 3px 0; padding: 62px 16px 100px; border-radius: 24px; }.featuresHeading { margin-bottom: 28px; }.featuresHeading h2, .sectionHeading h2, .impactHeading h2 { font-size: clamp(2.65rem, 12vw, 3.75rem); }.featurePills { top: 80px; width: 100%; margin-bottom: 54px; justify-content: flex-start; }.featurePills a { flex: 0 0 auto; white-space: nowrap; }
+  .featuresSection { margin: calc(-1 * var(--hero-overlap)) 3px 0; padding: 62px 16px 100px; border-radius: 24px; }.featuresHeading { margin-bottom: 28px; }.featuresHeading h2, .sectionHeading h2, .impactHeading h2 { font-size: clamp(2.65rem, 12vw, 3.75rem); }.featurePills { top: 80px; width: 100%; margin-bottom: 54px; flex-wrap: wrap; justify-content: center; gap: 4px; padding: 6px; border-radius: 24px; }.featurePills a { flex: 1 1 calc(33.333% - 4px); min-height: 34px; padding: 0 8px; font-size: .8rem; white-space: nowrap; }.pillLabel { display: none; }.pillShort { display: inline; }
   .featureStage { gap: 72px; }.featureStory, .featureStory:nth-child(even) { min-height: 0; display: flex; flex-direction: column; align-items: stretch; gap: 34px; }.featureStory:nth-child(even) .featureCopy, .featureStory:nth-child(even) .featureVisual { grid-column: auto; grid-row: auto; }.featureCopy h3 { font-size: clamp(2.35rem, 10vw, 3.2rem); }
   /* The artwork sits 70px left of center in the 1920px-wide deliverables clip. */
   .featureStory[id="deliverables"] .featureVideo { translate: 3.65% 0; }
@@ -588,6 +590,12 @@
 @keyframes logos-fallback { to { opacity: 1; } }
 @keyframes agency-logos { to { transform: translateX(-50%); } }
 @media (max-width: 760px) { .logoTrack .logoRow { gap: 42px; padding-right: 42px; } }
+/* Small phones (iPhone SE and narrower): tighter pills so the short labels still fit three to a row. */
+@media (max-width: 359px) {
+  .featurePills { gap: 3px; padding: 5px; }
+  .featurePills a { flex-basis: calc(33.333% - 3px); padding: 0 4px; font-size: .72rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .logoTrack { animation: none; width: 100%; }
   .logoTrack .logoRow { width: 100%; flex-wrap: wrap; justify-content: center; padding-right: 0; gap: 24px; }

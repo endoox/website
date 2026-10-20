@@ -9,7 +9,7 @@ import styles from "./page.module.css";
 // in view, and clicking one goes there.
 const TOUR_QUERY = "(min-width: 761px) and (min-height: 621px)";
 
-export function FeatureTour({ heading, features, children }: { heading: ReactNode; features: readonly { id: string; label: string }[]; children: ReactNode }) {
+export function FeatureTour({ heading, features, children }: { heading: ReactNode; features: readonly { id: string; label: string; short: string }[]; children: ReactNode }) {
   const [active, setActive] = useState(0);
   const tourRef = useRef<HTMLDivElement>(null);
   const pillsRef = useRef<HTMLElement>(null);
@@ -114,10 +114,12 @@ export function FeatureTour({ heading, features, children }: { heading: ReactNod
               className={index === active ? styles.featurePillActive : undefined}
               aria-current={index === active ? "true" : undefined}
               href={`#${feature.id}`}
+              aria-label={feature.label}
               key={feature.id}
               onClick={(event) => { event.preventDefault(); go(index); }}
             >
-              {feature.label}
+              <span className={styles.pillLabel}>{feature.label}</span>
+              <span className={styles.pillShort}>{feature.short}</span>
             </a>
           ))}
         </nav>
