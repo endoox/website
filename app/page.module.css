@@ -328,14 +328,15 @@
   .featuresSection { padding-top: 0; }
   .featureTour { position: relative; height: calc(100vh + var(--count) * 65vh); }
   .featureFrame { position: sticky; top: 0; height: 100vh; padding: 88px 0 24px; display: flex; flex-direction: column; justify-content: center; }
-  .featureFrame .featuresHeading { margin-bottom: 24px; }
-  .featureFrame .featurePills { position: static; flex: none; margin-bottom: 40px; }
+  /* Gaps grow with screen height, so taller screens spread the frame out instead of padding its edges. */
+  .featureFrame .featuresHeading { margin-bottom: clamp(24px, 4vh, 48px); }
+  .featureFrame .featurePills { position: static; flex: none; margin-bottom: clamp(36px, 10vh, 128px); }
   .featureStage { display: grid; align-items: center; }
   .featureStage > .featureStory { grid-area: 1 / 1; }
   .featureStage > .featureStory:not([data-active]) { display: none; }
   .featureStage > .featureStory[data-active] { animation: featureIn 520ms cubic-bezier(.22, 1, .36, 1); }
-  /* Leaves room for the header, heading and pills (~400px), so shorter laptop screens shrink the clip. */
-  .featureStage .featureVideo { width: min(100%, calc((100vh - 400px) * 1920 / 932)); margin-inline: auto; }
+  /* Leaves room for the header, heading, pills and their height-scaled gaps, so shorter laptop screens shrink the clip. */
+  .featureStage .featureVideo { width: min(100%, calc((86vh - 340px) * 1920 / 932)); margin-inline: auto; }
 }
 @keyframes featureIn { from { opacity: 0; transform: translateY(18px); } }
 .featureStory { display: grid; grid-template-columns: .6fr 1.4fr; align-items: center; gap: 32px; scroll-margin-top: 160px; }
