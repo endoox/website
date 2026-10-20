@@ -1,8 +1,10 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { DEMO_URL } from "@/lib/contact";
 import { LeagueCoverage } from "./league-coverage";
 import styles from "./page.module.css";
+import { FeatureTour } from "./feature-tour";
 import { HeroStats } from "./hero-stats";
 import { LogoTrack } from "./logo-track";
 import { TransparentVideo } from "./product-demo-media";
@@ -102,22 +104,6 @@ function TrustedBy() {
   );
 }
 
-function FeatureNav() {
-  return (
-    <nav
-      className={`${styles.featurePills} ${styles.scrollReveal}`}
-      aria-label="Platform features"
-      data-scroll-reveal
-    >
-      {FEATURES.map((feature, index) => (
-        <a className={index === 0 ? styles.featurePillActive : ""} href={`#${feature.id}`} key={feature.id}>
-          {feature.eyebrow.replace("endodeals ", "")}
-        </a>
-      ))}
-    </nav>
-  );
-}
-
 function TestimonialCard({ testimonial }: { testimonial: (typeof TESTIMONIALS)[number] }) {
   return (
     <article className={styles.testimonialCard}>
@@ -167,20 +153,16 @@ export default function Home() {
         </section>
 
         <section id="features" className={styles.featuresSection} aria-labelledby="features-heading">
-          <div
-            className={`${styles.featuresHeading} ${styles.scrollReveal}`}
-            data-scroll-reveal
-          >
-            <h2 id="features-heading">
-              Built for how agencies actually work.
-            </h2>
-          </div>
-          <FeatureNav />
-
-          <div className={styles.featureStories}>
+          <FeatureTour
+            heading={
+              <div className={`${styles.featuresHeading} ${styles.scrollReveal}`} data-scroll-reveal>
+                <h2 id="features-heading">Built for how agencies actually work.</h2>
+              </div>
+            }
+            features={FEATURES.map((feature) => ({ id: feature.id, label: feature.eyebrow.replace("endodeals ", "") }))}>
             {FEATURES.map((feature, index) => {
               return (
-                <article id={feature.id} className={styles.featureStory} key={feature.id} data-scroll-reveal>
+                <article id={feature.id} className={styles.featureStory} key={feature.id} data-scroll-reveal data-feature-story data-active={index === 0 || undefined}>
                   <div className={styles.featureCopy}>
                     <p><Wordmark text={feature.eyebrow} /></p>
                     <h3>{feature.title}</h3>
@@ -194,7 +176,7 @@ export default function Home() {
                 </article>
               );
             })}
-          </div>
+          </FeatureTour>
         </section>
 
         <section id="testimonials" className={styles.testimonials} aria-labelledby="testimonials-heading">
@@ -224,7 +206,8 @@ export default function Home() {
         </section>
 
         <section id="pricing" className={styles.pricing} aria-labelledby="pricing-heading">
-          <h2 id="pricing-heading">Pricing that grows with your roster.</h2>
+          <h2 id="pricing-heading">Enterprise-grade tools. Agency-friendly pricing.</h2>
+          <p>You pay per seat for the people using endo, so signing more athletes never raises your bill. <Link href={DEMO_URL}>Get a quote for your team →</Link></p>
         </section>
       </main>
 
