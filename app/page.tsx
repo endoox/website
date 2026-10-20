@@ -7,6 +7,7 @@ import { HeroStats } from "./hero-stats";
 import { LogoTrack } from "./logo-track";
 import { TransparentVideo } from "./product-demo-media";
 import { DemoButton, SiteFooter, SiteHeader } from "./site-chrome";
+import { JsonLd, SOFTWARE } from "./structured-data";
 import { Wordmark } from "./wordmark";
 import { TestimonialCarousel } from "./testimonial-carousel";
 
@@ -136,6 +137,7 @@ export default function Home() {
   return (
     <div className={styles.page}>
 
+      <JsonLd data={SOFTWARE} />
       <SiteHeader />
 
       <main id="top">

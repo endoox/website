@@ -29,6 +29,11 @@ export type Lead = {
   utmSource: string;
   utmMedium: string;
   utmCampaign: string;
+  // Valuation requests only: the deal they want priced.
+  dealTalent: string;
+  dealBrand: string;
+  dealOffer: string;
+  dealDeliverables: string;
 };
 
 export function attioKey() {
@@ -96,6 +101,16 @@ export async function saveLead(lead: Lead) {
       }),
     },
   });
+
+  // Deal details go in a note on the person rather than list fields, so they read like the brief they are.
+  const deal = [["Talent", lead.dealTalent], ["Brand", lead.dealBrand], ["Offer", lead.dealOffer], ["Deliverables", lead.dealDeliverables]]
+    .filter(([, value]) => value)
+    .map(([label, value]) => `${label}: ${value}`);
+  if (deal.length > 0) {
+    await attio("POST", "/notes", {
+      data: { parent_object: "people", parent_record_id: person.data.id.record_id, title: "Valuation request", format: "plaintext", content: deal.join("\n") },
+    });
+  }
 }
 
 export const NEWSLETTER_LIST = "newsletter";

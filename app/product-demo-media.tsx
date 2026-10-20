@@ -4,7 +4,8 @@ import { useEffect, useMemo, useRef, type RefObject } from "react";
 
 // Downloads the clip whole and plays it from a blob URL. Safari will only stream <video> from servers
 // that answer byte-range requests, which some hosts don't; a blob
-// sidesteps that on any host. Clips are small (~1MB). Plays only while on screen, never under
+// sidesteps that on any host. Clips are small (~1MB) but there are several per page, so each one is
+// only fetched once it's within about a screen of the viewport. Plays only while on screen, never under
 // reduced motion. `replayAfter` (ms): hold on the last frame that long, then restart from the top.
 function useInViewVideo(videoRef: RefObject<HTMLVideoElement | null>, src: string | (() => string), replayAfter?: number) {
   useEffect(() => {
@@ -36,7 +37,7 @@ function useInViewVideo(videoRef: RefObject<HTMLVideoElement | null>, src: strin
     };
     if (replayAfter !== undefined) video.addEventListener("ended", scheduleReplay);
 
-    fetch(typeof src === "function" ? src() : src, { signal: controller.signal })
+    const load = () => fetch(typeof src === "function" ? src() : src, { signal: controller.signal })
       .then((response) => {
         if (!response.ok) throw new Error(`Video request failed: ${response.status}`);
         return response.blob();
@@ -53,6 +54,16 @@ function useInViewVideo(videoRef: RefObject<HTMLVideoElement | null>, src: strin
       })
       .catch(() => undefined);
 
+    const nearObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        nearObserver.disconnect();
+        load();
+      },
+      { rootMargin: "100% 0px" },
+    );
+    nearObserver.observe(video);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         inView = entry.isIntersecting;
@@ -64,6 +75,7 @@ function useInViewVideo(videoRef: RefObject<HTMLVideoElement | null>, src: strin
 
     return () => {
       controller.abort();
+      nearObserver.disconnect();
       observer.disconnect();
       window.clearTimeout(replayTimer);
       video.removeEventListener("ended", scheduleReplay);

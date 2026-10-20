@@ -4,6 +4,7 @@ import { INTERESTS, ROSTER_SIZES } from "@/lib/contact";
 const FIELDS = [
   "firstName", "lastName", "email", "agency", "role", "rosterSize", "sports", "interest", "heardAbout",
   "sourcePage", "landingPage", "referrer", "utmSource", "utmMedium", "utmCampaign",
+  "dealTalent", "dealBrand", "dealOffer", "dealDeliverables",
 ] as const satisfies readonly (keyof Lead)[];
 
 // Saves a booking-form lead to Attio. The visitor always continues to the calendar: a CRM failure is

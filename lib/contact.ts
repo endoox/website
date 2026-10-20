@@ -1,6 +1,8 @@
 // Every "Request a demo" link goes to our own booking page (app/book), which collects the lead first
 // and then shows this Calendly event inline so the visitor only has to pick a time.
 export const DEMO_URL = "/book";
+// The same page with "A deal valuation" preselected.
+export const VALUATION_URL = `${DEMO_URL}?interest=Valuation`;
 export const CALENDLY_URL = "https://calendly.com/mike-endodeals/30min";
 
 export const INTERESTS = ["Demo", "Valuation", "Both"] as const;
