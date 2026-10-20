@@ -5,11 +5,11 @@ import styles from "./page.module.css";
 
 // Wide screens: the heading, pills and current story pin together as one screen-filling frame, and
 // scrolling steps through the stories one at a time (see .featureTour in page.module.css). Narrow screens:
-// the stories stack and the pinned pill bar just follows along. Either way the pills highlight the story
-// in view, and clicking one goes there.
+// the stories stack; short desktop windows keep a pinned pill bar that follows along, and phones hide it.
+// Wherever the pills show, they highlight the story in view, and clicking one goes there.
 const TOUR_QUERY = "(min-width: 761px) and (min-height: 621px)";
 
-export function FeatureTour({ heading, features, children }: { heading: ReactNode; features: readonly { id: string; label: string; short: string }[]; children: ReactNode }) {
+export function FeatureTour({ heading, features, children }: { heading: ReactNode; features: readonly { id: string; label: string }[]; children: ReactNode }) {
   const [active, setActive] = useState(0);
   const tourRef = useRef<HTMLDivElement>(null);
   const pillsRef = useRef<HTMLElement>(null);
@@ -114,12 +114,10 @@ export function FeatureTour({ heading, features, children }: { heading: ReactNod
               className={index === active ? styles.featurePillActive : undefined}
               aria-current={index === active ? "true" : undefined}
               href={`#${feature.id}`}
-              aria-label={feature.label}
               key={feature.id}
               onClick={(event) => { event.preventDefault(); go(index); }}
             >
-              <span className={styles.pillLabel}>{feature.label}</span>
-              <span className={styles.pillShort}>{feature.short}</span>
+              {feature.label}
             </a>
           ))}
         </nav>

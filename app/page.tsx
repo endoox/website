@@ -28,14 +28,13 @@ const TRUSTED_BY_LOGOS = [
   { name: "RSG Hockey", src: "/trusted-by/rsg-hockey.png", width: 458, height: 93, box: [178, 62] },
 ] as const;
 
-// `short` labels the feature pill on phones, where all six have to fit on screen.
 const FEATURES = [
-  { id: "valuation", eyebrow: "endodeals valuation", short: "Valuation", title: "Fair market value, finally.", href: "/endo-deals" },
-  { id: "contracts", eyebrow: "Contract management", short: "Contracts", title: "Every agreement, term, and renewal in one place." },
-  { id: "roster", eyebrow: "Roster visibility", short: "Roster", title: "See the whole business behind your roster." },
-  { id: "financials", eyebrow: "Financial tracking", short: "Financials", title: "Know exactly what is paid, pending, and overdue." },
-  { id: "deliverables", eyebrow: "Deliverables & Social Analytics", short: "Deliverables", title: "Every post delivered, approved, and measured." },
-  { id: "pipeline", eyebrow: "CRM and pipeline", short: "CRM", title: "Turn every conversation into momentum." },
+  { id: "valuation", eyebrow: "endodeals valuation", title: "Fair market value, finally.", href: "/endo-deals" },
+  { id: "contracts", eyebrow: "Contract management", title: "Every agreement, term, and renewal in one place." },
+  { id: "roster", eyebrow: "Roster visibility", title: "See the whole business behind your roster." },
+  { id: "financials", eyebrow: "Financial tracking", title: "Know exactly what is paid, pending, and overdue." },
+  { id: "deliverables", eyebrow: "Deliverables & Social Analytics", title: "Every post delivered, approved, and measured." },
+  { id: "pipeline", eyebrow: "CRM and pipeline", title: "Turn every conversation into momentum." },
 ] as const;
 
 const TESTIMONIALS = [
@@ -160,7 +159,7 @@ export default function Home() {
                 <h2 id="features-heading">Built for how agencies actually work.</h2>
               </div>
             }
-            features={FEATURES.map((feature) => ({ id: feature.id, label: feature.eyebrow.replace("endodeals ", ""), short: feature.short }))}>
+            features={FEATURES.map((feature) => ({ id: feature.id, label: feature.eyebrow.replace("endodeals ", "") }))}>
             {FEATURES.map((feature, index) => {
               return (
                 <article id={feature.id} className={styles.featureStory} key={feature.id} data-scroll-reveal data-feature-story data-active={index === 0 || undefined}>
