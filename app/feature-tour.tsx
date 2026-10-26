@@ -60,8 +60,13 @@ export function FeatureTour({ heading, features, children }: { heading: ReactNod
       if (i === active) story.dataset.active = "true";
       else delete story.dataset.active;
     });
-    // Keep the current pill visible when the bar scrolls sideways on phones.
-    pillsRef.current?.children[active]?.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" });
+    // Keep the current pill visible if the bar ever scrolls sideways. Scrolls only the bar: scrollIntoView
+    // would also scroll the page, which on load pulled /#pricing (and other anchors) back up to the pills.
+    const bar = pillsRef.current;
+    const pill = bar?.children[active] as HTMLElement | undefined;
+    if (bar && pill && bar.scrollWidth > bar.clientWidth) {
+      bar.scrollTo({ left: pill.offsetLeft - (bar.clientWidth - pill.offsetWidth) / 2, behavior: "smooth" });
+    }
   }, [active]);
 
   const go = (index: number) => {
