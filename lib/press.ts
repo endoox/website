@@ -15,7 +15,7 @@ export const PRESS: { title: string; date: string; outlet: string; href: string;
     date: "2026-10-09",
     outlet: "Sports Business Journal",
     href: "https://www.sportsbusinessjournal.com/Articles/2026/10/09/former-the-team-consultant-launches-endo-to-streamline-sports-agency-operations/",
-    image: "/press/sbj.jpg",
+    image: "/press/sbj-logo.jpg",
   },
   {
     title: "Athlete-founded Endo lands $573,000 to drag sports agencies out of spreadsheets",
