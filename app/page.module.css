@@ -322,11 +322,11 @@
 
 /* Feature tour (app/feature-tour.tsx). Narrow or short screens: a plain stacked list under sticky pills.
    Wide screens: the heading, pills and current story pin together as one frame, centered in the space
-   below the floating header, and each story gets 65vh of scrolling before the next replaces it. */
+   below the floating header, and each story gets 25vh of scrolling before the next replaces it. */
 .featureStage { display: flex; flex-direction: column; gap: 80px; }
 @media (min-width: 761px) and (min-height: 621px) {
   .featuresSection { padding-top: 0; }
-  .featureTour { position: relative; height: calc(100vh + var(--count) * 65vh); }
+  .featureTour { position: relative; height: calc(100vh + var(--count) * 25vh); }
   .featureFrame { position: sticky; top: 0; height: 100vh; padding: 88px 0 24px; display: flex; flex-direction: column; justify-content: center; }
   /* Gaps grow with screen height, so taller screens spread the frame out instead of padding its edges. */
   .featureFrame .featuresHeading { margin-bottom: clamp(24px, 4vh, 48px); }
