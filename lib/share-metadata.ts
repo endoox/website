@@ -6,9 +6,11 @@ export const SHARE_IMAGE_ALT = "endo · The software behind the modern sports ag
 // here to keep the shared preview image (app/opengraph-image.tsx).
 const image = { url: "/opengraph-image", width: 1200, height: 630, alt: SHARE_IMAGE_ALT };
 
-export function shareMetadata(title: string, description?: string): Pick<Metadata, "openGraph" | "twitter"> {
+// Pass `cover` (a 1200×630-ish public image path) to share a page-specific image instead.
+export function shareMetadata(title: string, description?: string, cover?: { url: string; alt: string }): Pick<Metadata, "openGraph" | "twitter"> {
+  const images = [cover ?? image];
   return {
-    openGraph: { title, description, url: "./", siteName: "endo", type: "website", images: [image] },
-    twitter: { card: "summary_large_image", title, description, images: [image] },
+    openGraph: { title, description, url: "./", siteName: "endo", type: "website", images },
+    twitter: { card: "summary_large_image", title, description, images },
   };
 }

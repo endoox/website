@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { INTERESTS } from "@/lib/contact";
 import pageStyles from "../page.module.css";
 import { DemoButton, SiteFooter, SiteHeader } from "../site-chrome";
@@ -75,9 +74,6 @@ export default async function BookPage({ searchParams }: PageProps<"/book">) {
               <blockquote>“Instead of going into brand conversations with assumptions, we now have credible data to support our pricing. It gives us real leverage.”</blockquote>
               <figcaption><b>Tyler Wagner</b> · Director of Marketing, Roy Sports Group</figcaption>
             </figure>
-            <p className={styles.privacy}>
-              Your details are only used to prepare for the call. See our <Link href="/privacy">privacy policy</Link>.
-            </p>
           </aside>
         </div>
       </main>
