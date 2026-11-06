@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { JsonLd, ORGANIZATION } from "./structured-data";
 import { shareMetadata } from "@/lib/share-metadata";
@@ -37,6 +38,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full">
         <JsonLd data={ORGANIZATION} />
         {children}
+        {/* Hedlyte session recording; production only, so local dev visits stay out of the data. */}
+        {process.env.NODE_ENV === "production" && (
+          <>
+            <Script id="hedlyte-config" strategy="beforeInteractive">
+              {`window.RRWEB_SERVER_URL="https://ingest.hedlyte.com/upload-session";`}
+            </Script>
+            <Script src="https://ingest.hedlyte.com/recorder.js" data-domain-key="ef52d4df52bd760d98ffc4132bd02387" />
+          </>
+        )}
       </body>
     </html>
   );
