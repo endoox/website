@@ -509,9 +509,12 @@
 .footerLinks p { margin: 0 0 4px; color: rgb(255 255 255 / 45%); font-size: .72rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
 .footerLinks a { color: rgb(255 255 255 / 88%); font-size: .95rem; text-decoration: none; transition: color 160ms ease; }
 .footerLinks a:hover { color: var(--sky); }
-.footerBottom { margin-top: 56px; padding-top: 22px; display: flex; justify-content: space-between; border-top: 1px solid rgb(255 255 255 / 14%); color: rgb(255 255 255 / 50%); font-size: .8rem; }
+.footerBottom { margin-top: 56px; padding-top: 22px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgb(255 255 255 / 14%); color: rgb(255 255 255 / 50%); font-size: .8rem; }
 .footerBottom a { color: rgb(255 255 255 / 80%); text-decoration: none; }
 .footerBottom a:hover { color: #fff; }
+.footerBottomLinks { display: flex; align-items: center; gap: 18px; }
+.social { display: inline-flex; }
+.social svg { width: 17px; height: 17px; }
 
 .mobileMenu { position: relative; }
 .mobileMenuTrigger { width: 48px; height: 48px; padding: 0; display: grid; border: 0; border-radius: 50%; background: #f1f4f7; color: var(--ink); cursor: pointer; place-items: center; }
@@ -546,7 +549,7 @@
   .testimonials { padding: 90px 16px; }.sectionHeading { margin-bottom: 54px; }
   .impact { min-height: 980px; margin: 0 3px; padding: 90px 20px; border-radius: 26px; }.heroStats { margin: 64px 0 56px; grid-template-columns: 1fr; gap: 14px; }.heroStat { padding: 40px 20px 34px; border-radius: 22px; }.heroStat dd { font-size: clamp(4rem, 18vw, 5.5rem); }
   .testimonials { padding-right: 0; padding-left: 0; }.testimonials .sectionHeading { padding: 0 20px; }.testimonialCard { width: 320px; padding: 27px; }.testimonialViewport { mask-image: none; }
-  .footer { margin: 0 3px 3px; padding: 0 22px 24px; border-radius: 26px; }.footerCta { padding: 80px 0 72px; }.footerCta h2 { font-size: clamp(2.6rem, 11vw, 3.6rem); }.footerMain { margin-top: 52px; }.footerMain { flex-direction: column; gap: 44px; }.footerLinks { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 24px; }.footerBottom { margin-top: 44px; flex-direction: column; gap: 10px; }
+  .footer { margin: 0 3px 3px; padding: 0 22px 24px; border-radius: 26px; }.footerCta { padding: 80px 0 72px; }.footerCta h2 { font-size: clamp(2.6rem, 11vw, 3.6rem); }.footerMain { margin-top: 52px; }.footerMain { flex-direction: column; gap: 44px; }.footerLinks { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 24px; }.footerBottom { margin-top: 44px; flex-direction: column; align-items: flex-start; gap: 14px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
