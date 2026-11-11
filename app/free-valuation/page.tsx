@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { BookFlow } from "../book/book-flow";
 import bookStyles from "../book/book.module.css";
 import pageStyles from "../page.module.css";
 import { TransparentVideo } from "../product-demo-media";
-import { SiteHeader } from "../site-chrome";
+import { DemoButton, SiteFooter, SiteHeader } from "../site-chrome";
 import styles from "./free-valuation.module.css";
 
 // Landing page for the "free valuation report" ad. Kept out of search and the sitemap so only ad
@@ -65,13 +64,8 @@ export default function FreeValuationPage() {
         </div>
       </main>
 
-      <footer className={styles.footer}>
-        <span>© 2026 endo. All rights reserved.</span>
-        <nav aria-label="Legal">
-          <Link href="/privacy">Privacy policy</Link>
-          <Link href="/terms">Terms of service</Link>
-        </nav>
-      </footer>
+      {/* The closing button sends them back up to the form rather than off to the demo page. */}
+      <SiteFooter action={<DemoButton href="#top" label="Get my free report" />} />
     </div>
   );
 }

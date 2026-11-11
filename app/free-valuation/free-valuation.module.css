@@ -1,5 +1,6 @@
 /* Ad landing page: the booking page's styles (book.module.css), with the form and the valuation clip side by side. */
-main.page { max-width: 1440px; padding-top: 124px; }
+/* The site header already leaves a spacer above main, so this only adds a little more. */
+main.page { max-width: 1440px; padding-top: 40px; }
 .eyebrow { margin: 0 0 18px; color: var(--blue); font-size: .8rem; font-weight: 650; letter-spacing: .14em; text-transform: uppercase; }
 .page h1 { max-width: 15ch; margin-inline: auto; }
 /* Wider than the booking page's intro, which is a single short line. */
@@ -17,10 +18,6 @@ main.page { max-width: 1440px; padding-top: 124px; }
 .report b { color: var(--ink); font-weight: 600; }
 .note { margin: 22px 0 0; color: var(--muted); font-size: .84rem; line-height: 1.45; }
 
-.footer { max-width: 1216px; margin: 0 auto; padding: 28px 28px 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
-.footer nav { display: flex; gap: 20px; }
-.footer a { color: inherit; text-decoration: none; }
-.footer a:hover { color: var(--ink); }
 
 /* Stacked: the clip comes first so it's seen before the form, and the report details after it. */
 @media (max-width: 960px) {
@@ -29,7 +26,6 @@ main.page { max-width: 1440px; padding-top: 124px; }
   .visual { order: -1; }
 }
 @media (max-width: 640px) {
-  main.page { padding-top: 104px; }
+  main.page { padding-top: 28px; }
   .visual { border-radius: 22px; }
-  .footer { padding: 24px 16px 32px; }
 }
