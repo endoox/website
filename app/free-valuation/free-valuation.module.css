@@ -1,14 +1,11 @@
-/* Ad landing page: the booking page's layout (book.module.css) under a logo-only bar. */
-.bar { max-width: 1216px; margin: 0 auto; padding: 28px 28px 0; }
-.brand { width: 132px; height: 50px; margin-left: -11px; display: block; }
-
-/* The bar is in the flow, unlike the site's floating header, so the page needs less top room. */
-main.page { padding-top: 48px; }
-
+/* Ad landing page: the booking page's layout (book.module.css) with the valuation clip above the form. */
 .eyebrow { margin: 0 0 18px; color: var(--blue); font-size: .8rem; font-weight: 650; letter-spacing: .14em; text-transform: uppercase; }
 .page h1 { max-width: 15ch; margin-inline: auto; }
 /* Wider than the booking page's intro, which is a single short line. */
 .page > header > p:last-child { max-width: 620px; }
+
+.visual { margin: 0 0 48px; padding: clamp(20px, 4vw, 48px) clamp(12px, 3vw, 40px); border-radius: 30px; background: var(--blue); }
+.video { width: 100%; max-width: 1040px; height: auto; margin: 0 auto; aspect-ratio: 1920 / 932; display: block; }
 
 .report li { display: grid; gap: 2px; }
 .report b { color: var(--ink); font-weight: 600; }
@@ -20,7 +17,6 @@ main.page { padding-top: 48px; }
 .footer a:hover { color: var(--ink); }
 
 @media (max-width: 640px) {
-  .bar { padding: 20px 16px 0; }
-  main.page { padding-top: 36px; }
+  .visual { margin-bottom: 32px; border-radius: 22px; }
   .footer { padding: 24px 16px 32px; }
 }

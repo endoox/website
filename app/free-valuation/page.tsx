@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AttributionCapture } from "../attribution";
 import { BookFlow } from "../book/book-flow";
 import bookStyles from "../book/book.module.css";
 import pageStyles from "../page.module.css";
-import { Brand } from "../site-chrome";
+import { TransparentVideo } from "../product-demo-media";
+import { SiteHeader } from "../site-chrome";
 import styles from "./free-valuation.module.css";
 
 // Landing page for the "free valuation report" ad. Kept out of search and the sitemap so only ad
@@ -28,11 +28,7 @@ const IN_REPORT = [
 export default function FreeValuationPage() {
   return (
     <div className={pageStyles.page}>
-      <AttributionCapture />
-      {/* No site navigation: the only next step on this page is the form. */}
-      <header className={styles.bar}>
-        <Link className={styles.brand} href="/" aria-label="endo home"><Brand /></Link>
-      </header>
+      <SiteHeader />
 
       <main id="top" className={`${bookStyles.book} ${styles.page}`}>
         <header className={bookStyles.head}>
@@ -43,6 +39,10 @@ export default function FreeValuationPage() {
             then hands you a counter number and a walk-away floor. Your first report is free.
           </p>
         </header>
+        {/* The home page's valuation clip, on the same blue as the ad and the home page's feature tour. */}
+        <div className={styles.visual}>
+          <TransparentVideo className={styles.video} name="valuation" />
+        </div>
         <div className={bookStyles.layout}>
           <BookFlow initialInterest="Valuation" valuationOnly />
           <aside className={bookStyles.aside} aria-label="What’s in your report">

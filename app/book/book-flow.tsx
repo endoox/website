@@ -98,6 +98,9 @@ export function BookFlow({ initialInterest, valuationOnly = false }: { initialIn
       dealBrand: value("dealBrand"),
       dealOffer: value("dealOffer"),
       dealDeliverables: value("dealDeliverables"),
+      dealUsage: value("dealUsage"),
+      dealExclusivity: value("dealExclusivity"),
+      dealVik: value("dealVik"),
       website: value("website"),
       sourcePage: sourcePage(),
       ...readAttribution(),
@@ -164,7 +167,10 @@ export function BookFlow({ initialInterest, valuationOnly = false }: { initialIn
                   <label>Talent<input name="dealTalent" placeholder="Name or @handle" /></label>
                   <label>Brand<input name="dealBrand" placeholder="e.g. Nike, or not yet" /></label>
                   <label>Offer on the table<input name="dealOffer" placeholder="e.g. $15,000, or none yet" /></label>
-                  <label>Deliverables<input name="dealDeliverables" placeholder="e.g. 2 reels, 3 stories, usage rights" /></label>
+                  <label>Deliverables<input name="dealDeliverables" placeholder="e.g. 2 reels, 3 stories" /></label>
+                  <label>Usage rights<input name="dealUsage" placeholder="e.g. 6 months of paid ads" /></label>
+                  <label>Exclusivity<input name="dealExclusivity" placeholder="e.g. Category, 1 year" /></label>
+                  <label className={styles.wide}>VIK offer<input name="dealVik" placeholder="e.g. $2,000 in product, gear or travel" /></label>
                 </div>
               </fieldset>
             )}

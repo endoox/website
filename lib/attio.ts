@@ -34,6 +34,9 @@ export type Lead = {
   dealBrand: string;
   dealOffer: string;
   dealDeliverables: string;
+  dealUsage: string;
+  dealExclusivity: string;
+  dealVik: string;
 };
 
 export function attioKey() {
@@ -103,7 +106,8 @@ export async function saveLead(lead: Lead) {
   });
 
   // Deal details go in a note on the person rather than list fields, so they read like the brief they are.
-  const deal = [["Talent", lead.dealTalent], ["Brand", lead.dealBrand], ["Offer", lead.dealOffer], ["Deliverables", lead.dealDeliverables]]
+  const deal = [["Talent", lead.dealTalent], ["Brand", lead.dealBrand], ["Offer", lead.dealOffer], ["Deliverables", lead.dealDeliverables],
+    ["Usage rights", lead.dealUsage], ["Exclusivity", lead.dealExclusivity], ["VIK offer", lead.dealVik]]
     .filter(([, value]) => value)
     .map(([label, value]) => `${label}: ${value}`);
   if (deal.length > 0) {
