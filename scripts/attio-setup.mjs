@@ -27,6 +27,7 @@ const DEMO_REQUEST_ATTRIBUTES = [
   { api_slug: "utm_source", title: "UTM source", type: "text", description: "utm_source of their visit." },
   { api_slug: "utm_medium", title: "UTM medium", type: "text", description: "utm_medium of their visit." },
   { api_slug: "utm_campaign", title: "UTM campaign", type: "text", description: "utm_campaign of their visit." },
+  { api_slug: "utm_content", title: "UTM content", type: "text", description: "utm_content of their visit." },
 ];
 
 const NEWSLETTER_ATTRIBUTES = [
@@ -37,6 +38,7 @@ const NEWSLETTER_ATTRIBUTES = [
   { api_slug: "utm_source", title: "UTM source", type: "text", description: "utm_source of their visit." },
   { api_slug: "utm_medium", title: "UTM medium", type: "text", description: "utm_medium of their visit." },
   { api_slug: "utm_campaign", title: "UTM campaign", type: "text", description: "utm_campaign of their visit." },
+  { api_slug: "utm_content", title: "UTM content", type: "text", description: "utm_content of their visit." },
 ];
 
 const LISTS = [

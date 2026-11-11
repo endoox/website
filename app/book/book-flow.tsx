@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { CALENDLY_URL, INTERESTS, ROSTER_SIZES } from "@/lib/contact";
-import { readAttribution } from "../attribution";
+import { readAttribution, UtmFields, utmValues } from "../attribution";
+import { LINKEDIN_CONVERSIONS, trackLinkedIn } from "@/lib/linkedin";
 import pageStyles from "../page.module.css";
 import styles from "./book.module.css";
 
@@ -105,6 +106,7 @@ export function BookFlow({ initialInterest, valuationOnly = false }: { initialIn
       website: value("website"),
       sourcePage: sourcePage(),
       ...readAttribution(),
+      ...utmValues(form),
     };
 
     setSubmitting(true);
@@ -120,6 +122,7 @@ export function BookFlow({ initialInterest, valuationOnly = false }: { initialIn
     } finally {
       setSubmitting(false);
     }
+    trackLinkedIn(LINKEDIN_CONVERSIONS.book);
     setDetails({ firstName: lead.firstName, lastName: lead.lastName, email: lead.email });
     setStep("time");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -179,6 +182,7 @@ export function BookFlow({ initialInterest, valuationOnly = false }: { initialIn
               <label className={styles.wide}><span>How did you hear about us? <em>Optional</em></span><input name="heardAbout" /></label>
             )}
             <label className={styles.trap} aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
+            <UtmFields />
           </div>
           {error && <p className={styles.error} role="alert">{error}</p>}
           <div className={styles.actions}>

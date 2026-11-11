@@ -1,6 +1,6 @@
 import { attioKey, saveSubscriber, type Subscriber } from "@/lib/attio";
 
-const FIELDS = ["email", "sourcePage", "landingPage", "referrer", "utmSource", "utmMedium", "utmCampaign"] as const satisfies readonly (keyof Subscriber)[];
+const FIELDS = ["email", "sourcePage", "landingPage", "referrer", "utmSource", "utmMedium", "utmCampaign", "utmContent"] as const satisfies readonly (keyof Subscriber)[];
 
 // Saves a footer newsletter signup to Attio. Unlike booking, a failure here is shown, since nothing
 // else would have recorded the email.

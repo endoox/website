@@ -3,7 +3,7 @@ import { INTERESTS, ROSTER_SIZES } from "@/lib/contact";
 
 const FIELDS = [
   "firstName", "lastName", "email", "agency", "role", "rosterSize", "sports", "interest", "heardAbout",
-  "sourcePage", "landingPage", "referrer", "utmSource", "utmMedium", "utmCampaign",
+  "sourcePage", "landingPage", "referrer", "utmSource", "utmMedium", "utmCampaign", "utmContent",
   "dealTalent", "dealBrand", "dealOffer", "dealDeliverables", "dealUsage", "dealExclusivity", "dealVik",
 ] as const satisfies readonly (keyof Lead)[];
 
@@ -18,7 +18,8 @@ export async function POST(request: Request) {
 
   const lead = Object.fromEntries(FIELDS.map((field) => [field, String(body[field] ?? "").trim().slice(0, 500)])) as Lead;
   lead.email = lead.email.toLowerCase();
-  if (!lead.firstName || !lead.lastName || !lead.agency || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email)) {
+  // Last name is optional: the /lp/valuation form asks for one name field.
+  if (!lead.firstName || !lead.agency || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email)) {
     return Response.json({ error: "Please fill in your name, work email and agency or company." }, { status: 400 });
   }
   if (!(INTERESTS as readonly string[]).includes(lead.interest)) lead.interest = "";

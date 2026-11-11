@@ -7,6 +7,9 @@ main.page { max-width: 1440px; padding-top: 40px; }
 .page > header > p:last-child { max-width: 620px; }
 
 .layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 28px; }
+/* Clip and report details on the left, form on the right. */
+.layout > :first-child { grid-column: 2; grid-row: 1; }
+.side { grid-column: 1; grid-row: 1; }
 /* Lines up with the form card, below the booking steps. */
 .side { position: sticky; top: 112px; margin-top: 48px; display: grid; gap: 20px; }
 .visual { padding: clamp(16px, 2.4vw, 32px) clamp(8px, 1.4vw, 20px); border-radius: 26px; background: var(--blue); }
@@ -22,6 +25,7 @@ main.page { max-width: 1440px; padding-top: 40px; }
 /* Stacked: the clip comes first so it's seen before the form, and the report details after it. */
 @media (max-width: 960px) {
   .layout { grid-template-columns: 1fr; }
+  .layout > :first-child, .side { grid-column: auto; grid-row: auto; }
   .side { display: contents; }
   .visual { order: -1; }
 }
