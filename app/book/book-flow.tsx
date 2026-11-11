@@ -43,7 +43,9 @@ function loadCalendly() {
 type Details = { firstName: string; lastName: string; email: string };
 type Step = "details" | "time" | "booked";
 
-export function BookFlow({ initialInterest }: { initialInterest: string }) {
+// valuationOnly is the ad landing page (app/free-valuation): the interest is fixed to a valuation, so
+// there is no interest picker, and the ad already tells us how they heard about us.
+export function BookFlow({ initialInterest, valuationOnly = false }: { initialInterest: string; valuationOnly?: boolean }) {
   const [step, setStep] = useState<Step>("details");
   const [details, setDetails] = useState<Details | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -142,17 +144,19 @@ export function BookFlow({ initialInterest }: { initialInterest: string }) {
               </select>
             </label>
             <label><span>Sports you represent <em>Optional</em></span><input name="sports" placeholder="e.g. Hockey, Basketball" /></label>
-            <fieldset className={styles.wide}>
-              <legend>Interested in</legend>
-              <div className={styles.pills}>
-                {INTERESTS.map((option) => (
-                  <label key={option} data-checked={interest === option || undefined}>
-                    <input type="radio" name="interest" value={option} checked={interest === option} onChange={() => setInterest(option)} />
-                    {option === "Demo" ? "A demo of endo" : option === "Valuation" ? "A deal valuation" : "Both"}
-                  </label>
-                ))}
-              </div>
-            </fieldset>
+            {!valuationOnly && (
+              <fieldset className={styles.wide}>
+                <legend>Interested in</legend>
+                <div className={styles.pills}>
+                  {INTERESTS.map((option) => (
+                    <label key={option} data-checked={interest === option || undefined}>
+                      <input type="radio" name="interest" value={option} checked={interest === option} onChange={() => setInterest(option)} />
+                      {option === "Demo" ? "A demo of endo" : option === "Valuation" ? "A deal valuation" : "Both"}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+            )}
             {interest !== "Demo" && (
               <fieldset className={`${styles.wide} ${styles.deal}`}>
                 <legend><span>About the deal <em>Optional, but it lets us start before the call</em></span></legend>
@@ -164,7 +168,9 @@ export function BookFlow({ initialInterest }: { initialInterest: string }) {
                 </div>
               </fieldset>
             )}
-            <label className={styles.wide}><span>How did you hear about us? <em>Optional</em></span><input name="heardAbout" /></label>
+            {!valuationOnly && (
+              <label className={styles.wide}><span>How did you hear about us? <em>Optional</em></span><input name="heardAbout" /></label>
+            )}
             <label className={styles.trap} aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
           </div>
           {error && <p className={styles.error} role="alert">{error}</p>}
