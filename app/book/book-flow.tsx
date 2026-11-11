@@ -125,7 +125,7 @@ export function BookFlow({ initialInterest, fixedInterest }: { initialInterest: 
     } finally {
       setSubmitting(false);
     }
-    trackLinkedIn(fixedInterest === "Demo" ? LINKEDIN_CONVERSIONS.lpDemo : LINKEDIN_CONVERSIONS.book);
+    trackLinkedIn(LINKEDIN_CONVERSIONS[fixedInterest === "Demo" ? "lpDemo" : fixedInterest === "Valuation" ? "freeValuation" : "book"]);
     setDetails({ firstName: lead.firstName, lastName: lead.lastName, email: lead.email });
     setStep("time");
     window.scrollTo({ top: 0, behavior: "smooth" });
