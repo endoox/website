@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { CALENDLY_URL, INTERESTS, ROSTER_SIZES } from "@/lib/contact";
-import { readAttribution } from "../attribution";
+import { readAttribution, UtmFields, utmValues } from "../attribution";
+import { LINKEDIN_CONVERSIONS, trackLinkedIn } from "@/lib/linkedin";
 import pageStyles from "../page.module.css";
 import styles from "./book.module.css";
 
@@ -43,7 +44,13 @@ function loadCalendly() {
 type Details = { firstName: string; lastName: string; email: string };
 type Step = "details" | "time" | "booked";
 
-export function BookFlow({ initialInterest }: { initialInterest: string }) {
+// fixedInterest is for the ad landing pages, which each sell one thing: there's no interest picker,
+// and the ad already tells us how they heard about us. "Valuation" (app/free-valuation) also sends the
+// report either way, so the call is offered as an optional rundown rather than the point of the form.
+// "Demo" is app/lp/demo.
+export function BookFlow({ initialInterest, fixedInterest }: { initialInterest: string; fixedInterest?: "Demo" | "Valuation" }) {
+  const fixed = fixedInterest !== undefined;
+  const valuationOnly = fixedInterest === "Valuation";
   const [step, setStep] = useState<Step>("details");
   const [details, setDetails] = useState<Details | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -96,9 +103,13 @@ export function BookFlow({ initialInterest }: { initialInterest: string }) {
       dealBrand: value("dealBrand"),
       dealOffer: value("dealOffer"),
       dealDeliverables: value("dealDeliverables"),
+      dealUsage: value("dealUsage"),
+      dealExclusivity: value("dealExclusivity"),
+      dealVik: value("dealVik"),
       website: value("website"),
       sourcePage: sourcePage(),
       ...readAttribution(),
+      ...utmValues(form),
     };
 
     setSubmitting(true);
@@ -114,6 +125,7 @@ export function BookFlow({ initialInterest }: { initialInterest: string }) {
     } finally {
       setSubmitting(false);
     }
+    trackLinkedIn(LINKEDIN_CONVERSIONS[fixedInterest === "Demo" ? "lpDemo" : fixedInterest === "Valuation" ? "freeValuation" : "book"]);
     setDetails({ firstName: lead.firstName, lastName: lead.lastName, email: lead.email });
     setStep("time");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -123,7 +135,7 @@ export function BookFlow({ initialInterest }: { initialInterest: string }) {
     <div className={styles.flow}>
       <ol className={styles.steps} aria-label="Booking steps">
         <li data-state={step === "details" ? "current" : "done"}><span>1</span>Your details</li>
-        <li data-state={step === "time" ? "current" : step === "booked" ? "done" : undefined}><span>2</span>Pick a time</li>
+        <li data-state={step === "time" ? "current" : step === "booked" ? "done" : undefined}><span>2</span>{valuationOnly ? "Pick a time (optional)" : "Pick a time"}</li>
       </ol>
 
       {step === "details" ? (
@@ -142,46 +154,58 @@ export function BookFlow({ initialInterest }: { initialInterest: string }) {
               </select>
             </label>
             <label><span>Sports you represent <em>Optional</em></span><input name="sports" placeholder="e.g. Hockey, Basketball" /></label>
-            <fieldset className={styles.wide}>
-              <legend>Interested in</legend>
-              <div className={styles.pills}>
-                {INTERESTS.map((option) => (
-                  <label key={option} data-checked={interest === option || undefined}>
-                    <input type="radio" name="interest" value={option} checked={interest === option} onChange={() => setInterest(option)} />
-                    {option === "Demo" ? "A demo of endo" : option === "Valuation" ? "A deal valuation" : "Both"}
-                  </label>
-                ))}
-              </div>
-            </fieldset>
+            {!fixed && (
+              <fieldset className={styles.wide}>
+                <legend>Interested in</legend>
+                <div className={styles.pills}>
+                  {INTERESTS.map((option) => (
+                    <label key={option} data-checked={interest === option || undefined}>
+                      <input type="radio" name="interest" value={option} checked={interest === option} onChange={() => setInterest(option)} />
+                      {option === "Demo" ? "A demo of endo" : option === "Valuation" ? "A deal valuation" : "Both"}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+            )}
             {interest !== "Demo" && (
               <fieldset className={`${styles.wide} ${styles.deal}`}>
-                <legend><span>About the deal <em>Optional, but it lets us start before the call</em></span></legend>
+                <legend><span>About the deal{!valuationOnly && <> <em>Optional, but it lets us start before the call</em></>}</span></legend>
                 <div className={styles.grid}>
                   <label>Talent<input name="dealTalent" placeholder="Name or @handle" /></label>
                   <label>Brand<input name="dealBrand" placeholder="e.g. Nike, or not yet" /></label>
                   <label>Offer on the table<input name="dealOffer" placeholder="e.g. $15,000, or none yet" /></label>
-                  <label>Deliverables<input name="dealDeliverables" placeholder="e.g. 2 reels, 3 stories, usage rights" /></label>
+                  <label>Deliverables<input name="dealDeliverables" placeholder="e.g. 2 reels, 3 stories" /></label>
+                  <label>Usage rights<input name="dealUsage" placeholder="e.g. 6 months of paid ads" /></label>
+                  <label>Exclusivity<input name="dealExclusivity" placeholder="e.g. Category, 1 year" /></label>
+                  <label className={styles.wide}>VIK offer<input name="dealVik" placeholder="e.g. $2,000 in product, gear or travel" /></label>
                 </div>
               </fieldset>
             )}
-            <label className={styles.wide}><span>How did you hear about us? <em>Optional</em></span><input name="heardAbout" /></label>
+            {!fixed && (
+              <label className={styles.wide}><span>How did you hear about us? <em>Optional</em></span><input name="heardAbout" /></label>
+            )}
             <label className={styles.trap} aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
+            <UtmFields />
           </div>
           {error && <p className={styles.error} role="alert">{error}</p>}
           <div className={styles.actions}>
             <button className={`${pageStyles.demoButton} ${styles.submit}`} type="submit" disabled={submitting}>
-              <span>{submitting ? "Saving…" : "Continue to pick a time"}</span>
+              <span>{submitting ? "Saving…" : valuationOnly ? "Get my free report" : "Continue to pick a time"}</span>
               <span className={pageStyles.demoButtonArrow} aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5" /></svg>
               </span>
             </button>
-            <p>We’ll only use this to prepare for your call.</p>
+            <p>{valuationOnly ? "Your report arrives within 3 business days." : "We’ll only use this to prepare for your call."}</p>
           </div>
         </form>
       ) : (
         <div className={`${styles.card} ${styles.calendarCard}`}>
           <p className={styles.calendarIntro}>
-            {step === "booked" ? `You’re booked, ${details?.firstName}. A calendar invite is on its way.` : `Thanks, ${details?.firstName}. Now pick a time that works for you.`}
+            {valuationOnly
+              ? step === "booked"
+                ? `You’re booked, ${details?.firstName}. A calendar invite is on its way, and your report arrives within 3 business days.`
+                : `Thanks, ${details?.firstName}. Your report arrives within 3 business days. Pick a time if you’d like a full rundown of the valuation.`
+              : step === "booked" ? `You’re booked, ${details?.firstName}. A calendar invite is on its way.` : `Thanks, ${details?.firstName}. Now pick a time that works for you.`}
           </p>
           {calendarFailed ? (
             <p className={styles.error}>The calendar didn’t load. <a href={CALENDLY_URL} target="_blank" rel="noreferrer">Open it in a new tab</a>.</p>

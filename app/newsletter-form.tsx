@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { readAttribution } from "./attribution";
+import { readAttribution, UtmFields, utmValues } from "./attribution";
 import styles from "./page.module.css";
 
 // Footer email signup: a lighter step than booking a demo. Saved to Attio's "Newsletter" list (app/api/subscribe).
@@ -23,6 +23,7 @@ export function NewsletterForm() {
           website: String(form.get("website") ?? ""),
           sourcePage: window.location.pathname,
           ...readAttribution(),
+          ...utmValues(form),
         }),
       });
       if (!response.ok) {
@@ -46,6 +47,7 @@ export function NewsletterForm() {
         <button type="submit" disabled={state === "sending"}>{state === "sending" ? "…" : "Subscribe"}</button>
       </div>
       <input className={styles.newsletterTrap} name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+      <UtmFields />
       {error ? <p role="alert">{error}</p> : <p>Occasional news and product updates. Unsubscribe anytime.</p>}
     </form>
   );

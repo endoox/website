@@ -1,0 +1,37 @@
+/* /lp/demo: the booking page's styles (book.module.css), with the product beside the form and the
+   "It's all on endo." creative below. */
+/* The site header already leaves a spacer above main, so this only adds a little more. */
+main.page { max-width: 1440px; padding-top: 40px; }
+.eyebrow { margin: 0 0 18px; color: var(--blue); font-size: .8rem; font-weight: 650; letter-spacing: .14em; text-transform: uppercase; }
+.page h1 { max-width: 14ch; margin-inline: auto; color: var(--blue-deep); font-weight: 600; }
+
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 28px; }
+/* Product and call details on the left, form on the right. */
+.layout > :first-child { grid-column: 2; grid-row: 1; }
+.side { position: sticky; top: 112px; grid-column: 1; grid-row: 1; margin-top: 48px; display: grid; gap: 20px; }
+.devices img { width: 100%; height: auto; display: block; }
+/* The column already sticks; the booking page's aside sticks on its own. */
+.aside { position: static; margin-top: 0; }
+
+/* The "It's all on endo." creative: the questions as sent messages, and the answer beside them. */
+.allOn { margin-top: 96px; padding: clamp(48px, 7vw, 96px) clamp(24px, 6vw, 96px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 48px clamp(32px, 6vw, 96px); border-radius: 30px; background: #0b0b0c; color: #fff; }
+.thread { justify-self: end; }
+.thread p { margin: 0 0 14px; color: rgb(255 255 255 / 55%); font-size: .9rem; font-weight: 600; }
+.thread ul { margin: 0; padding: 0; display: grid; justify-items: end; gap: 12px; list-style: none; }
+.thread li { padding: 12px 20px; border-radius: 16px; background: var(--blue); font-size: clamp(1rem, 1.4vw, 1.2rem); font-weight: 560; letter-spacing: -.01em; }
+.answer h2 { margin: 0; font-size: clamp(2.6rem, 5vw, 4.4rem); font-weight: 650; letter-spacing: -.045em; line-height: 1.02; }
+.answer h2 span { color: var(--sky); }
+.answer p { margin: 16px 0 28px; color: rgb(255 255 255 / 78%); font-size: clamp(1.05rem, 1.5vw, 1.3rem); }
+
+@media (max-width: 960px) {
+  .layout, .allOn { grid-template-columns: 1fr; }
+  .layout > :first-child, .side { grid-column: auto; grid-row: auto; }
+  /* Stacked: the product first, then the form, then the call details. */
+  .side { display: contents; }
+  .devices { order: -1; }
+  .thread { justify-self: stretch; }
+}
+@media (max-width: 640px) {
+  main.page { padding-top: 28px; }
+  .allOn { margin-top: 64px; border-radius: 22px; }
+}

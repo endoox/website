@@ -1,0 +1,35 @@
+/* Ad landing page: the booking page's styles (book.module.css), with the form and the valuation clip side by side. */
+/* The site header already leaves a spacer above main, so this only adds a little more. */
+main.page { max-width: 1440px; padding-top: 40px; }
+.eyebrow { margin: 0 0 18px; color: var(--blue); font-size: .8rem; font-weight: 650; letter-spacing: .14em; text-transform: uppercase; }
+.page h1 { max-width: 15ch; margin-inline: auto; }
+/* Wider than the booking page's intro, which is a single short line. */
+.page > header > p:last-child { max-width: 620px; }
+
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 28px; }
+/* Clip and report details on the left, form on the right. */
+.layout > :first-child { grid-column: 2; grid-row: 1; }
+.side { grid-column: 1; grid-row: 1; }
+/* Lines up with the form card, below the booking steps. */
+.side { position: sticky; top: 112px; margin-top: 48px; display: grid; gap: 20px; }
+.visual { padding: clamp(16px, 2.4vw, 32px) clamp(8px, 1.4vw, 20px); border-radius: 26px; background: var(--blue); }
+.video { width: 100%; height: auto; aspect-ratio: 1920 / 932; display: block; }
+/* The column already sticks; the booking page's aside sticks on its own. */
+.aside { position: static; margin-top: 0; }
+
+.report li { display: grid; gap: 2px; }
+.report b { color: var(--ink); font-weight: 600; }
+.note { margin: 22px 0 0; color: var(--muted); font-size: .84rem; line-height: 1.45; }
+
+
+/* Stacked: the clip comes first so it's seen before the form, and the report details after it. */
+@media (max-width: 960px) {
+  .layout { grid-template-columns: 1fr; }
+  .layout > :first-child, .side { grid-column: auto; grid-row: auto; }
+  .side { display: contents; }
+  .visual { order: -1; }
+}
+@media (max-width: 640px) {
+  main.page { padding-top: 28px; }
+  .visual { border-radius: 22px; }
+}

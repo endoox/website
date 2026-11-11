@@ -29,11 +29,15 @@ export type Lead = {
   utmSource: string;
   utmMedium: string;
   utmCampaign: string;
+  utmContent: string;
   // Valuation requests only: the deal they want priced.
   dealTalent: string;
   dealBrand: string;
   dealOffer: string;
   dealDeliverables: string;
+  dealUsage: string;
+  dealExclusivity: string;
+  dealVik: string;
 };
 
 export function attioKey() {
@@ -55,6 +59,23 @@ type RecordResponse = { data: { id: { record_id: string } } };
 // Drops empty strings so a blank optional field never overwrites something already in Attio.
 function present(values: Record<string, unknown>) {
   return Object.fromEntries(Object.entries(values).filter(([, value]) => value !== ""));
+}
+
+// Upserts a person's entry in a list. utm_content came after the lists were first set up, and Attio
+// rejects a field the list doesn't have, so until scripts/attio-setup.mjs is re-run the entry is
+// retried without it rather than losing the lead.
+async function putEntry(list: string, personId: string, values: Record<string, unknown>) {
+  const put = (entryValues: Record<string, unknown>) =>
+    attio("PUT", `/lists/${list}/entries`, { data: { parent_record_id: personId, parent_object: "people", entry_values: entryValues } });
+  try {
+    await put(values);
+  } catch (error) {
+    if (!("utm_content" in values)) throw error;
+    console.warn(`Attio rejected the ${list} entry with utm_content; saving it without. Run scripts/attio-setup.mjs.`, error);
+    const withoutContent = { ...values };
+    delete withoutContent.utm_content;
+    await put(withoutContent);
+  }
 }
 
 /** Upserts the person (and company) and their "Demo requests" entry. */
@@ -80,30 +101,26 @@ export async function saveLead(lead: Lead) {
   });
 
   // Asserting by parent keeps one entry per person; a repeat submission refreshes it and resets the stage.
-  await attio("PUT", `/lists/${LEADS_LIST}/entries`, {
-    data: {
-      parent_record_id: person.data.id.record_id,
-      parent_object: "people",
-      entry_values: present({
-        stage: "Form submitted",
-        submitted_at: new Date().toISOString(),
-        interest: lead.interest,
-        agency: lead.agency,
-        roster_size: lead.rosterSize,
-        sports: lead.sports,
-        heard_about: lead.heardAbout,
-        source_page: lead.sourcePage,
-        landing_page: lead.landingPage,
-        referrer: lead.referrer,
-        utm_source: lead.utmSource,
-        utm_medium: lead.utmMedium,
-        utm_campaign: lead.utmCampaign,
-      }),
-    },
-  });
+  await putEntry(LEADS_LIST, person.data.id.record_id, present({
+    stage: "Form submitted",
+    submitted_at: new Date().toISOString(),
+    interest: lead.interest,
+    agency: lead.agency,
+    roster_size: lead.rosterSize,
+    sports: lead.sports,
+    heard_about: lead.heardAbout,
+    source_page: lead.sourcePage,
+    landing_page: lead.landingPage,
+    referrer: lead.referrer,
+    utm_source: lead.utmSource,
+    utm_medium: lead.utmMedium,
+    utm_campaign: lead.utmCampaign,
+    utm_content: lead.utmContent,
+  }));
 
   // Deal details go in a note on the person rather than list fields, so they read like the brief they are.
-  const deal = [["Talent", lead.dealTalent], ["Brand", lead.dealBrand], ["Offer", lead.dealOffer], ["Deliverables", lead.dealDeliverables]]
+  const deal = [["Talent", lead.dealTalent], ["Brand", lead.dealBrand], ["Offer", lead.dealOffer], ["Deliverables", lead.dealDeliverables],
+    ["Usage rights", lead.dealUsage], ["Exclusivity", lead.dealExclusivity], ["VIK offer", lead.dealVik]]
     .filter(([, value]) => value)
     .map(([label, value]) => `${label}: ${value}`);
   if (deal.length > 0) {
@@ -115,28 +132,23 @@ export async function saveLead(lead: Lead) {
 
 export const NEWSLETTER_LIST = "newsletter";
 
-export type Subscriber = Pick<Lead, "email" | "sourcePage" | "landingPage" | "referrer" | "utmSource" | "utmMedium" | "utmCampaign">;
+export type Subscriber = Pick<Lead, "email" | "sourcePage" | "landingPage" | "referrer" | "utmSource" | "utmMedium" | "utmCampaign" | "utmContent">;
 
 /** Upserts the person and their "Newsletter" entry (the footer email signup, app/api/subscribe). */
 export async function saveSubscriber(subscriber: Subscriber) {
   const person = await attio<RecordResponse>("PUT", "/objects/people/records?matching_attribute=email_addresses", {
     data: { values: { email_addresses: [subscriber.email] } },
   });
-  await attio("PUT", `/lists/${NEWSLETTER_LIST}/entries`, {
-    data: {
-      parent_record_id: person.data.id.record_id,
-      parent_object: "people",
-      entry_values: present({
-        subscribed_at: new Date().toISOString(),
-        source_page: subscriber.sourcePage,
-        landing_page: subscriber.landingPage,
-        referrer: subscriber.referrer,
-        utm_source: subscriber.utmSource,
-        utm_medium: subscriber.utmMedium,
-        utm_campaign: subscriber.utmCampaign,
-      }),
-    },
-  });
+  await putEntry(NEWSLETTER_LIST, person.data.id.record_id, present({
+    subscribed_at: new Date().toISOString(),
+    source_page: subscriber.sourcePage,
+    landing_page: subscriber.landingPage,
+    referrer: subscriber.referrer,
+    utm_source: subscriber.utmSource,
+    utm_medium: subscriber.utmMedium,
+    utm_campaign: subscriber.utmCampaign,
+    utm_content: subscriber.utmContent,
+  }));
 }
 
 /** Records a Calendly booking change on the invitee's "Demo requests" entry, creating the person and
