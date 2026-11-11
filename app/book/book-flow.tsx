@@ -44,10 +44,13 @@ function loadCalendly() {
 type Details = { firstName: string; lastName: string; email: string };
 type Step = "details" | "time" | "booked";
 
-// valuationOnly is the ad landing page (app/free-valuation): the interest is fixed to a valuation, so
-// there is no interest picker, and the ad already tells us how they heard about us. The report comes
-// either way, so the call is offered as an optional rundown rather than the point of the form.
-export function BookFlow({ initialInterest, valuationOnly = false }: { initialInterest: string; valuationOnly?: boolean }) {
+// fixedInterest is for the ad landing pages, which each sell one thing: there's no interest picker,
+// and the ad already tells us how they heard about us. "Valuation" (app/free-valuation) also sends the
+// report either way, so the call is offered as an optional rundown rather than the point of the form.
+// "Demo" is app/lp/demo.
+export function BookFlow({ initialInterest, fixedInterest }: { initialInterest: string; fixedInterest?: "Demo" | "Valuation" }) {
+  const fixed = fixedInterest !== undefined;
+  const valuationOnly = fixedInterest === "Valuation";
   const [step, setStep] = useState<Step>("details");
   const [details, setDetails] = useState<Details | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -122,7 +125,7 @@ export function BookFlow({ initialInterest, valuationOnly = false }: { initialIn
     } finally {
       setSubmitting(false);
     }
-    trackLinkedIn(LINKEDIN_CONVERSIONS.book);
+    trackLinkedIn(fixedInterest === "Demo" ? LINKEDIN_CONVERSIONS.lpDemo : LINKEDIN_CONVERSIONS.book);
     setDetails({ firstName: lead.firstName, lastName: lead.lastName, email: lead.email });
     setStep("time");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -151,7 +154,7 @@ export function BookFlow({ initialInterest, valuationOnly = false }: { initialIn
               </select>
             </label>
             <label><span>Sports you represent <em>Optional</em></span><input name="sports" placeholder="e.g. Hockey, Basketball" /></label>
-            {!valuationOnly && (
+            {!fixed && (
               <fieldset className={styles.wide}>
                 <legend>Interested in</legend>
                 <div className={styles.pills}>
@@ -178,7 +181,7 @@ export function BookFlow({ initialInterest, valuationOnly = false }: { initialIn
                 </div>
               </fieldset>
             )}
-            {!valuationOnly && (
+            {!fixed && (
               <label className={styles.wide}><span>How did you hear about us? <em>Optional</em></span><input name="heardAbout" /></label>
             )}
             <label className={styles.trap} aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" /></label>

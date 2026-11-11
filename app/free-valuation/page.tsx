@@ -41,7 +41,7 @@ export default function FreeValuationPage() {
         {/* Form on the left; the home page's valuation clip (on the same blue as the ad) and what the report
             covers on the right. */}
         <div className={styles.layout}>
-          <BookFlow initialInterest="Valuation" valuationOnly />
+          <BookFlow initialInterest="Valuation" fixedInterest="Valuation" />
           <div className={styles.side}>
             <div className={styles.visual}>
               <TransparentVideo className={styles.video} name="valuation" />

@@ -2,9 +2,11 @@
 export const LINKEDIN_PARTNER_ID = "10366052";
 
 // Conversion IDs from LinkedIn Campaign Manager. Leave one undefined until it exists; tracking skips it.
-export const LINKEDIN_CONVERSIONS: Record<"lpValuation" | "book" | "reportDownload", number | undefined> = {
+export const LINKEDIN_CONVERSIONS: Record<"lpValuation" | "lpDemo" | "book" | "reportDownload", number | undefined> = {
   // The /lp/valuation form.
   lpValuation: 30557716,
+  // The /lp/demo booking form. TODO: add the conversion ID.
+  lpDemo: undefined,
   // The booking form (/book and /free-valuation). TODO: add the conversion ID.
   book: undefined,
   // The report download form, once the site has one. TODO: add the conversion ID.

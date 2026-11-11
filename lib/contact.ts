@@ -13,3 +13,22 @@ export const SOCIAL_LINKS = [
   { label: "LinkedIn", href: "https://www.linkedin.com/company/endodeals" },
   { label: "Instagram", href: "https://www.instagram.com/endodeals/" },
 ] as const;
+
+// What the call covers, by what they asked for. "Both" gets the demo list plus the valuation line.
+export const CALL_COVERS = {
+  Demo: [
+    "A walkthrough of endo set up around your roster and sports",
+    "How agencies track deals, deliverables and payments in one place",
+    "Pricing and onboarding for an agency your size",
+  ],
+  Valuation: [
+    "The deal you’re working on: the talent, the brand and any offer on the table",
+    "How endodeals scores the talent and prices the full deal",
+    "What’s in your report, and when you’ll get it",
+  ],
+  Both: [
+    "A walkthrough of endo set up around your roster and sports",
+    "How endodeals prices a deal you’re working on now",
+    "Pricing and onboarding for an agency your size",
+  ],
+} as const;

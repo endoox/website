@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { INTERESTS } from "@/lib/contact";
+import { CALL_COVERS, INTERESTS } from "@/lib/contact";
 import pageStyles from "../page.module.css";
 import { DemoButton, SiteFooter, SiteHeader } from "../site-chrome";
 import { BookFlow } from "./book-flow";
@@ -15,25 +15,6 @@ export const metadata: Metadata = {
   description,
   ...shareMetadata(title, description),
 };
-
-// What the call covers, by what they asked for. "Both" gets the demo list plus the valuation line.
-const COVERS = {
-  Demo: [
-    "A walkthrough of endo set up around your roster and sports",
-    "How agencies track deals, deliverables and payments in one place",
-    "Pricing and onboarding for an agency your size",
-  ],
-  Valuation: [
-    "The deal you’re working on: the talent, the brand and any offer on the table",
-    "How endodeals scores the talent and prices the full deal",
-    "What’s in your report, and when you’ll get it",
-  ],
-  Both: [
-    "A walkthrough of endo set up around your roster and sports",
-    "How endodeals prices a deal you’re working on now",
-    "Pricing and onboarding for an agency your size",
-  ],
-} as const;
 
 // "Get a valuation" style links can preselect the interest with ?interest=Valuation.
 export default async function BookPage({ searchParams }: PageProps<"/book">) {
@@ -68,7 +49,7 @@ export default async function BookPage({ searchParams }: PageProps<"/book">) {
             <p className={styles.duration}>30-minute video call</p>
             <h2>What we’ll cover</h2>
             <ul>
-              {COVERS[initialInterest].map((item) => <li key={item}>{item}</li>)}
+              {CALL_COVERS[initialInterest].map((item) => <li key={item}>{item}</li>)}
             </ul>
             <figure className={styles.quote}>
               <blockquote>“Instead of going into brand conversations with assumptions, we now have credible data to support our pricing. It gives us real leverage.”</blockquote>
