@@ -1,5 +1,5 @@
 /* Ad landing page: the booking page's styles (book.module.css), with the form and the valuation clip side by side. */
-main.page { max-width: 1440px; }
+main.page { max-width: 1440px; padding-top: 124px; }
 .eyebrow { margin: 0 0 18px; color: var(--blue); font-size: .8rem; font-weight: 650; letter-spacing: .14em; text-transform: uppercase; }
 .page h1 { max-width: 15ch; margin-inline: auto; }
 /* Wider than the booking page's intro, which is a single short line. */
@@ -29,6 +29,7 @@ main.page { max-width: 1440px; }
   .visual { order: -1; }
 }
 @media (max-width: 640px) {
+  main.page { padding-top: 104px; }
   .visual { border-radius: 22px; }
   .footer { padding: 24px 16px 32px; }
 }
