@@ -44,7 +44,8 @@ type Details = { firstName: string; lastName: string; email: string };
 type Step = "details" | "time" | "booked";
 
 // valuationOnly is the ad landing page (app/free-valuation): the interest is fixed to a valuation, so
-// there is no interest picker, and the ad already tells us how they heard about us.
+// there is no interest picker, and the ad already tells us how they heard about us. The report comes
+// either way, so the call is offered as an optional rundown rather than the point of the form.
 export function BookFlow({ initialInterest, valuationOnly = false }: { initialInterest: string; valuationOnly?: boolean }) {
   const [step, setStep] = useState<Step>("details");
   const [details, setDetails] = useState<Details | null>(null);
@@ -128,7 +129,7 @@ export function BookFlow({ initialInterest, valuationOnly = false }: { initialIn
     <div className={styles.flow}>
       <ol className={styles.steps} aria-label="Booking steps">
         <li data-state={step === "details" ? "current" : "done"}><span>1</span>Your details</li>
-        <li data-state={step === "time" ? "current" : step === "booked" ? "done" : undefined}><span>2</span>Pick a time</li>
+        <li data-state={step === "time" ? "current" : step === "booked" ? "done" : undefined}><span>2</span>{valuationOnly ? "Pick a time (optional)" : "Pick a time"}</li>
       </ol>
 
       {step === "details" ? (
@@ -162,7 +163,7 @@ export function BookFlow({ initialInterest, valuationOnly = false }: { initialIn
             )}
             {interest !== "Demo" && (
               <fieldset className={`${styles.wide} ${styles.deal}`}>
-                <legend><span>About the deal <em>Optional, but it lets us start before the call</em></span></legend>
+                <legend><span>About the deal{!valuationOnly && <> <em>Optional, but it lets us start before the call</em></>}</span></legend>
                 <div className={styles.grid}>
                   <label>Talent<input name="dealTalent" placeholder="Name or @handle" /></label>
                   <label>Brand<input name="dealBrand" placeholder="e.g. Nike, or not yet" /></label>
@@ -182,18 +183,22 @@ export function BookFlow({ initialInterest, valuationOnly = false }: { initialIn
           {error && <p className={styles.error} role="alert">{error}</p>}
           <div className={styles.actions}>
             <button className={`${pageStyles.demoButton} ${styles.submit}`} type="submit" disabled={submitting}>
-              <span>{submitting ? "Saving…" : "Continue to pick a time"}</span>
+              <span>{submitting ? "Saving…" : valuationOnly ? "Get my free report" : "Continue to pick a time"}</span>
               <span className={pageStyles.demoButtonArrow} aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5" /></svg>
               </span>
             </button>
-            <p>We’ll only use this to prepare for your call.</p>
+            <p>{valuationOnly ? "Your report arrives within 3 business days." : "We’ll only use this to prepare for your call."}</p>
           </div>
         </form>
       ) : (
         <div className={`${styles.card} ${styles.calendarCard}`}>
           <p className={styles.calendarIntro}>
-            {step === "booked" ? `You’re booked, ${details?.firstName}. A calendar invite is on its way.` : `Thanks, ${details?.firstName}. Now pick a time that works for you.`}
+            {valuationOnly
+              ? step === "booked"
+                ? `You’re booked, ${details?.firstName}. A calendar invite is on its way, and your report arrives within 3 business days.`
+                : `Thanks, ${details?.firstName}. Your report arrives within 3 business days. Pick a time if you’d like a full rundown of the valuation.`
+              : step === "booked" ? `You’re booked, ${details?.firstName}. A calendar invite is on its way.` : `Thanks, ${details?.firstName}. Now pick a time that works for you.`}
           </p>
           {calendarFailed ? (
             <p className={styles.error}>The calendar didn’t load. <a href={CALENDLY_URL} target="_blank" rel="noreferrer">Open it in a new tab</a>.</p>
