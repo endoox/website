@@ -247,7 +247,10 @@ export function TimeCalculator() {
           <div className={styles.chart} aria-hidden="true">
             {days.map((day, index) => (
               <div className={styles.day} key={index}>
-                {day.map((block, i) => <div key={i} style={{ height: blockHeight, background: block.endo ? "var(--blue)" : block.color }} />)}
+                {/* Keyed by stack position, so only newly added blocks mount, and fall in (see .day div). */}
+                {day.map((block, i) => (
+                  <div key={i} style={{ height: blockHeight, background: block.endo ? "var(--blue)" : block.color, animationDelay: `${(i % 10) * 35 + index * 25}ms` }} />
+                ))}
               </div>
             ))}
           </div>
