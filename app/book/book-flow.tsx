@@ -2,44 +2,11 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { CALENDLY_URL, INTERESTS, ROSTER_SIZES } from "@/lib/contact";
+import { CALENDLY_EMBED, isCalendlyBooking, loadCalendly } from "../calendly";
 import { readAttribution, UtmFields, utmValues } from "../attribution";
 import { LINKEDIN_CONVERSIONS, trackLinkedIn } from "@/lib/linkedin";
 import pageStyles from "../page.module.css";
 import styles from "./book.module.css";
-
-declare global {
-  interface Window {
-    Calendly?: {
-      initInlineWidget(options: {
-        url: string;
-        parentElement: HTMLElement;
-        prefill?: { firstName?: string; lastName?: string; name?: string; email?: string };
-        utm?: { utmSource?: string; utmMedium?: string; utmCampaign?: string };
-      }): void;
-    };
-  }
-}
-
-// Calendly's colors (paid Calendly plans apply them) and chrome trimmed so it reads as part of the page:
-// no event header (our page has one) and no cookie banner.
-const CALENDLY_EMBED = `${CALENDLY_URL}?hide_event_type_details=1&hide_gdpr_banner=1&background_color=ffffff&text_color=2b2b2b&primary_color=4b7cd1`;
-
-let calendlyLoading: Promise<void> | undefined;
-function loadCalendly() {
-  if (window.Calendly) return Promise.resolve();
-  calendlyLoading ??= new Promise<void>((resolve, reject) => {
-    const script = document.createElement("script");
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
-    script.async = true;
-    script.onload = () => resolve();
-    script.onerror = () => {
-      calendlyLoading = undefined;
-      reject(new Error("Calendly failed to load"));
-    };
-    document.head.append(script);
-  });
-  return calendlyLoading;
-}
 
 type Details = { firstName: string; lastName: string; email: string };
 type Step = "details" | "time" | "booked";
@@ -76,7 +43,7 @@ export function BookFlow({ initialInterest, fixedInterest }: { initialInterest: 
       .catch(() => setCalendarFailed(true));
 
     const onMessage = (event: MessageEvent) => {
-      if (event.origin !== "https://calendly.com" || event.data?.event !== "calendly.event_scheduled") return;
+      if (!isCalendlyBooking(event)) return;
       // Attio is updated by Calendly's webhook (app/api/calendly); this only changes what the visitor sees.
       setStep("booked");
     };
