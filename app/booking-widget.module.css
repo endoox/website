@@ -9,10 +9,11 @@
 .trigger:hover .tip, .trigger:focus-visible .tip { opacity: 1; transform: none; }
 
 .trigger, .dialog { font-family: var(--font-geist-sans), Arial, sans-serif; }
-.dialog { width: min(680px, calc(100vw - 32px)); max-width: none; max-height: calc(100dvh - 32px); margin: auto; padding: 0; border: 0; border-radius: 24px; background: #fff; box-shadow: 0 40px 100px rgb(7 20 38 / 35%); color: #14213d; }
+/* A fixed height, filled edge to edge by the calendar under the header. */
+.dialog { width: min(640px, calc(100vw - 32px)); max-width: none; height: min(600px, calc(100dvh - 32px)); max-height: none; margin: auto; padding: 0; overflow: hidden; border: 0; border-radius: 24px; background: #fff; box-shadow: 0 40px 100px rgb(7 20 38 / 35%); color: #14213d; }
 .dialog::backdrop { background: rgb(7 20 38 / 55%); backdrop-filter: blur(3px); }
-.panel { padding: 28px 28px 8px; }
-.head { display: flex; align-items: center; gap: 16px; }
+.panel { height: 100%; display: flex; flex-direction: column; }
+.head { padding: 22px 22px 6px; display: flex; align-items: center; gap: 16px; }
 .head > div { flex: 1; min-width: 0; }
 /* The portrait is full length; zoom in on the face, as on the booking page. */
 .avatar { width: 56px; height: 56px; flex: none; overflow: hidden; border-radius: 50%; background: #a8c4ef; }
@@ -22,20 +23,18 @@
 .close { width: 40px; height: 40px; flex: none; align-self: flex-start; padding: 0; display: grid; border: 0; border-radius: 50%; background: #f1f4f7; color: #14213d; cursor: pointer; place-items: center; }
 .close:hover { background: #e6ebf1; }
 .close svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
-.calendar { min-height: 580px; margin: 0 -12px; }
-.calendar :global(.calendly-inline-widget), .calendar iframe { width: 100%; min-height: 580px; }
+.calendar { flex: 1; min-height: 0; }
+.calendar iframe { width: 100%; height: 100%; display: block; }
 .loading { margin: 0; padding-top: 120px; color: #697383; text-align: center; }
-.error { margin: 24px 0 20px; color: #b42318; font-size: .95rem; }
+.error { margin: 24px 22px 20px; color: #b42318; font-size: .95rem; }
 .error a { color: inherit; }
 
 @media (max-width: 640px) {
   .trigger { right: 16px; bottom: 16px; width: 52px; height: 52px; }
   .tip { display: none; }
-  .dialog { width: 100vw; max-height: 100dvh; height: 100dvh; border-radius: 0; }
-  .panel { padding: 18px 16px 0; }
+  .dialog { width: 100vw; height: 100dvh; border-radius: 0; }
+  .head { padding: 16px 16px 4px; }
   .avatar { width: 44px; height: 44px; }
-  .calendar, .calendar :global(.calendly-inline-widget), .calendar iframe { min-height: calc(100dvh - 110px); }
-  .calendar { margin-inline: -16px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .trigger, .tip { transition: none; }
