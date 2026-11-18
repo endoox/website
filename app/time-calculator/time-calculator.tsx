@@ -8,7 +8,8 @@ import pageStyles from "../page.module.css";
 import styles from "./time-calculator.module.css";
 
 // Agency time calculator (app/time-calculator): six questions set each task's volume, and a live
-// "agency week" chart, the result and an editable assumptions table all follow from them.
+// "agency week" chart and the result follow from them. The minutes and shares below are endo's
+// assumptions; they aren't shown on the page, but go out with the report.
 
 type Size = "s" | "m" | "l" | "xl";
 type Task = {
@@ -59,15 +60,11 @@ const floor = (n: number) => Math.floor(n).toLocaleString("en-US");
 const oneDecimal = (n: number) => (Math.round(n * 10) / 10).toLocaleString("en-US");
 const dollars = (savedWeekly: number) => `$${(Math.floor((savedWeekly * 52 * HOURLY) / 100) * 100).toLocaleString("en-US")}`;
 
-type Assumptions = Record<string, { min: number; share: number }>;
-const DEFAULT_ASSUMPTIONS: Assumptions = Object.fromEntries(TASKS.map((task) => [task.id, { min: task.min, share: task.share }]));
-
 export function TimeCalculator() {
   const [step, setStep] = useState(0);
   const [size, setSize] = useState<Size | null>(null);
   const [volumes, setVolumes] = useState<Record<string, number>>({});
   const [done, setDone] = useState(false);
-  const [assumptions, setAssumptions] = useState(DEFAULT_ASSUMPTIONS);
   const [other, setOther] = useState("");
   const [toast, setToast] = useState("");
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -78,8 +75,8 @@ export function TimeCalculator() {
     if (volume === undefined) return 0;
     return task.per === "month" ? volume / WEEKS_PER_MONTH : volume;
   };
-  const adminHours = (task: Task) => (weekly(task) * assumptions[task.id].min) / 60;
-  const savedHours = (task: Task) => (adminHours(task) * assumptions[task.id].share) / 100;
+  const adminHours = (task: Task) => (weekly(task) * task.min) / 60;
+  const savedHours = (task: Task) => (adminHours(task) * task.share) / 100;
   const totalAdmin = TASKS.reduce((sum, task) => sum + adminHours(task), 0);
   const saved = TASKS.reduce((sum, task) => sum + savedHours(task), 0);
 
@@ -108,15 +105,6 @@ export function TimeCalculator() {
     setVolumes({});
     setDone(false);
   }
-
-  // Editing the table fills in any unanswered volume, which counts as finishing the questions.
-  function editVolume(task: Task, value: number) {
-    const next = { ...volumes, [task.id]: value };
-    setVolumes(next);
-    if (!done && TASKS.every((t) => next[t.id] !== undefined)) setDone(true);
-  }
-  const editAssumption = (task: Task, key: "min" | "share", value: number) =>
-    setAssumptions((current) => ({ ...current, [task.id]: { ...current[task.id], [key]: key === "share" ? Math.min(100, value) : value } }));
 
   function openResult() {
     resultRef.current?.scrollIntoView({ block: "start" });
@@ -158,7 +146,7 @@ export function TimeCalculator() {
   let dealt = 0;
   for (const task of TASKS) {
     const blocks = Math.round(adminHours(task) / unit);
-    const endoBlocks = done ? Math.round((blocks * assumptions[task.id].share) / 100) : 0;
+    const endoBlocks = done ? Math.round((blocks * task.share) / 100) : 0;
     for (let i = 0; i < blocks; i++) days[dealt++ % 5].push({ color: task.color, endo: i < endoBlocks });
   }
   const tallest = Math.max(1, ...days.map((day) => day.length));
@@ -172,7 +160,7 @@ export function TimeCalculator() {
           <i style={{ background: task.color }} />
           <div>
             <b>{task.name}</b>
-            <span>{floor(volumes[task.id])} {task.unitWord} a {task.per} × {assumptions[task.id].min} min = <em>{oneDecimal(adminHours(task))} h a week</em></span>
+            <span>{floor(volumes[task.id])} {task.unitWord} a {task.per} × {task.min} min = <em>{oneDecimal(adminHours(task))} h a week</em></span>
           </div>
         </div>
       ))}
@@ -278,7 +266,7 @@ export function TimeCalculator() {
             {done ? <>endo takes <span>{floor(saved)} hours</span> off your agency’s week.</> : "Answer the questions to see what endo takes off your week."}
           </h2>
           <div className={styles.bigFoot}>
-            <p>Rounded down. Change any assumption below and every number follows.</p>
+            <p>Rounded down. The full assumptions behind every number come with your report.</p>
             <button className={styles.secondary} type="button" onClick={share} disabled={!done}>Send to my partner</button>
           </div>
         </div>
@@ -304,36 +292,6 @@ export function TimeCalculator() {
           </a>
         </div>
       </div>
-
-      <details className={styles.assumptions}>
-        <summary>Our assumptions (change any of them)</summary>
-        <p>Your answers set the volume. Minutes per task and the share endo takes on are endo estimates, not published studies. The dollar figure uses ${HOURLY} an hour, an endo estimate of an agent’s salary plus benefits.</p>
-        <div className={styles.tableWrap}>
-          <table>
-            <thead><tr><th>Task</th><th>Volume</th><th>Minutes each</th><th>Share endo takes on</th><th>Saved per week</th></tr></thead>
-            <tbody>
-              {TASKS.map((task) => (
-                <tr key={task.id}>
-                  <td className={styles.task}><b>{task.name}</b><span>{task.desc}</span></td>
-                  <td>
-                    <input type="number" min="0" aria-label={`${task.name} volume`} value={volumes[task.id] ?? task.typ[size ?? "m"]} onChange={(event) => editVolume(task, parseFloat(event.target.value) || 0)} />
-                    <span className={styles.cellUnit}>a {task.per}</span>
-                  </td>
-                  <td>
-                    <input type="number" min="0" aria-label={`${task.name} minutes each`} value={assumptions[task.id].min} onChange={(event) => editAssumption(task, "min", parseFloat(event.target.value) || 0)} />
-                    <span className={styles.cellUnit}>min</span>
-                  </td>
-                  <td>
-                    <input type="number" min="0" max="100" aria-label={`${task.name} share endo takes on`} value={assumptions[task.id].share} onChange={(event) => editAssumption(task, "share", parseFloat(event.target.value) || 0)} />
-                    <span className={styles.cellUnit}>%</span>
-                  </td>
-                  <td className={styles.savedCell}>{oneDecimal(savedHours(task))} h</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </details>
 
       {/* A click on the backdrop lands on the dialog itself, not its contents, and closes it. */}
       <dialog ref={dialogRef} className={styles.dialog} aria-labelledby="calculator-result-title" onClick={(event) => event.target === event.currentTarget && dialogRef.current?.close()}>

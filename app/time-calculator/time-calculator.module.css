@@ -27,9 +27,9 @@
 .option[data-selected] small { color: rgb(255 255 255 / 70%); }
 .other { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .other label { color: var(--muted); font-size: .92rem; }
-.other input, .email input, .tableWrap input { border: 1px solid var(--line); background: var(--soft); color: var(--ink); font: inherit; font-variant-numeric: tabular-nums; outline: none; transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease; }
+.other input, .email input { border: 1px solid var(--line); background: var(--soft); color: var(--ink); font: inherit; font-variant-numeric: tabular-nums; outline: none; transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease; }
 .other input { width: 120px; min-height: 48px; padding: 0 16px; border-radius: 14px; font-size: 1rem; }
-.other input:focus, .email input:focus, .tableWrap input:focus { border-color: var(--blue); background-color: #fff; box-shadow: 0 0 0 4px rgb(75 124 209 / 14%); }
+.other input:focus, .email input:focus { border-color: var(--blue); background-color: #fff; box-shadow: 0 0 0 4px rgb(75 124 209 / 14%); }
 .trail { margin-top: auto; padding-top: 18px; display: grid; gap: 12px; border-top: 1px solid var(--line); }
 .trailRow { display: grid; grid-template-columns: 10px 1fr; align-items: start; gap: 12px; font-size: .86rem; }
 .trailRow i { width: 10px; height: 10px; margin-top: 5px; border-radius: 3px; }
@@ -79,22 +79,6 @@
 .trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .visuallyHidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
-/* ---------- Assumptions table ---------- */
-.assumptions { margin-top: 64px; padding: 0 28px; border: 1px solid var(--line); border-radius: 26px; background: #fff; }
-.assumptions[open] { padding-bottom: 28px; }
-.assumptions > summary { padding-block: 24px; font-size: 1.2rem; font-weight: 600; letter-spacing: -.02em; }
-.assumptions > p { max-width: 680px; margin: 0 0 18px; color: var(--muted); line-height: 1.55; }
-.tableWrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 18px; }
-.tableWrap table { width: 100%; min-width: 720px; border-collapse: collapse; font-size: .92rem; }
-.tableWrap th, .tableWrap td { padding: 14px 16px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
-.tableWrap th { background: var(--soft); color: var(--muted); font-size: .72rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
-.tableWrap tr:last-child td { border-bottom: 0; }
-.tableWrap input { width: 80px; min-height: 38px; padding: 0 10px; border-radius: 10px; font-size: .92rem; }
-.cellUnit { margin-left: 6px; color: var(--muted); font-size: .8rem; }
-.task b { display: block; font-weight: 600; }
-.task span { color: var(--muted); font-size: .8rem; }
-.savedCell { font-variant-numeric: tabular-nums; font-weight: 560; }
-
 /* ---------- How it works and FAQ (page.tsx) ---------- */
 .info { margin-top: 96px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; }
 .info > div { min-width: 0; display: grid; align-content: start; gap: 16px; }
@@ -105,11 +89,11 @@
 .faq summary { margin: 0; color: var(--ink); font-weight: 560; }
 .faq p { margin-top: 10px; }
 
-/* Plus and minus on every disclosure. */
-.assumptions > summary, .faq summary { display: flex; justify-content: space-between; gap: 12px; list-style: none; cursor: pointer; }
-.assumptions > summary::-webkit-details-marker, .faq summary::-webkit-details-marker { display: none; }
-.assumptions > summary::after, .faq summary::after { color: var(--muted); font-weight: 400; content: "+"; }
-.assumptions[open] > summary::after, .faq[open] summary::after { content: "\2212"; }
+/* Plus and minus on each question. */
+.faq summary { display: flex; justify-content: space-between; gap: 12px; list-style: none; cursor: pointer; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { color: var(--muted); font-weight: 400; content: "+"; }
+.faq[open] summary::after { content: "\2212"; }
 
 /* ---------- Result modal ---------- */
 .dialog { width: min(560px, calc(100vw - 32px)); max-width: none; margin: auto; padding: 8px; border: 0; border-radius: 26px; background: #fff; box-shadow: 0 40px 100px rgb(7 20 38 / 35%); color: var(--ink); font-family: var(--font-geist-sans), Arial, sans-serif; }
@@ -136,7 +120,6 @@
   .question, .big, .ctaCard { padding: 24px 20px; border-radius: 22px; }
   .question { min-height: 0; }
   .week { padding: 20px; border-radius: 22px; }
-  .assumptions { padding: 0 20px; border-radius: 22px; }
   .info { margin-top: 72px; }
 }
 @media (prefers-reduced-motion: reduce) {

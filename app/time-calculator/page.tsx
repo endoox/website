@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 const FAQ = [
   ["Is the calculator free?", "Yes. No email needed to see your result."],
-  ["How accurate is the estimate?", "It is a starting point. Volumes come from you; the minutes and shares are endo estimates. Swap in your own numbers in the table above for a closer read."],
+  ["How accurate is the estimate?", "It is a starting point. Volumes come from you; the minutes per task and the share endo takes on are endo estimates. Your report lists each one, so you can check them against your own agency."],
   ["Which tasks does it count?", "Deal and contract entry, brand pitches and media kits, deal negotiations, payment processing, athlete requests, and weekly social and stats tracking for your roster. Recruiting, negotiating and relationship work are left out on purpose."],
   ["Does endo do the work on its own?", "No. endo pulls social, performance and earned media data, builds media kits from an athlete’s deals and socials, delivers valuation reports and keeps deal financials in one place. Your agents review and decide."],
 ] as const;
@@ -30,7 +30,7 @@ export default function TimeCalculatorPage() {
         <header className={styles.intro}>
           <p className={styles.eyebrow}>Agency time calculator</p>
           <h1>See how much of your agency’s week goes to admin.</h1>
-          <p>Six questions estimate the hours a month your agents get back by running deals, media kits, negotiations, payments and athlete requests through endo. Every assumption is shown below and can be changed.</p>
+          <p>Six questions estimate the hours a month your agents get back by running deals, media kits, negotiations, payments and athlete requests through endo. Your report spells out every assumption behind the numbers.</p>
         </header>
 
         <TimeCalculator />
