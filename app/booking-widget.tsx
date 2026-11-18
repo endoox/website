@@ -56,7 +56,7 @@ export function BookingWidget() {
       <dialog ref={dialogRef} className={styles.dialog} aria-labelledby="booking-widget-title" onClick={(event) => event.target === event.currentTarget && close()}>
         <div className={styles.panel}>
           <header className={styles.head}>
-            <span className={styles.avatar}><Image src="/team/michael-boushy-portrait.png" alt="" width={1080} height={1440} sizes="112px" /></span>
+            <span className={styles.avatar}><Image src="/team/michael-boushy-headshot.png" alt="" width={184} height={184} sizes="112px" /></span>
             <div>
               <h2 id="booking-widget-title">Pick a time</h2>
               <p>Michael Boushy · Co-founder & CEO · 30-minute demo</p>

@@ -15,9 +15,8 @@
 .panel { height: 100%; display: flex; flex-direction: column; }
 .head { padding: 22px 22px 6px; display: flex; align-items: center; gap: 16px; }
 .head > div { flex: 1; min-width: 0; }
-/* The portrait is full length; zoom in on the face, as on the booking page. */
 .avatar { width: 56px; height: 56px; flex: none; overflow: hidden; border-radius: 50%; background: #a8c4ef; }
-.avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 51% 0; transform: scale(2.8); transform-origin: 51% 30%; }
+.avatar img { width: 100%; height: 100%; display: block; object-fit: cover; }
 .head h2 { margin: 0; font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 500; letter-spacing: -.04em; line-height: 1.1; }
 .head p { margin: 4px 0 0; color: #697383; font-size: .92rem; }
 .close { width: 40px; height: 40px; flex: none; align-self: flex-start; padding: 0; display: grid; border: 0; border-radius: 50%; background: #f1f4f7; color: #14213d; cursor: pointer; place-items: center; }

@@ -56,7 +56,7 @@ export default function LpDemoPage() {
             </div>
             <aside className={`${bookStyles.aside} ${styles.aside}`} aria-label="About the call">
               <div className={bookStyles.host}>
-                <span className={bookStyles.avatar}><Image src="/team/michael-boushy-portrait.png" alt="" width={1080} height={1440} sizes="168px" /></span>
+                <span className={bookStyles.avatar}><Image src="/team/michael-boushy-headshot.png" alt="" width={184} height={184} sizes="112px" /></span>
                 <div>
                   <p>You’ll meet</p>
                   <b>Michael Boushy</b>
