@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { BookingWidget } from "./booking-widget";
 import { JsonLd, ORGANIZATION } from "./structured-data";
 import { LINKEDIN_PARTNER_ID } from "@/lib/linkedin";
 import { shareMetadata } from "@/lib/share-metadata";
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full">
         <JsonLd data={ORGANIZATION} />
         {children}
+        <BookingWidget />
         {/* Analytics and ad tracking; production only, so local dev visits stay out of the data. */}
         {process.env.NODE_ENV === "production" && (
           <>
