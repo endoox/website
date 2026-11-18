@@ -9,7 +9,7 @@
 .trigger:hover .tip, .trigger:focus-visible .tip { opacity: 1; transform: none; }
 
 .trigger, .dialog { font-family: var(--font-geist-sans), Arial, sans-serif; }
-.dialog { width: min(920px, calc(100vw - 32px)); max-width: none; max-height: calc(100dvh - 32px); margin: auto; padding: 0; border: 0; border-radius: 24px; background: #fff; box-shadow: 0 40px 100px rgb(7 20 38 / 35%); color: #14213d; }
+.dialog { width: min(680px, calc(100vw - 32px)); max-width: none; max-height: calc(100dvh - 32px); margin: auto; padding: 0; border: 0; border-radius: 24px; background: #fff; box-shadow: 0 40px 100px rgb(7 20 38 / 35%); color: #14213d; }
 .dialog::backdrop { background: rgb(7 20 38 / 55%); backdrop-filter: blur(3px); }
 .panel { padding: 28px 28px 8px; }
 .head { display: flex; align-items: center; gap: 16px; }
@@ -22,8 +22,8 @@
 .close { width: 40px; height: 40px; flex: none; align-self: flex-start; padding: 0; display: grid; border: 0; border-radius: 50%; background: #f1f4f7; color: #14213d; cursor: pointer; place-items: center; }
 .close:hover { background: #e6ebf1; }
 .close svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
-.calendar { min-height: 660px; margin: 8px -12px 0; }
-.calendar :global(.calendly-inline-widget), .calendar iframe { width: 100%; min-height: 660px; }
+.calendar { min-height: 580px; margin: 0 -12px; }
+.calendar :global(.calendly-inline-widget), .calendar iframe { width: 100%; min-height: 580px; }
 .loading { margin: 0; padding-top: 120px; color: #697383; text-align: center; }
 .error { margin: 24px 0 20px; color: #b42318; font-size: .95rem; }
 .error a { color: inherit; }
