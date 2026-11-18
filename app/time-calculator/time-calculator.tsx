@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { DEMO_URL } from "@/lib/contact";
+import { DEMO_URL, ROSTER_SIZES } from "@/lib/contact";
 import { LINKEDIN_CONVERSIONS, trackLinkedIn } from "@/lib/linkedin";
 import { readAttribution, UtmFields, utmValues } from "../attribution";
 import pageStyles from "../page.module.css";
@@ -27,11 +27,12 @@ type Task = {
   opts?: number[];
 };
 
-const SIZES: { k: Size; label: string }[] = [
-  { k: "s", label: "1–15" },
-  { k: "m", label: "16–40" },
-  { k: "l", label: "41–100" },
-  { k: "xl", label: "100+" },
+// The booking form's roster sizes (ROSTER_SIZES in lib/contact.ts), so both ask the same question.
+const SIZES: { k: Size; label: (typeof ROSTER_SIZES)[number] }[] = [
+  { k: "s", label: "1–10" },
+  { k: "m", label: "11–50" },
+  { k: "l", label: "51–150" },
+  { k: "xl", label: "150+" },
 ];
 
 const TASKS: Task[] = [
@@ -46,7 +47,7 @@ const TASKS: Task[] = [
   { id: "asks", name: "Athlete requests", desc: "Chasing content, approvals, signatures and availability", per: "week", unitWord: "requests", min: 8, share: 60, color: "#55627a",
     q: "How many times do you ask your athletes for something each week?", hint: "Content for a post, a signature, an approval, their availability.", opts: [20, 50, 100, 200, 400, 800], typ: { s: 50, m: 100, l: 200, xl: 400 } },
   { id: "social", name: "Social & stats tracking", desc: "Pulling follower counts, engagement and game stats by hand", per: "week", unitWord: "athletes tracked", min: 10, share: 85, color: "#dde3ec",
-    typ: { s: 10, m: 28, l: 70, xl: 130 } },
+    typ: { s: 7, m: 30, l: 100, xl: 200 } },
 ];
 const ASKED = TASKS.filter((task) => task.q);
 const QUESTION_COUNT = ASKED.length + 1;
