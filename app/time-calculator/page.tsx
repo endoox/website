@@ -8,9 +8,12 @@ import { shareMetadata } from "@/lib/share-metadata";
 const title = "Agency time calculator · endo";
 const description = "Six questions estimate the hours a month your agents get back by running deals, media kits, negotiations, payments and athlete requests through endo.";
 
+// Hidden for now: not linked from the footer, left out of the sitemap and kept out of search, but
+// reachable at /time-calculator for review.
 export const metadata: Metadata = {
   title,
   description,
+  robots: { index: false, follow: false },
   ...shareMetadata(title, description),
 };
 

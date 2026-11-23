@@ -19,7 +19,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/endo-deals",
     "/about",
     "/book",
-    "/time-calculator",
     ...(CUSTOMER_STORIES.length > 0 ? ["/customer-stories", ...CUSTOMER_STORIES.map((story) => `/customer-stories/${story.slug}`)] : []),
     ...(PRESS.length > 0 ? ["/press"] : []),
     "/privacy",
