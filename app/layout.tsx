@@ -41,14 +41,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <JsonLd data={ORGANIZATION} />
         {children}
         <BookingWidget />
-        {/* Analytics and ad tracking; production only, so local dev visits stay out of the data. */}
+        {/* Ad tracking; production only, so local dev visits stay out of the data. */}
         {process.env.NODE_ENV === "production" && (
           <>
-            {/* Hedlyte session recording. */}
-            <Script id="hedlyte-config" strategy="beforeInteractive">
-              {`window.RRWEB_SERVER_URL="https://ingest.hedlyte.com/upload-session";`}
-            </Script>
-            <Script src="https://ingest.hedlyte.com/recorder.js" data-domain-key="ef52d4df52bd760d98ffc4132bd02387" />
             {/* LinkedIn Insight Tag: ad attribution and the conversions fired by trackLinkedIn (lib/linkedin.ts). */}
             <Script id="linkedin-insight" strategy="afterInteractive">
               {`_linkedin_partner_id = "${LINKEDIN_PARTNER_ID}";
