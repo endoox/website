@@ -24,12 +24,12 @@ export const metadata: Metadata = {
 const SECTIONS = [
   { id: "demo", label: "Demo" },
   { id: "key-points", label: "Key points" },
-  { id: "brand-kit", label: "Brand kit" },
   { id: "one-pager", label: "One-pager" },
   { id: "proof", label: "Proof" },
   { id: "intro", label: "Make an intro" },
   { id: "faq", label: "FAQ" },
   { id: "contact", label: "Contact" },
+  { id: "brand-kit", label: "Brand kit" },
 ] as const;
 
 const SITE = "https://www.endodeals.com";
@@ -126,8 +126,106 @@ export default function PartnersPage() {
             </ul>
           </section>
 
+          <section id="one-pager" className={styles.section} aria-labelledby="one-pager-heading">
+            <SectionHead id="one-pager-heading" index={2} title="One-pager">A one-page summary of endo to share or print.</SectionHead>
+            <div className={styles.kitActions}>
+              <a className={styles.primary} href={`/resources/${ONE_PAGER_PDF}`} download>Download PDF <span aria-hidden="true">↓</span></a>
+            </div>
+            <OnePager />
+          </section>
+
+          <section id="proof" className={styles.section} aria-labelledby="proof-heading">
+            <SectionHead id="proof-heading" index={3} title="Proof">What agencies say about endo, and what the press has written.</SectionHead>
+            <h3 className={styles.subhead}>In their words</h3>
+            <ul className={styles.quotes}>
+              {TESTIMONIALS.map((testimonial) => (
+                <li key={testimonial.name}>
+                  <blockquote>“{testimonial.quote}”</blockquote>
+                  <div className={styles.quotePerson}>
+                    <Image src={testimonial.image} alt="" width={96} height={96} sizes="40px" />
+                    <div><b>{testimonial.name}</b><span>{testimonial.role}</span></div>
+                  </div>
+                  <a className={styles.source} href={`${SITE}/#testimonials`} target="_blank" rel="noreferrer">Source: endodeals.com ↗</a>
+                </li>
+              ))}
+            </ul>
+            <h3 className={styles.subhead}>Press</h3>
+            <ul className={styles.press}>
+              {pressInHubOrder().map((item) => (
+                <li key={item.href}>
+                  {/* As on the press page: the article's image, or the endo logo on navy when there isn't one. */}
+                  <a className={item.image ? styles.pressImage : `${styles.pressImage} ${styles.pressLogo}`} href={item.href} target="_blank" rel="noreferrer" tabIndex={-1} aria-hidden="true">
+                    <Image src={item.image ?? "/brand/endo-logo-white-gradient.png"} alt="" fill sizes="(max-width: 960px) 100vw, 540px" />
+                  </a>
+                  <p className={styles.pressMeta}>{item.outlet} · {formatDate(item.date)}</p>
+                  <a className={styles.pressTitle} href={item.href} target="_blank" rel="noreferrer">{item.title}</a>
+                  <div className={styles.pressActions}>
+                    <a href={item.href} target="_blank" rel="noreferrer">Read the article ↗</a>
+                    <CopyButton className={styles.copyLink} text={item.href} label="Copy link" copiedLabel="Link copied" />
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section id="intro" className={styles.section} aria-labelledby="intro-heading">
+            <SectionHead id="intro-heading" index={4} title="How to make an intro">Three steps, and Mike handles the rest.</SectionHead>
+            <ol className={styles.steps}>
+              {INTRO_STEPS.map((step, index) => (
+                <li key={step.title}>
+                  <span>{index + 1}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.body}</p>
+                </li>
+              ))}
+            </ol>
+            <div className={styles.template}>
+              <div className={styles.templateHead}>
+                <h3>Intro email</h3>
+                <CopyButton className={styles.primary} text={INTRO_TEMPLATE} label="Copy intro" copiedLabel="Copied to clipboard" />
+              </div>
+              <pre>{INTRO_TEMPLATE}</pre>
+            </div>
+            <a className={styles.secondary} href={`mailto:${INTRO_LOG_EMAIL}?subject=${encodeURIComponent("New intro")}`}>Email {INTRO_LOG_EMAIL} to log an intro</a>
+          </section>
+
+          <section id="faq" className={styles.section} aria-labelledby="faq-heading">
+            <SectionHead id="faq-heading" index={5} title="FAQ" />
+            <div className={styles.faq}>
+              {FAQ.map((item) => (
+                <details key={item.question}>
+                  <summary>{item.question}</summary>
+                  <p>{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+
+          <section id="contact" className={styles.section} aria-labelledby="contact-heading">
+            <SectionHead id="contact-heading" index={6} title="Contact" />
+            <ul className={styles.contacts}>
+              {CONTACTS.map((contact) => (
+                <li key={contact.email}>
+                  <Image src={contact.image} alt="" width={240} height={240} sizes="64px" />
+                  <h3>{contact.name}</h3>
+                  <p className={styles.role}>{contact.role}</p>
+                  <dl>
+                    <div><dt>Email</dt><dd><a href={`mailto:${contact.email}`}>{contact.email}</a></dd></div>
+                    {"linkedin" in contact && (
+                      <div><dt>LinkedIn</dt><dd><a href={contact.linkedin} target="_blank" rel="noreferrer">{contact.linkedin.replace(/^https:\/\/www\./, "").replace(/\/$/, "")}</a></dd></div>
+                    )}
+                  </dl>
+                </li>
+              ))}
+            </ul>
+            <div className={styles.kitActions}>
+              <a className={styles.secondary} href={COMPANY_LINKEDIN} target="_blank" rel="noreferrer">endo on LinkedIn ↗</a>
+              <DriveLink className={styles.secondary} />
+            </div>
+          </section>
+
           <section id="brand-kit" className={styles.section} aria-labelledby="brand-kit-heading">
-            <SectionHead id="brand-kit-heading" index={2} title="Brand kit">Logos and colours for decks, intros and anything else you share. Always write endo in lowercase.</SectionHead>
+            <SectionHead id="brand-kit-heading" index={7} title="Brand kit">Logos and colours for decks, intros and anything else you share. Always write endo in lowercase.</SectionHead>
             <div className={styles.kitActions}>
               <a className={styles.primary} href={`/resources/${BRAND_KIT_ZIP}`} download>Download all <span aria-hidden="true">↓</span></a>
               <DriveLink className={styles.secondary} />
@@ -165,104 +263,6 @@ export default function PartnersPage() {
               ))}
             </ul>
             <p className={styles.note}>Click a colour to copy its hex code.</p>
-          </section>
-
-          <section id="one-pager" className={styles.section} aria-labelledby="one-pager-heading">
-            <SectionHead id="one-pager-heading" index={3} title="One-pager">A one-page summary of endo to share or print.</SectionHead>
-            <div className={styles.kitActions}>
-              <a className={styles.primary} href={`/resources/${ONE_PAGER_PDF}`} download>Download PDF <span aria-hidden="true">↓</span></a>
-            </div>
-            <OnePager />
-          </section>
-
-          <section id="proof" className={styles.section} aria-labelledby="proof-heading">
-            <SectionHead id="proof-heading" index={4} title="Proof">What agencies say about endo, and what the press has written.</SectionHead>
-            <h3 className={styles.subhead}>In their words</h3>
-            <ul className={styles.quotes}>
-              {TESTIMONIALS.map((testimonial) => (
-                <li key={testimonial.name}>
-                  <blockquote>“{testimonial.quote}”</blockquote>
-                  <div className={styles.quotePerson}>
-                    <Image src={testimonial.image} alt="" width={96} height={96} sizes="40px" />
-                    <div><b>{testimonial.name}</b><span>{testimonial.role}</span></div>
-                  </div>
-                  <a className={styles.source} href={`${SITE}/#testimonials`} target="_blank" rel="noreferrer">Source: endodeals.com ↗</a>
-                </li>
-              ))}
-            </ul>
-            <h3 className={styles.subhead}>Press</h3>
-            <ul className={styles.press}>
-              {pressInHubOrder().map((item) => (
-                <li key={item.href}>
-                  {/* As on the press page: the article's image, or the endo logo on navy when there isn't one. */}
-                  <a className={item.image ? styles.pressImage : `${styles.pressImage} ${styles.pressLogo}`} href={item.href} target="_blank" rel="noreferrer" tabIndex={-1} aria-hidden="true">
-                    <Image src={item.image ?? "/brand/endo-logo-white-gradient.png"} alt="" fill sizes="(max-width: 960px) 100vw, 540px" />
-                  </a>
-                  <p className={styles.pressMeta}>{item.outlet} · {formatDate(item.date)}</p>
-                  <a className={styles.pressTitle} href={item.href} target="_blank" rel="noreferrer">{item.title}</a>
-                  <div className={styles.pressActions}>
-                    <a href={item.href} target="_blank" rel="noreferrer">Read the article ↗</a>
-                    <CopyButton className={styles.copyLink} text={item.href} label="Copy link" copiedLabel="Link copied" />
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section id="intro" className={styles.section} aria-labelledby="intro-heading">
-            <SectionHead id="intro-heading" index={5} title="How to make an intro">Three steps, and Mike handles the rest.</SectionHead>
-            <ol className={styles.steps}>
-              {INTRO_STEPS.map((step, index) => (
-                <li key={step.title}>
-                  <span>{index + 1}</span>
-                  <h3>{step.title}</h3>
-                  <p>{step.body}</p>
-                </li>
-              ))}
-            </ol>
-            <div className={styles.template}>
-              <div className={styles.templateHead}>
-                <h3>Intro email</h3>
-                <CopyButton className={styles.primary} text={INTRO_TEMPLATE} label="Copy intro" copiedLabel="Copied to clipboard" />
-              </div>
-              <pre>{INTRO_TEMPLATE}</pre>
-            </div>
-            <a className={styles.secondary} href={`mailto:${INTRO_LOG_EMAIL}?subject=${encodeURIComponent("New intro")}`}>Email {INTRO_LOG_EMAIL} to log an intro</a>
-          </section>
-
-          <section id="faq" className={styles.section} aria-labelledby="faq-heading">
-            <SectionHead id="faq-heading" index={6} title="FAQ" />
-            <div className={styles.faq}>
-              {FAQ.map((item) => (
-                <details key={item.question}>
-                  <summary>{item.question}</summary>
-                  <p>{item.answer}</p>
-                </details>
-              ))}
-            </div>
-          </section>
-
-          <section id="contact" className={styles.section} aria-labelledby="contact-heading">
-            <SectionHead id="contact-heading" index={7} title="Contact" />
-            <ul className={styles.contacts}>
-              {CONTACTS.map((contact) => (
-                <li key={contact.email}>
-                  <Image src={contact.image} alt="" width={240} height={240} sizes="64px" />
-                  <h3>{contact.name}</h3>
-                  <p className={styles.role}>{contact.role}</p>
-                  <dl>
-                    <div><dt>Email</dt><dd><a href={`mailto:${contact.email}`}>{contact.email}</a></dd></div>
-                    {"linkedin" in contact && (
-                      <div><dt>LinkedIn</dt><dd><a href={contact.linkedin} target="_blank" rel="noreferrer">{contact.linkedin.replace(/^https:\/\/www\./, "").replace(/\/$/, "")}</a></dd></div>
-                    )}
-                  </dl>
-                </li>
-              ))}
-            </ul>
-            <div className={styles.kitActions}>
-              <a className={styles.secondary} href={COMPANY_LINKEDIN} target="_blank" rel="noreferrer">endo on LinkedIn ↗</a>
-              <DriveLink className={styles.secondary} />
-            </div>
           </section>
         </main>
       </PartnerGate>
