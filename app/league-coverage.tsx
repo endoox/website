@@ -4,8 +4,8 @@ import { PRESS } from "@/lib/press";
 import pageStyles from "./page.module.css";
 import styles from "./league-coverage.module.css";
 
-// Leagues named in the supplied reference; no unverified coverage total.
-const LEAGUES = [
+// Leagues named in the supplied reference; no unverified coverage total. Also on the partner one-pager.
+export const LEAGUES = [
   { name: "NFL", file: "nfl" },
   { name: "NBA", file: "nba" },
   { name: "MLB", file: "mlb" },

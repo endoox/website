@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/build-partner-kit.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/build-partner-kit.mjs",
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
+    "partners:pdf": "node scripts/build-one-pager-pdf.mjs",
     "build:cloudflare": "opennextjs-cloudflare build",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",

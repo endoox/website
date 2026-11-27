@@ -8,7 +8,8 @@ import { readAttribution } from "./attribution";
 import { CALENDLY_EMBED, loadCalendly } from "./calendly";
 import styles from "./booking-widget.module.css";
 
-// Pages that already have the booking form, where a second way in would compete with it.
+// Pages that already have the booking form, where a second way in would compete with it. The partner
+// hub (app/partners) is left out too.
 const HIDDEN_ON = ["/book", "/free-valuation", "/lp/demo"];
 
 // Floating calendar button in the bottom corner. It opens straight onto Calendly's time picker in a
@@ -33,7 +34,7 @@ export function BookingWidget() {
       .catch(() => setFailed(true));
   }, [opened]);
 
-  if (HIDDEN_ON.includes(pathname)) return null;
+  if (HIDDEN_ON.includes(pathname) || pathname.startsWith("/partners")) return null;
 
   const open = () => {
     dialogRef.current?.showModal();
