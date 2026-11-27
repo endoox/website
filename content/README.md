@@ -14,7 +14,7 @@ The partner hub at **endodeals.com/partners**: a code-gated page with everything
 
 ## The gate is cosmetic
 
-Partner codes ship in the page's code, so anyone who looks can find them. The gate makes the hub feel private, but it doesn't protect anything. Never put anything sensitive in the hub: no pricing, earnings, payouts or partner-specific deal data.
+Partner codes ship in the page's code, so anyone who looks can find them. The gate makes the hub feel private, but it doesn't protect anything. Never put anything sensitive in the hub: no pricing, and nothing about a specific partner (their earnings, payouts or deals). The program's general terms, like "earn up to 33%", are fine.
 
 ## Run it locally
 

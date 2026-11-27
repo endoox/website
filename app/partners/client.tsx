@@ -77,6 +77,7 @@ export function PartnerGate({ children }: { children: ReactNode }) {
             <p className={styles.entryEyebrow}>Partner access</p>
             <h1>{ENTRY.title}</h1>
             <p className={styles.entryLine}>{ENTRY.line}</p>
+            <p className={styles.entryOffer}>{ENTRY.offer}</p>
             <form className={styles.codeForm} onSubmit={onSubmit} noValidate>
               <label htmlFor="partner-code">Enter your partner code</label>
               <div>

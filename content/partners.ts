@@ -22,7 +22,9 @@ export const COMPANY_LINKEDIN = "https://www.linkedin.com/company/endodeals";
 // ---------- Entry ----------
 export const ENTRY = {
   title: "Welcome to endo partners",
-  line: "Everything you need to talk about endo and introduce an agency, in one place.",
+  line: "We've been lucky: so many of you have been helping us grow without being paid for it. We think that should change.",
+  // Called out on its own under the line.
+  offer: "Earn up to 33% of all revenue you bring to endo.",
 };
 
 // ---------- Hub ----------
@@ -134,7 +136,7 @@ export const FAQ = [
   },
   {
     question: "How and when do partners get paid?",
-    answer: "Partners are paid quarterly, on revenue endo has collected from the agencies they introduced.",
+    answer: "Partners earn up to 33% of the revenue endo collects from the agencies they introduce, paid quarterly.",
   },
 ] as const;
 
