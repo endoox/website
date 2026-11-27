@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Image from "next/image";
 import {
-  BRAND_COLOURS, BRAND_KIT_ZIP, CONTACTS, DEMO_VIDEO_URL, DRIVE_URL, FAQ, HUB, INTRO_LOG_EMAIL, INTRO_STEPS,
+  PRESS_ORDER, BRAND_COLOURS, BRAND_KIT_ZIP, CONTACTS, DEMO_VIDEO_URL, DRIVE_URL, FAQ, HUB, INTRO_LOG_EMAIL, INTRO_STEPS,
   INTRO_TEMPLATE, KEY_POINTS, LOGO_FILES, ONE_PAGER,
 } from "@/content/partners";
-import { CUSTOMER_STORIES } from "@/lib/customer-stories";
 import { PRESS } from "@/lib/press";
 import { TESTIMONIALS, TRUSTED_BY_LOGOS } from "@/lib/proof";
 import pageStyles from "../page.module.css";
@@ -35,8 +34,14 @@ const SECTIONS = [
 const SITE = "https://www.endodeals.com";
 const FEATURE_TITLES = KEY_POINTS.map((point) => point.title);
 
-// A customer logo links to its customer story when there is one, otherwise to the home page.
-const storyFor = (name: string) => CUSTOMER_STORIES.find((story) => story.slug.startsWith(name.split(" ")[0].toLowerCase()));
+// The press list in the order set in content/partners.ts; any outlet not listed there follows, newest first.
+const pressInHubOrder = () => {
+  const rank = (outlet: string) => {
+    const index = PRESS_ORDER.indexOf(outlet as (typeof PRESS_ORDER)[number]);
+    return index === -1 ? PRESS_ORDER.length : index;
+  };
+  return [...PRESS].sort((a, b) => rank(a.outlet) - rank(b.outlet));
+};
 
 const formatDate = (date: string) => new Date(`${date}T00:00:00`).toLocaleDateString("en-US", { month: "long", year: "numeric" });
 
@@ -177,20 +182,7 @@ export default function PartnersPage() {
           </section>
 
           <section id="proof" className={styles.section} aria-labelledby="proof-heading">
-            <SectionHead id="proof-heading" index={4} title="Proof">Agencies on endo, in their own words, and what the press has written.</SectionHead>
-            <h3 className={styles.subhead}>Agencies on endo</h3>
-            <ul className={styles.customerLogos}>
-              {TRUSTED_BY_LOGOS.map((logo) => {
-                const story = storyFor(logo.name);
-                return (
-                  <li key={logo.name} data-logo={logo.name} data-flat={"flat" in logo || undefined}>
-                    <a href={story ? `${SITE}/customer-stories/${story.slug}` : SITE} target="_blank" rel="noreferrer" title={story ? `Read ${logo.name}’s story` : logo.name}>
-                      <Image src={logo.src} alt={logo.name} width={logo.width} height={logo.height} sizes="160px" />
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
+            <SectionHead id="proof-heading" index={4} title="Proof">What agencies say about endo, and what the press has written.</SectionHead>
             <h3 className={styles.subhead}>In their words</h3>
             <ul className={styles.quotes}>
               {TESTIMONIALS.map((testimonial) => (
@@ -206,17 +198,18 @@ export default function PartnersPage() {
             </ul>
             <h3 className={styles.subhead}>Press</h3>
             <ul className={styles.press}>
-              {PRESS.map((item) => (
+              {pressInHubOrder().map((item) => (
                 <li key={item.href}>
-                  <a href={item.href} target="_blank" rel="noreferrer">
-                    {/* As on the press page: the article's image, or the endo logo on navy when there isn't one. */}
-                    <span className={item.image ? styles.pressImage : `${styles.pressImage} ${styles.pressLogo}`}>
-                      <Image src={item.image ?? "/brand/endo-logo-white-gradient.png"} alt="" fill sizes="(max-width: 960px) 100vw, 540px" />
-                    </span>
-                    <span>{item.outlet} · {formatDate(item.date)}</span>
-                    <b>{item.title}</b>
-                    <em>Read the article ↗</em>
+                  {/* As on the press page: the article's image, or the endo logo on navy when there isn't one. */}
+                  <a className={item.image ? styles.pressImage : `${styles.pressImage} ${styles.pressLogo}`} href={item.href} target="_blank" rel="noreferrer" tabIndex={-1} aria-hidden="true">
+                    <Image src={item.image ?? "/brand/endo-logo-white-gradient.png"} alt="" fill sizes="(max-width: 960px) 100vw, 540px" />
                   </a>
+                  <p className={styles.pressMeta}>{item.outlet} · {formatDate(item.date)}</p>
+                  <a className={styles.pressTitle} href={item.href} target="_blank" rel="noreferrer">{item.title}</a>
+                  <div className={styles.pressActions}>
+                    <a href={item.href} target="_blank" rel="noreferrer">Read the article ↗</a>
+                    <CopyButton className={styles.copyLink} text={item.href} label="Copy link" copiedLabel="Link copied" />
+                  </div>
                 </li>
               ))}
             </ul>

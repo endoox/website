@@ -50,6 +50,7 @@ Everything on the page is in `content/partners.ts`, in the order it appears:
 - **`BRAND_COLOURS`**, **`LOGO_FILES`**: the brand kit.
 - **`ONE_PAGER`**: the one-page summary. Its feature list reuses the key point titles.
 - **`INTRO_STEPS`**, **`INTRO_TEMPLATE`**, **`INTRO_LOG_EMAIL`**: how to make an intro.
+- **`PRESS_ORDER`**: the order of the press cards, by outlet name.
 - **`FAQ`** and **`CONTACTS`**.
 
 Customer logos and testimonials come from `lib/proof.ts`, and press from `lib/press.ts`, the same lists the main site uses. A change there shows up on both.

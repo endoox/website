@@ -57,6 +57,10 @@ export const LOGO_FILES = [
 // Built from LOGO_FILES on every dev start and build (scripts/build-partner-kit.mjs).
 export const BRAND_KIT_ZIP = "endo-brand-kit.zip";
 
+// Press cards in the Proof section, in this order, by outlet name as written in lib/press.ts.
+// Outlets not listed here follow, newest first.
+export const PRESS_ORDER = ["Sports Business Journal", "BetaKit", "PressBeta", "Dealroom"] as const;
+
 // The one-pager: a printable summary built from the website copy.
 export const ONE_PAGER = {
   headline: "The software behind modern sports agencies.",
@@ -134,7 +138,8 @@ export const CONTACTS = [
     role: "Co-founder & COO",
     focus: "Partner program and payouts",
     email: "jack@endodeals.com",
+    linkedin: "https://www.linkedin.com/in/jackalavorto/",
     phone: "403-992-5446",
-    image: "/team/jack-lavorato-headshot.png",
+    image: "/team/jack-lavorato-avatar.png",
   },
 ] as const;
