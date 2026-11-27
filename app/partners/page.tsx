@@ -2,15 +2,16 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Image from "next/image";
 import {
-  PRESS_ORDER, BRAND_COLOURS, BRAND_KIT_ZIP, CONTACTS, DEMO_VIDEO_URL, DRIVE_URL, FAQ, HUB, INTRO_LOG_EMAIL, INTRO_STEPS,
-  INTRO_TEMPLATE, KEY_POINTS, LOGO_FILES, ONE_PAGER,
+  BRAND_COLOURS, BRAND_KIT_ZIP, CONTACTS, DEMO_VIDEO_URL, DRIVE_URL, FAQ, HUB, INTRO_LOG_EMAIL, INTRO_STEPS, INTRO_TEMPLATE,
+  KEY_POINTS, LOGO_FILES, ONE_PAGER_PDF, PRESS_ORDER,
 } from "@/content/partners";
 import { PRESS } from "@/lib/press";
-import { TESTIMONIALS, TRUSTED_BY_LOGOS } from "@/lib/proof";
+import { TESTIMONIALS } from "@/lib/proof";
 import pageStyles from "../page.module.css";
-import { CopyButton, DemoVideo, Greeting, PartnerGate, PrintButton, SectionNav } from "./client";
+import { CopyButton, DemoVideo, Greeting, PartnerGate, SectionNav } from "./client";
+import { OnePager } from "./one-pager";
 import styles from "./partners.module.css";
-import { youtubeId } from "./youtube";
+import { watchUrl, youtubeId } from "./youtube";
 
 // endo partners: the hub for people who introduce agencies to endo. Not linked from the main site,
 // not in the sitemap and kept out of search. All copy and links live in content/partners.ts.
@@ -32,7 +33,6 @@ const SECTIONS = [
 ] as const;
 
 const SITE = "https://www.endodeals.com";
-const FEATURE_TITLES = KEY_POINTS.map((point) => point.title);
 
 // The press list in the order set in content/partners.ts; any outlet not listed there follows, newest first.
 const pressInHubOrder = () => {
@@ -82,6 +82,32 @@ export default function PartnersPage() {
             <h1><Greeting /></h1>
             <p>{HUB.intro}</p>
           </header>
+
+          {/* The three things partners need most, before anything else. */}
+          <section className={styles.tldr} aria-labelledby="tldr-heading">
+            <h2 id="tldr-heading">TL;DR</h2>
+            <ul>
+              <li>
+                <h3>Demo video</h3>
+                <p>A walkthrough of endo to send an agency.</p>
+                {videoId ? (
+                  <CopyButton className={styles.primary} text={watchUrl(videoId)} label="Copy video link" copiedLabel="Link copied" />
+                ) : (
+                  <button className={styles.primary} type="button" disabled>Video link coming soon</button>
+                )}
+              </li>
+              <li>
+                <h3>One-pager</h3>
+                <p>endo on a single page, as a PDF to attach.</p>
+                <a className={styles.primary} href={`/resources/${ONE_PAGER_PDF}`} download>Download one-pager <span aria-hidden="true">↓</span></a>
+              </li>
+              <li>
+                <h3>Outreach message</h3>
+                <p>The intro email to send the agency, copying Mike.</p>
+                <CopyButton className={styles.primary} text={INTRO_TEMPLATE} label="Copy outreach message" copiedLabel="Message copied" />
+              </li>
+            </ul>
+          </section>
 
           <section id="demo" className={styles.section} aria-labelledby="demo-heading">
             <h2 id="demo-heading" className={styles.visuallyHidden}>Demo</h2>
@@ -144,41 +170,9 @@ export default function PartnersPage() {
           <section id="one-pager" className={styles.section} aria-labelledby="one-pager-heading">
             <SectionHead id="one-pager-heading" index={3} title="One-pager">A one-page summary of endo to share or print.</SectionHead>
             <div className={styles.kitActions}>
-              <PrintButton className={styles.secondary}>Print or save as PDF</PrintButton>
+              <a className={styles.primary} href={`/resources/${ONE_PAGER_PDF}`} download>Download PDF <span aria-hidden="true">↓</span></a>
             </div>
-            <article className={styles.onePager} aria-label="endo one-pager">
-              <header>
-                <Image src="/resources/endo-logo-full-colour.png" alt="endo" width={2826} height={1214} sizes="120px" />
-                <span>endodeals.com</span>
-              </header>
-              <h3>{ONE_PAGER.headline}</h3>
-              <p className={styles.opSub}>{ONE_PAGER.subhead}</p>
-              <div className={styles.opShot}>
-                <Image src="/hero/hero-devices.png" alt="endo on a laptop and a phone: the agency home dashboard and the mobile app's Today view" width={3000} height={1770} sizes="(max-width: 900px) 100vw, 760px" />
-              </div>
-              <p className={styles.opAbout}>{ONE_PAGER.about}</p>
-              <h4>What endo does</h4>
-              <ul className={styles.opFeatures}>
-                {FEATURE_TITLES.map((title) => <li key={title}>{title}</li>)}
-              </ul>
-              <dl className={styles.opStats}>
-                {ONE_PAGER.stats.map((stat) => (
-                  <div key={stat.label}><dt>{stat.label}</dt><dd>{stat.value}</dd></div>
-                ))}
-              </dl>
-              <h4>Trusted by</h4>
-              <ul className={styles.opLogos}>
-                {TRUSTED_BY_LOGOS.map((logo) => (
-                  <li key={logo.name} data-logo={logo.name} data-flat={"flat" in logo || undefined}><Image src={logo.src} alt={logo.name} width={logo.width} height={logo.height} sizes="120px" /></li>
-                ))}
-                <li className={styles.andMore}>and more</li>
-              </ul>
-              <blockquote className={styles.opQuote}>
-                <p>“{ONE_PAGER.quote.text}”</p>
-                <footer><b>{ONE_PAGER.quote.name}</b> · {ONE_PAGER.quote.role}</footer>
-              </blockquote>
-              <footer className={styles.opFoot}>{ONE_PAGER.contact}</footer>
-            </article>
+            <OnePager />
           </section>
 
           <section id="proof" className={styles.section} aria-labelledby="proof-heading">

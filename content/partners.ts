@@ -61,6 +61,10 @@ export const BRAND_KIT_ZIP = "endo-brand-kit.zip";
 // Outlets not listed here follow, newest first.
 export const PRESS_ORDER = ["Sports Business Journal", "BetaKit", "PressBeta", "Dealroom"] as const;
 
+// The one-pager as a PDF in public/resources. Rebuild it after changing ONE_PAGER: run `npm run dev`,
+// then `npm run partners:pdf` (see content/README.md).
+export const ONE_PAGER_PDF = "endo-one-pager.pdf";
+
 // The one-pager: a printable summary built from the website copy.
 export const ONE_PAGER = {
   headline: "The software behind modern sports agencies.",
@@ -77,6 +81,8 @@ export const ONE_PAGER = {
     name: "Tyler Wagner",
     role: "Director of Marketing · Roy Sports Group",
   },
+  // The press article to feature, by outlet name as written in lib/press.ts.
+  featuredIn: "Sports Business Journal",
   contact: "Michael Boushy, Co-founder & CEO · mike@endodeals.com · endodeals.com",
 } as const;
 

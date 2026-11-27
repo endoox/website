@@ -10,6 +10,7 @@ The partner hub at **endodeals.com/partners**: a code-gated page with everything
 | Press links (shared with the press page) | `lib/press.ts` |
 | Layout and styles | `app/partners/` |
 | Brand kit zip builder | `scripts/build-partner-kit.mjs` |
+| One-pager PDF builder | `scripts/build-one-pager-pdf.mjs` |
 
 ## The gate is cosmetic
 
@@ -48,7 +49,7 @@ Everything on the page is in `content/partners.ts`, in the order it appears:
 - **`ENTRY`** and **`HUB`**: the gate's headline and line, and the hub's intro.
 - **`KEY_POINTS`**: the six cards.
 - **`BRAND_COLOURS`**, **`LOGO_FILES`**: the brand kit.
-- **`ONE_PAGER`**: the one-page summary. Its feature list reuses the key point titles.
+- **`ONE_PAGER`**: the one-page summary. Its feature list reuses the key point titles, and `featuredIn` picks the press article it shows (Sports Business Journal). After changing it, rebuild the PDF (below).
 - **`INTRO_STEPS`**, **`INTRO_TEMPLATE`**, **`INTRO_LOG_EMAIL`**: how to make an intro.
 - **`PRESS_ORDER`**: the order of the press cards, by outlet name.
 - **`FAQ`** and **`CONTACTS`**.
@@ -56,6 +57,22 @@ Everything on the page is in `content/partners.ts`, in the order it appears:
 Customer logos and testimonials come from `lib/proof.ts`, and press from `lib/press.ts`, the same lists the main site uses. A change there shows up on both.
 
 Rules for the hub: write endo in lowercase, only use wording and facts that are public on endodeals.com, and never add pricing. If pricing comes up, the answer is "Pricing depends on the agency's size and needs. Mike will walk them through it on the first call."
+
+## Rebuild the one-pager PDF
+
+The TL;DR's "Download one-pager" and the One-pager section's "Download PDF" both serve `public/resources/endo-one-pager.pdf`. It's printed from http://localhost:3000/partners/one-pager by your local Chrome, so it doesn't update on its own. After changing the one-pager's copy, logos or press:
+
+```bash
+npm run dev
+```
+
+Then, in a second terminal:
+
+```bash
+npm run partners:pdf
+```
+
+Check the PDF is still one page, then commit it.
 
 ## Swap files
 

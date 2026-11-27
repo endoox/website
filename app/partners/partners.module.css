@@ -48,6 +48,16 @@
 .welcome h1 { max-width: 14ch; margin: 12px 0 0; font-size: clamp(2.4rem, 5vw, 4.2rem); font-weight: 500; letter-spacing: -.06em; line-height: .98; text-wrap: balance; }
 .welcome > p:last-child { max-width: 600px; margin: 16px 0 0; color: var(--muted); font-size: clamp(1.02rem, 1.4vw, 1.2rem); line-height: 1.6; }
 
+/* TL;DR: quick actions under the welcome. */
+.tldr { padding: 24px; border: 1px solid var(--line); border-radius: 26px; background: var(--soft); }
+.tldr h2 { margin: 0 0 16px 4px; color: var(--blue); font-size: .92rem; font-weight: 600; }
+.tldr ul { margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; list-style: none; }
+.tldr li { padding: 22px; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; border: 1px solid var(--line); border-radius: 20px; background: #fff; }
+.tldr h3 { margin: 0; font-size: 1.12rem; font-weight: 560; letter-spacing: -.025em; }
+.tldr p { margin: 0 0 12px; color: var(--muted); font-size: .92rem; line-height: 1.5; }
+.tldr li > :last-child { margin-top: auto; }
+.primary:disabled { border-color: var(--line); background: var(--soft); color: var(--muted); cursor: default; }
+
 .section { padding-top: clamp(48px, 6vw, 80px); scroll-margin-top: 64px; }
 .sectionHead { max-width: 680px; margin-bottom: 24px; }
 .sectionHead h2 { margin: 8px 0 0; font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 500; letter-spacing: -.05em; line-height: 1.02; }
@@ -137,6 +147,11 @@
 /* Two marks with a lot of empty space in their files, zoomed the same way as on the home page. */
 .partners [data-logo="ORR Hockey Group"] img { transform: scale(1.5) translateY(-24%); }
 .partners [data-logo="Cook Stark Management"] img { transform: translateY(-10%); }
+.opPress { display: flex; align-items: center; gap: 18px; color: var(--ink); text-decoration: none; }
+.opPress img { width: 104px; height: auto; flex: none; border: 1px solid var(--line); border-radius: 10px; }
+.opPress span { display: grid; gap: 2px; font-size: .98rem; line-height: 1.4; }
+.opPress b { color: var(--muted); font-size: .82rem; font-weight: 560; }
+.opPress:hover span { color: var(--blue); }
 .opQuote { margin: 24px 0 0; padding: 18px 22px; border-radius: 18px; background: var(--soft); }
 .opQuote p { margin: 0; font-size: 1.08rem; line-height: 1.5; }
 .opQuote footer { margin-top: 10px; color: var(--muted); font-size: .86rem; }
@@ -207,6 +222,7 @@
 .leave button { padding: 0; border: 0; background: none; color: var(--muted); font: inherit; font-size: .86rem; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 
 @media (max-width: 960px) {
+  .tldr ul { grid-template-columns: 1fr; }
   .entryMain { grid-template-columns: 1fr; }
   .entryBody { padding-bottom: 8px; }
   .points, .steps { grid-template-columns: 1fr 1fr; }
@@ -225,6 +241,16 @@
   .contacts li, .quotes li, .points li, .steps li { padding: 20px; }
   .codeForm > div { flex-direction: column; border-radius: 24px; }
   .codeForm input { min-height: 52px; }
+}
+
+/* /partners/one-pager: the one-pager alone, laid out to print on one US Letter page. */
+.printPage { min-height: 0; padding: 32px 16px; background: var(--soft); }
+@page { size: letter; margin: 0; }
+@media print {
+  .printPage { padding: 0; background: #fff; }
+  .printPage .onePager { max-width: none; padding: 40px 52px; border: 0; border-radius: 0; box-shadow: none; zoom: .62; }
+  .printPage .opShot { width: 74%; margin-inline: auto; }
+  .printPage .onePager * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
 }
 
 /* Print just the one-pager. */

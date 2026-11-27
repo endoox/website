@@ -211,7 +211,3 @@ export function SectionNav({ sections }: { sections: readonly { id: string; labe
     </nav>
   );
 }
-
-export function PrintButton({ className, children }: { className?: string; children: ReactNode }) {
-  return <button className={className} type="button" onClick={() => window.print()}>{children}</button>;
-}
