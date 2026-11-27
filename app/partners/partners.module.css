@@ -158,9 +158,15 @@
 .source { color: var(--muted); font-size: .8rem; text-decoration: none; }
 .source:hover { color: var(--ink); }
 .press { margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; list-style: none; }
-.press a { height: 100%; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; border: 1px solid var(--line); border-radius: 24px; background: #fff; color: var(--ink); text-decoration: none; transition: border-color 200ms ease; }
+.press a { height: 100%; padding: 12px 12px 20px; display: flex; flex-direction: column; gap: 10px; border: 1px solid var(--line); border-radius: 24px; background: #fff; color: var(--ink); text-decoration: none; transition: border-color 200ms ease; }
 .press a:hover { border-color: #c6cfdc; }
-.press span { color: var(--muted); font-size: .82rem; font-weight: 560; }
+.pressImage { position: relative; margin-bottom: 6px; display: block; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 16px; background: #f2f4f7; }
+.pressImage img { object-fit: cover; transition: transform 400ms ease; }
+.press a:hover .pressImage img { transform: scale(1.03); }
+.pressLogo { background: var(--blue-deep); }
+.pressLogo img { padding: 0 22%; object-fit: contain; }
+.press span:not(.pressImage), .press b, .press em { padding-inline: 10px; }
+.press span:not(.pressImage) { color: var(--muted); font-size: .82rem; font-weight: 560; }
 .press b { font-size: 1.08rem; font-weight: 560; letter-spacing: -.02em; line-height: 1.35; }
 .press em { margin-top: auto; padding-top: 6px; color: var(--blue); font-size: .86rem; font-style: normal; font-weight: 600; }
 
@@ -234,5 +240,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .entry, .opened, .entryVisual { animation: none; }
-  .points li, .poster img, .play { transition: none; }
+  .points li, .poster img, .play, .pressImage img { transition: none; }
 }

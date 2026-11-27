@@ -209,6 +209,10 @@ export default function PartnersPage() {
               {PRESS.map((item) => (
                 <li key={item.href}>
                   <a href={item.href} target="_blank" rel="noreferrer">
+                    {/* As on the press page: the article's image, or the endo logo on navy when there isn't one. */}
+                    <span className={item.image ? styles.pressImage : `${styles.pressImage} ${styles.pressLogo}`}>
+                      <Image src={item.image ?? "/brand/endo-logo-white-gradient.png"} alt="" fill sizes="(max-width: 960px) 100vw, 540px" />
+                    </span>
                     <span>{item.outlet} · {formatDate(item.date)}</span>
                     <b>{item.title}</b>
                     <em>Read the article ↗</em>
