@@ -78,7 +78,6 @@ export default function PartnersPage() {
 
         <main id="top" className={styles.hub}>
           <header className={styles.welcome}>
-            <p className={styles.eyebrow}>endo partners</p>
             <h1><Greeting /></h1>
             <p>{HUB.intro}</p>
           </header>
