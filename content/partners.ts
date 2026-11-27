@@ -28,9 +28,9 @@ export const HUB = {
   intro: "Everything you need to talk about endo and introduce an agency: the demo, the story, the brand files and how to make the intro.",
 };
 
-// Six cards. Each heading is a feature title from the home page; each line comes from the site.
+// Six cards. The headings are the home page's feature titles (the first reworded); each line comes from the site.
 export const KEY_POINTS = [
-  { title: "Fair market value, finally.", body: "Score the talent, price the deal and show the brand why it fits." },
+  { title: "Value every endorsement deal so you can get fair market value for your clients.", body: "Score the talent, price the deal and show the brand why it fits." },
   { title: "Every agreement, term, and renewal in one place.", body: "endo turns contracts into payment schedules and deliverables in seconds." },
   { title: "Know exactly what is paid, pending, and overdue.", body: "endo flags every payment that is due, right on the roster." },
   { title: "Every post delivered, approved, and measured.", body: "With deliverables, deadlines and approvals tracked in endo, the team knows exactly what is owed and when." },
