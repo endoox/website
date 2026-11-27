@@ -168,7 +168,7 @@ export default function PartnersPage() {
           </section>
 
           <section id="intro" className={styles.section} aria-labelledby="intro-heading">
-            <SectionHead id="intro-heading" index={4} title="How to make an intro">Send one email, and Mike handles the rest.</SectionHead>
+            <SectionHead id="intro-heading" index={4} title="How to make an intro">Send one email, and Mike takes it from there, with you on the calls whenever you like.</SectionHead>
             <ol className={styles.steps}>
               {INTRO_STEPS.map((step, index) => (
                 <li key={step.title}>

@@ -92,6 +92,7 @@ export const ONE_PAGER = {
 export const INTRO_STEPS = [
   { title: "Send the agency a short intro", body: "Copy Mike on a short email to the agency. Use the template below, or put it in your own words." },
   { title: "Mike takes it from there", body: "Mike follows up with the agency and takes the first meeting." },
+  { title: "Join the calls if you like", body: "You're welcome on the first call, or any call after it. Having you there can help get the agency over the finish line." },
 ] as const;
 
 // The intro email. [Agent name] and [Your name] are for the partner to fill in.
