@@ -70,11 +70,11 @@ export const ONE_PAGER = {
   headline: "The software behind modern sports agencies.",
   subhead: "Never miss a payment or deliverable, price every deal right, and get more time to do what you do best.",
   about: "endo is the software behind modern sports agencies. We give agents the tools to run their whole business, and the numbers to show what their talent is really worth.",
-  // From the home page's stats.
+  // The headline numbers.
   stats: [
-    { value: "$15M+", label: "in endorsement deals managed on endo" },
+    { value: "$25M+", label: "in endorsement deals managed on endo" },
     { value: "48", label: "leagues represented across our partner agencies" },
-    { value: "10", label: "average hours saved per week using endo" },
+    { value: "10–15", label: "hours saved per week using endo" },
   ],
   quote: {
     text: "Instead of going into brand conversations with assumptions, we now have credible data to support our pricing. It gives us real leverage.",

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { KEY_POINTS, ONE_PAGER } from "@/content/partners";
 import { PRESS } from "@/lib/press";
 import { TRUSTED_BY_LOGOS } from "@/lib/proof";
+import { LEAGUES } from "../league-coverage";
 import styles from "./partners.module.css";
 
 // The one-page summary of endo, shown in the hub and on /partners/one-pager, which is what the PDF is
@@ -30,6 +31,11 @@ export function OnePager() {
           <div key={stat.label}><dt>{stat.label}</dt><dd>{stat.value}</dd></div>
         ))}
       </dl>
+      <ul className={styles.opLeagues} aria-label="Leagues our agencies' talent plays in">
+        {LEAGUES.map((league) => (
+          <li key={league.file}><Image src={`/leagues/${league.file}.png`} alt={league.name} width={500} height={500} sizes="64px" /></li>
+        ))}
+      </ul>
       <h4>Trusted by</h4>
       <ul className={styles.opLogos}>
         {TRUSTED_BY_LOGOS.map((logo) => (
