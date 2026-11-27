@@ -230,11 +230,18 @@ export default function PartnersPage() {
                   </dl>
                 </li>
               ))}
+              {/* endo itself, as a card matching the people. */}
+              <li>
+                <Image className={styles.companyIcon} src="/resources/endo-icon.png" alt="" width={2161} height={2161} sizes="64px" />
+                <h3>endo</h3>
+                <p className={styles.role}>The company</p>
+                <dl>
+                  <div><dt>Website</dt><dd><a href="https://www.endodeals.com" target="_blank" rel="noreferrer">endodeals.com</a></dd></div>
+                  <div><dt>LinkedIn</dt><dd><a href={COMPANY_LINKEDIN} target="_blank" rel="noreferrer">{COMPANY_LINKEDIN.replace(/^https:\/\/www\./, "")}</a></dd></div>
+                </dl>
+              </li>
             </ul>
-            <div className={styles.kitActions}>
-              <a className={styles.secondary} href={COMPANY_LINKEDIN} target="_blank" rel="noreferrer">endo on LinkedIn ↗</a>
-              <DriveLink className={styles.secondary} />
-            </div>
+            <DriveLink className={styles.secondary} />
           </section>
 
           <section id="brand-kit" className={styles.section} aria-labelledby="brand-kit-heading">

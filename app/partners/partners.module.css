@@ -209,14 +209,17 @@
 .faq p { max-width: 680px; margin: 12px 0 0; color: var(--muted); line-height: 1.65; }
 
 /* ---------- Contact ---------- */
-.contacts { margin: 0 0 24px; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; list-style: none; }
+.contacts { margin: 0 0 24px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; list-style: none; }
 .contacts li { padding: 24px; border: 1px solid var(--line); border-radius: 24px; background: #fff; }
 .contacts img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+/* The app icon is already a rounded square; no circle crop. */
+.contacts .companyIcon { border-radius: 0; object-fit: contain; }
 .contacts h3 { margin: 14px 0 0; font-size: 1.4rem; font-weight: 560; letter-spacing: -.03em; }
 .role { margin: 4px 0 0; color: var(--ink); font-size: .95rem; }
 .contacts dl { margin: 16px 0 0; display: grid; gap: 10px; }
-.contacts dl div { display: grid; grid-template-columns: 84px 1fr; gap: 12px; font-size: .95rem; }
-.contacts dt { color: var(--muted); }
+/* Label above its link, so long LinkedIn links stay on one line in three columns. */
+.contacts dl div { display: grid; gap: 2px; font-size: .95rem; }
+.contacts dt { color: var(--muted); font-size: .82rem; }
 .contacts dd { min-width: 0; margin: 0; overflow-wrap: anywhere; }
 .contacts dd a { color: var(--blue); font-weight: 560; text-decoration: none; }
 .contacts dd a:hover { text-decoration: underline; }
@@ -252,7 +255,6 @@
   .steps li { display: grid; grid-template-columns: 34px 1fr; column-gap: 14px; align-items: center; }
   .steps h3 { margin: 0; }
   .steps p { grid-column: 2; margin-top: 6px; }
-  .contacts dl div { grid-template-columns: 1fr; gap: 2px; }
   .logos { grid-template-columns: 1fr 1fr; gap: 12px; }
   .logoTile { height: 96px; padding: 14px; }
   .logoMeta { flex-direction: column; align-items: flex-start; gap: 2px; font-size: .84rem; }
