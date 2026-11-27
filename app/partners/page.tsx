@@ -166,6 +166,7 @@ export default function PartnersPage() {
                 {TRUSTED_BY_LOGOS.map((logo) => (
                   <li key={logo.name} data-logo={logo.name} data-flat={"flat" in logo || undefined}><Image src={logo.src} alt={logo.name} width={logo.width} height={logo.height} sizes="120px" /></li>
                 ))}
+                <li className={styles.andMore}>and more</li>
               </ul>
               <blockquote className={styles.opQuote}>
                 <p>“{ONE_PAGER.quote.text}”</p>

@@ -71,35 +71,40 @@ export function PartnerGate({ children }: { children: ReactNode }) {
   if (state === "locked") {
     return (
       <main className={styles.entry}>
-        <Image className={styles.entryLogo} src="/resources/endo-logo-full-colour.png" alt="endo" width={2826} height={1214} sizes="140px" priority />
-        <div className={styles.entryBody}>
-          <p className={styles.entryEyebrow}>Partner access</p>
-          <h1>{ENTRY.title}</h1>
-          <p className={styles.entryLine}>{ENTRY.line}</p>
-          <form className={styles.codeForm} onSubmit={onSubmit} noValidate>
-            <label htmlFor="partner-code">Enter your partner code</label>
-            <div>
-              <input
-                id="partner-code"
-                value={code}
-                onChange={(event) => {
-                  setCode(event.target.value);
-                  setError("");
-                }}
-                autoComplete="off"
-                autoCapitalize="none"
-                spellCheck={false}
-                aria-invalid={error ? true : undefined}
-                aria-describedby={error ? "partner-code-error" : undefined}
-                autoFocus
-              />
-              <button type="submit">
-                Enter
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5" /></svg>
-              </button>
-            </div>
-            <p id="partner-code-error" className={styles.codeError} role="alert">{error}</p>
-          </form>
+        <Image className={styles.entryLogo} src="/resources/endo-logo-full-colour.png" alt="endo" width={2826} height={1214} sizes="200px" priority />
+        <div className={styles.entryMain}>
+          <div className={styles.entryBody}>
+            <p className={styles.entryEyebrow}>Partner access</p>
+            <h1>{ENTRY.title}</h1>
+            <p className={styles.entryLine}>{ENTRY.line}</p>
+            <form className={styles.codeForm} onSubmit={onSubmit} noValidate>
+              <label htmlFor="partner-code">Enter your partner code</label>
+              <div>
+                <input
+                  id="partner-code"
+                  value={code}
+                  onChange={(event) => {
+                    setCode(event.target.value);
+                    setError("");
+                  }}
+                  autoComplete="off"
+                  autoCapitalize="none"
+                  spellCheck={false}
+                  aria-invalid={error ? true : undefined}
+                  aria-describedby={error ? "partner-code-error" : undefined}
+                  autoFocus
+                />
+                <button type="submit">
+                  Enter
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5" /></svg>
+                </button>
+              </div>
+              <p id="partner-code-error" className={styles.codeError} role="alert">{error}</p>
+            </form>
+          </div>
+          <div className={styles.entryVisual}>
+            <Image src="/hero/hero-devices.png" alt="endo on a laptop and a phone: the agency home dashboard and the mobile app's Today view" width={3000} height={1770} sizes="(max-width: 960px) 100vw, 55vw" priority />
+          </div>
         </div>
         <p className={styles.entryFoot}>Not a partner yet? Email <a href="mailto:jack@endodeals.com">jack@endodeals.com</a>.</p>
       </main>
@@ -169,7 +174,12 @@ export function DemoVideo({ videoId }: { videoId: string }) {
           </button>
         )}
       </div>
-      {videoId && <a className={styles.watch} href={watchUrl(videoId)} target="_blank" rel="noreferrer">Watch on YouTube ↗</a>}
+      {videoId && (
+        <div className={styles.videoLinks}>
+          <CopyButton className={styles.copyLink} text={watchUrl(videoId)} label="Copy link" copiedLabel="Link copied" />
+          <a className={styles.watch} href={watchUrl(videoId)} target="_blank" rel="noreferrer">Watch on YouTube ↗</a>
+        </div>
+      )}
     </div>
   );
 }
