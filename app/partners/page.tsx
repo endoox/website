@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Image from "next/image";
 import {
-  BRAND_COLOURS, BRAND_KIT_ZIP, CONTACTS, DEMO_VIDEO_URL, DRIVE_URL, FAQ, HUB, INTRO_LOG_EMAIL, INTRO_STEPS, INTRO_TEMPLATE,
+  BRAND_COLOURS, BRAND_KIT_ZIP, COMPANY_LINKEDIN, CONTACTS, DEMO_VIDEO_URL, DRIVE_URL, FAQ, HUB, INTRO_LOG_EMAIL, INTRO_STEPS, INTRO_TEMPLATE,
   KEY_POINTS, LOGO_FILES, ONE_PAGER_PDF, PRESS_ORDER,
 } from "@/content/partners";
 import { PRESS } from "@/lib/press";
@@ -255,14 +255,14 @@ export default function PartnersPage() {
                     {"linkedin" in contact && (
                       <div><dt>LinkedIn</dt><dd><a href={contact.linkedin} target="_blank" rel="noreferrer">{contact.linkedin.replace(/^https:\/\/www\./, "").replace(/\/$/, "")}</a></dd></div>
                     )}
-                    {"phone" in contact && (
-                      <div><dt>Phone</dt><dd><a href={`tel:+1${contact.phone.replace(/\D/g, "")}`}>{contact.phone}</a></dd></div>
-                    )}
                   </dl>
                 </li>
               ))}
             </ul>
-            <DriveLink className={styles.secondary} />
+            <div className={styles.kitActions}>
+              <a className={styles.secondary} href={COMPANY_LINKEDIN} target="_blank" rel="noreferrer">endo on LinkedIn ↗</a>
+              <DriveLink className={styles.secondary} />
+            </div>
           </section>
         </main>
       </PartnerGate>

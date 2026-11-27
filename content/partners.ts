@@ -16,6 +16,8 @@ export const PARTNER_CODES: { code: string; partnerName: string }[] = [
 export const DEMO_VIDEO_URL = "";
 // A Google Drive folder with the full partner material. Leave blank to hide the Drive buttons.
 export const DRIVE_URL = "";
+// endo's company page, linked under the contact cards.
+export const COMPANY_LINKEDIN = "https://www.linkedin.com/company/endodeals";
 
 // ---------- Entry ----------
 export const ENTRY = {
@@ -143,7 +145,6 @@ export const CONTACTS = [
     role: "Co-founder & COO",
     email: "jack@endodeals.com",
     linkedin: "https://www.linkedin.com/in/jackalavorto/",
-    phone: "403-992-5446",
     image: "/team/jack-lavorato-avatar.png",
   },
 ] as const;
