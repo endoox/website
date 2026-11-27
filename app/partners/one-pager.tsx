@@ -31,11 +31,15 @@ export function OnePager() {
           <div key={stat.label}><dt>{stat.label}</dt><dd>{stat.value}</dd></div>
         ))}
       </dl>
-      <ul className={styles.opLeagues} aria-label="Leagues our agencies' talent plays in">
-        {LEAGUES.map((league) => (
-          <li key={league.file}><Image src={`/leagues/${league.file}.png`} alt={league.name} width={500} height={500} sizes="64px" /></li>
-        ))}
-      </ul>
+      {/* The home page's league row, set apart from the stats and the agency logos. */}
+      <section className={styles.opLeagues} aria-labelledby="one-pager-leagues">
+        <h4 id="one-pager-leagues">Talent managed from across the board</h4>
+        <ul>
+          {LEAGUES.map((league) => (
+            <li key={league.file}><Image src={`/leagues/${league.file}.png`} alt={league.name} width={500} height={500} sizes="64px" /></li>
+          ))}
+        </ul>
+      </section>
       <h4>Trusted by</h4>
       <ul className={styles.opLogos}>
         {TRUSTED_BY_LOGOS.map((logo) => (

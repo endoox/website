@@ -83,7 +83,7 @@ export const ONE_PAGER = {
   },
   // The press article to feature, by outlet name as written in lib/press.ts.
   featuredIn: "Sports Business Journal",
-  contact: "Michael Boushy, Co-founder & CEO · mike@endodeals.com · endodeals.com",
+  contact: "Michael Boushy, Co-founder & CEO · mike@endodeals.com",
 } as const;
 
 // ---------- How to make an intro ----------

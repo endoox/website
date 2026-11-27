@@ -139,8 +139,10 @@
 .opStats div + div { padding-left: 18px; border-left: 1px solid var(--line); }
 .opStats dd { margin: 0; color: var(--blue-deep); font-size: 2rem; font-weight: 600; letter-spacing: -.04em; }
 .opStats dt { color: var(--muted); font-size: .84rem; line-height: 1.4; }
-.opLeagues { margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 16px; list-style: none; }
-.opLeagues img { width: 40px; height: 40px; object-fit: contain; }
+.opLeagues { margin-top: 24px; padding: 18px 24px 20px; border-radius: 18px; background: var(--soft); }
+.onePager .opLeagues h4 { margin: 0 0 14px; color: var(--muted); }
+.opLeagues ul { margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 16px; list-style: none; }
+.opLeagues img { width: 36px; height: 36px; object-fit: contain; }
 .opLogos { margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; list-style: none; }
 .opLogos li { height: 36px; display: flex; align-items: center; }
 .opLogos img { width: auto; max-width: 110px; max-height: 36px; object-fit: contain; filter: grayscale(1) brightness(.18); }
