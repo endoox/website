@@ -214,7 +214,6 @@
 .contacts img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
 .contacts h3 { margin: 14px 0 0; font-size: 1.4rem; font-weight: 560; letter-spacing: -.03em; }
 .role { margin: 4px 0 0; color: var(--ink); font-size: .95rem; }
-.focus { margin: 4px 0 0; color: var(--muted); font-size: .92rem; }
 .contacts dl { margin: 16px 0 0; display: grid; gap: 10px; }
 .contacts dl div { display: grid; grid-template-columns: 84px 1fr; gap: 12px; font-size: .95rem; }
 .contacts dt { color: var(--muted); }

@@ -134,7 +134,6 @@ export const CONTACTS = [
   {
     name: "Michael Boushy",
     role: "Co-founder & CEO",
-    focus: "Sales and intros",
     email: "mike@endodeals.com",
     linkedin: "https://www.linkedin.com/in/michaelboushy/",
     image: "/team/michael-boushy-headshot.png",
@@ -142,7 +141,6 @@ export const CONTACTS = [
   {
     name: "Jack Lavorato",
     role: "Co-founder & COO",
-    focus: "Partner program and payouts",
     email: "jack@endodeals.com",
     linkedin: "https://www.linkedin.com/in/jackalavorto/",
     phone: "403-992-5446",

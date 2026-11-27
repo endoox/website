@@ -250,7 +250,6 @@ export default function PartnersPage() {
                   <Image src={contact.image} alt="" width={240} height={240} sizes="64px" />
                   <h3>{contact.name}</h3>
                   <p className={styles.role}>{contact.role}</p>
-                  <p className={styles.focus}>{contact.focus}</p>
                   <dl>
                     <div><dt>Email</dt><dd><a href={`mailto:${contact.email}`}>{contact.email}</a></dd></div>
                     {"linkedin" in contact && (
