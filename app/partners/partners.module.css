@@ -263,7 +263,7 @@
 @page { size: letter; margin: 0; }
 @media print {
   .printPage { padding: 0; background: #fff; }
-  .printPage .onePager { max-width: none; padding: 40px 52px; border: 0; border-radius: 0; box-shadow: none; zoom: .62; }
+  .printPage .onePager { max-width: none; padding: 40px 52px; border: 0; border-radius: 0; box-shadow: none; zoom: .6; }
   .printPage .opShot { width: 74%; margin-inline: auto; }
   .printPage .onePager * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
 }

@@ -33,7 +33,7 @@ export const HUB = {
 // Six cards in plain agent language. The supporting lines come from the site.
 export const KEY_POINTS = [
   { title: "Value every endorsement deal so you can get fair market value for your clients.", body: "Score the talent, price the deal and show the brand why it fits." },
-  { title: "Every agreement, term, and renewal in one place.", body: "endo turns contracts into payment schedules and deliverables in seconds." },
+  { title: "Every agreement, term, and renewal in one place, flagged before anything expires.", body: "endo turns contracts into payment schedules and deliverables in seconds." },
   { title: "Know exactly what is paid, pending, and overdue.", body: "endo flags every payment that is due, right on the roster." },
   { title: "Every post delivered, approved, and measured.", body: "With deliverables, deadlines and approvals tracked in endo, the team knows exactly what is owed and when." },
   { title: "See the whole business behind your roster.", body: "Roster, contracts, schedules and deals live in one shared platform. Every agent sees the same information." },
