@@ -170,8 +170,6 @@
 .quotePerson img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
 .quotePerson b { display: block; font-size: .92rem; font-weight: 600; }
 .quotePerson span { color: var(--muted); font-size: .82rem; }
-.source { color: var(--muted); font-size: .8rem; text-decoration: none; }
-.source:hover { color: var(--ink); }
 .press { margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; list-style: none; }
 .press li { height: 100%; padding: 12px 12px 18px; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 24px; background: #fff; transition: border-color 200ms ease; }
 .press li:hover { border-color: #c6cfdc; }

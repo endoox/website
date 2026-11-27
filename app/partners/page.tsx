@@ -32,8 +32,6 @@ const SECTIONS = [
   { id: "brand-kit", label: "Brand kit" },
 ] as const;
 
-const SITE = "https://www.endodeals.com";
-
 // The press list in the order set in content/partners.ts; any outlet not listed there follows, newest first.
 const pressInHubOrder = () => {
   const rank = (outlet: string) => {
@@ -144,7 +142,6 @@ export default function PartnersPage() {
                     <Image src={testimonial.image} alt="" width={96} height={96} sizes="40px" />
                     <div><b>{testimonial.name}</b><span>{testimonial.role}</span></div>
                   </div>
-                  <a className={styles.source} href={`${SITE}/#testimonials`} target="_blank" rel="noreferrer">Source: endodeals.com ↗</a>
                 </li>
               ))}
             </ul>
