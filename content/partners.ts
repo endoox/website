@@ -28,14 +28,14 @@ export const HUB = {
   intro: "Everything you need to talk about endo and introduce an agency: the demo, the story, the brand files and how to make the intro.",
 };
 
-// Six cards. The headings are the home page's feature titles (the first reworded); each line comes from the site.
+// Six cards in plain agent language. The supporting lines come from the site.
 export const KEY_POINTS = [
   { title: "Value every endorsement deal so you can get fair market value for your clients.", body: "Score the talent, price the deal and show the brand why it fits." },
   { title: "Every agreement, term, and renewal in one place.", body: "endo turns contracts into payment schedules and deliverables in seconds." },
   { title: "Know exactly what is paid, pending, and overdue.", body: "endo flags every payment that is due, right on the roster." },
   { title: "Every post delivered, approved, and measured.", body: "With deliverables, deadlines and approvals tracked in endo, the team knows exactly what is owed and when." },
   { title: "See the whole business behind your roster.", body: "Roster, contracts, schedules and deals live in one shared platform. Every agent sees the same information." },
-  { title: "Turn every conversation into momentum.", body: "Agencies use endo to make their sales outreach more efficient and go into negotiations better prepared." },
+  { title: "Every talent gets a profile, so they always have transparency.", body: "Talent can log into their own profile to see their deals, pipeline and payments." },
 ] as const;
 
 // The brand colours, as used in the logo and across endodeals.com.
