@@ -102,9 +102,7 @@ I want to introduce you to Michael Boushy, co-founder of endo (endodeals.com). e
 
 I know you mentioned [the problem they're dealing with, e.g. tracking deals and payments across spreadsheets]. That's exactly what endo solves, so I think the two of you should talk.
 
-They recently closed their pre-seed round and are growing quickly. Mike is building relationships with agencies and agents, and your experience would be really valuable to him.
-
-Would you be open to a short intro call? I've copied Mike here, or you can reach him directly at mike@endodeals.com or (647) 531-1492.
+I've copied Mike here, or you can reach him directly at mike@endodeals.com or (647) 531-1492.
 
 Best,
 [Your name]`;
