@@ -44,3 +44,6 @@ cloudflare-env.d.ts
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# built by scripts/build-partner-kit.mjs
+/public/resources/endo-brand-kit.zip

@@ -1,0 +1,280 @@
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
+import Image from "next/image";
+import {
+  BRAND_COLOURS, BRAND_KIT_ZIP, CONTACTS, DEMO_VIDEO_URL, DRIVE_URL, FAQ, HUB, INTRO_LOG_EMAIL, INTRO_STEPS,
+  INTRO_TEMPLATE, KEY_POINTS, LOGO_FILES, ONE_PAGER,
+} from "@/content/partners";
+import { CUSTOMER_STORIES } from "@/lib/customer-stories";
+import { PRESS } from "@/lib/press";
+import { TESTIMONIALS, TRUSTED_BY_LOGOS } from "@/lib/proof";
+import pageStyles from "../page.module.css";
+import { CopyButton, DemoVideo, Greeting, PartnerGate, PrintButton, SectionNav } from "./client";
+import styles from "./partners.module.css";
+import { youtubeId } from "./youtube";
+
+// endo partners: the hub for people who introduce agencies to endo. Not linked from the main site,
+// not in the sitemap and kept out of search. All copy and links live in content/partners.ts.
+export const metadata: Metadata = {
+  title: "endo partners",
+  description: "Resources for endo partners.",
+  robots: { index: false, follow: false },
+};
+
+const SECTIONS = [
+  { id: "demo", label: "Demo" },
+  { id: "key-points", label: "Key points" },
+  { id: "brand-kit", label: "Brand kit" },
+  { id: "one-pager", label: "One-pager" },
+  { id: "proof", label: "Proof" },
+  { id: "intro", label: "Make an intro" },
+  { id: "faq", label: "FAQ" },
+  { id: "contact", label: "Contact" },
+] as const;
+
+const SITE = "https://www.endodeals.com";
+const FEATURE_TITLES = KEY_POINTS.map((point) => point.title);
+
+// A customer logo links to its customer story when there is one, otherwise to the home page.
+const storyFor = (name: string) => CUSTOMER_STORIES.find((story) => story.slug.startsWith(name.split(" ")[0].toLowerCase()));
+
+const formatDate = (date: string) => new Date(`${date}T00:00:00`).toLocaleDateString("en-US", { month: "long", year: "numeric" });
+
+function DriveLink({ className }: { className: string }) {
+  if (!DRIVE_URL) return null;
+  return <a className={className} href={DRIVE_URL} target="_blank" rel="noreferrer">Open the Google Drive ↗</a>;
+}
+
+function SectionHead({ id, index, title, children }: { id: string; index: number; title: string; children?: ReactNode }) {
+  return (
+    <div className={styles.sectionHead}>
+      <p className={styles.index}>{String(index).padStart(2, "0")}</p>
+      <h2 id={id}>{title}</h2>
+      {children && <p className={styles.lede}>{children}</p>}
+    </div>
+  );
+}
+
+export default function PartnersPage() {
+  const videoId = youtubeId(DEMO_VIDEO_URL);
+
+  return (
+    <div className={`${pageStyles.page} ${styles.partners}`}>
+      <PartnerGate>
+        <header className={styles.bar}>
+          <div className={styles.barInner}>
+            <a className={styles.barBrand} href="#top" aria-label="endo partners, back to top">
+              <Image src="/resources/endo-logo-full-colour.png" alt="" width={2826} height={1214} sizes="96px" priority />
+              <span>partners</span>
+            </a>
+            <SectionNav sections={SECTIONS} />
+          </div>
+        </header>
+
+        <main id="top" className={styles.hub}>
+          <header className={styles.welcome}>
+            <p className={styles.eyebrow}>endo partners</p>
+            <h1><Greeting /></h1>
+            <p>{HUB.intro}</p>
+          </header>
+
+          <section id="demo" className={styles.section} aria-labelledby="demo-heading">
+            <h2 id="demo-heading" className={styles.visuallyHidden}>Demo</h2>
+            <DemoVideo videoId={videoId} />
+          </section>
+
+          <section id="key-points" className={styles.section} aria-labelledby="key-points-heading">
+            <SectionHead id="key-points-heading" index={1} title="Key points">What endo does for an agency, in the words agents use.</SectionHead>
+            <ul className={styles.points}>
+              {KEY_POINTS.map((point) => (
+                <li key={point.title}>
+                  <h3>{point.title}</h3>
+                  <p>{point.body}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section id="brand-kit" className={styles.section} aria-labelledby="brand-kit-heading">
+            <SectionHead id="brand-kit-heading" index={2} title="Brand kit">Logos and colours for decks, intros and anything else you share. Always write endo in lowercase.</SectionHead>
+            <div className={styles.kitActions}>
+              <a className={styles.primary} href={`/resources/${BRAND_KIT_ZIP}`} download>Download all <span aria-hidden="true">↓</span></a>
+              <DriveLink className={styles.secondary} />
+            </div>
+            <ul className={styles.logos}>
+              {LOGO_FILES.map((logo) => (
+                <li key={logo.file}>
+                  <div className={styles.logoTile} style={{ background: logo.background }}>
+                    <Image src={`/resources/${logo.file}`} alt={`endo logo, ${logo.name.toLowerCase()}`} width={logo.width} height={logo.height} sizes="320px" />
+                  </div>
+                  <div className={styles.logoMeta}>
+                    <span>{logo.name}</span>
+                    <a href={`/resources/${logo.file}`} download>PNG <span aria-hidden="true">↓</span></a>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <ul className={styles.swatches}>
+              {BRAND_COLOURS.map((colour) => (
+                <li key={colour.hex}>
+                  <CopyButton
+                    className={styles.swatch}
+                    text={colour.hex}
+                    copiedLabel="Copied"
+                    label={
+                      <>
+                        <i style={{ background: colour.hex }} aria-hidden="true" />
+                        <b>{colour.name}</b>
+                        <code>{colour.hex}</code>
+                        <small>{colour.use}</small>
+                      </>
+                    }
+                  />
+                </li>
+              ))}
+            </ul>
+            <p className={styles.note}>Click a colour to copy its hex code.</p>
+          </section>
+
+          <section id="one-pager" className={styles.section} aria-labelledby="one-pager-heading">
+            <SectionHead id="one-pager-heading" index={3} title="One-pager">A one-page summary of endo to share or print.</SectionHead>
+            <div className={styles.kitActions}>
+              <PrintButton className={styles.secondary}>Print or save as PDF</PrintButton>
+            </div>
+            <article className={styles.onePager} aria-label="endo one-pager">
+              <header>
+                <Image src="/resources/endo-logo-full-colour.png" alt="endo" width={2826} height={1214} sizes="120px" />
+                <span>endodeals.com</span>
+              </header>
+              <h3>{ONE_PAGER.headline}</h3>
+              <p className={styles.opSub}>{ONE_PAGER.subhead}</p>
+              <div className={styles.opShot}>
+                <Image src="/hero/hero-devices.png" alt="endo on a laptop and a phone: the agency home dashboard and the mobile app's Today view" width={3000} height={1770} sizes="(max-width: 900px) 100vw, 760px" />
+              </div>
+              <p className={styles.opAbout}>{ONE_PAGER.about}</p>
+              <h4>What endo does</h4>
+              <ul className={styles.opFeatures}>
+                {FEATURE_TITLES.map((title) => <li key={title}>{title}</li>)}
+              </ul>
+              <dl className={styles.opStats}>
+                {ONE_PAGER.stats.map((stat) => (
+                  <div key={stat.label}><dt>{stat.label}</dt><dd>{stat.value}</dd></div>
+                ))}
+              </dl>
+              <h4>Trusted by</h4>
+              <ul className={styles.opLogos}>
+                {TRUSTED_BY_LOGOS.map((logo) => (
+                  <li key={logo.name} data-logo={logo.name} data-flat={"flat" in logo || undefined}><Image src={logo.src} alt={logo.name} width={logo.width} height={logo.height} sizes="120px" /></li>
+                ))}
+              </ul>
+              <blockquote className={styles.opQuote}>
+                <p>“{ONE_PAGER.quote.text}”</p>
+                <footer><b>{ONE_PAGER.quote.name}</b> · {ONE_PAGER.quote.role}</footer>
+              </blockquote>
+              <footer className={styles.opFoot}>{ONE_PAGER.contact}</footer>
+            </article>
+          </section>
+
+          <section id="proof" className={styles.section} aria-labelledby="proof-heading">
+            <SectionHead id="proof-heading" index={4} title="Proof">Agencies on endo, in their own words, and what the press has written.</SectionHead>
+            <h3 className={styles.subhead}>Agencies on endo</h3>
+            <ul className={styles.customerLogos}>
+              {TRUSTED_BY_LOGOS.map((logo) => {
+                const story = storyFor(logo.name);
+                return (
+                  <li key={logo.name} data-logo={logo.name} data-flat={"flat" in logo || undefined}>
+                    <a href={story ? `${SITE}/customer-stories/${story.slug}` : SITE} target="_blank" rel="noreferrer" title={story ? `Read ${logo.name}’s story` : logo.name}>
+                      <Image src={logo.src} alt={logo.name} width={logo.width} height={logo.height} sizes="160px" />
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+            <h3 className={styles.subhead}>In their words</h3>
+            <ul className={styles.quotes}>
+              {TESTIMONIALS.map((testimonial) => (
+                <li key={testimonial.name}>
+                  <blockquote>“{testimonial.quote}”</blockquote>
+                  <div className={styles.quotePerson}>
+                    <Image src={testimonial.image} alt="" width={96} height={96} sizes="40px" />
+                    <div><b>{testimonial.name}</b><span>{testimonial.role}</span></div>
+                  </div>
+                  <a className={styles.source} href={`${SITE}/#testimonials`} target="_blank" rel="noreferrer">Source: endodeals.com ↗</a>
+                </li>
+              ))}
+            </ul>
+            <h3 className={styles.subhead}>Press</h3>
+            <ul className={styles.press}>
+              {PRESS.map((item) => (
+                <li key={item.href}>
+                  <a href={item.href} target="_blank" rel="noreferrer">
+                    <span>{item.outlet} · {formatDate(item.date)}</span>
+                    <b>{item.title}</b>
+                    <em>Read the article ↗</em>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section id="intro" className={styles.section} aria-labelledby="intro-heading">
+            <SectionHead id="intro-heading" index={5} title="How to make an intro">Three steps, and Mike handles the rest.</SectionHead>
+            <ol className={styles.steps}>
+              {INTRO_STEPS.map((step, index) => (
+                <li key={step.title}>
+                  <span>{index + 1}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.body}</p>
+                </li>
+              ))}
+            </ol>
+            <div className={styles.template}>
+              <div className={styles.templateHead}>
+                <h3>Intro email</h3>
+                <CopyButton className={styles.primary} text={INTRO_TEMPLATE} label="Copy intro" copiedLabel="Copied to clipboard" />
+              </div>
+              <pre>{INTRO_TEMPLATE}</pre>
+            </div>
+            <a className={styles.secondary} href={`mailto:${INTRO_LOG_EMAIL}?subject=${encodeURIComponent("New intro")}`}>Email {INTRO_LOG_EMAIL} to log an intro</a>
+          </section>
+
+          <section id="faq" className={styles.section} aria-labelledby="faq-heading">
+            <SectionHead id="faq-heading" index={6} title="FAQ" />
+            <div className={styles.faq}>
+              {FAQ.map((item) => (
+                <details key={item.question}>
+                  <summary>{item.question}</summary>
+                  <p>{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+
+          <section id="contact" className={styles.section} aria-labelledby="contact-heading">
+            <SectionHead id="contact-heading" index={7} title="Contact" />
+            <ul className={styles.contacts}>
+              {CONTACTS.map((contact) => (
+                <li key={contact.email}>
+                  <Image src={contact.image} alt="" width={240} height={240} sizes="64px" />
+                  <h3>{contact.name}</h3>
+                  <p className={styles.role}>{contact.role}</p>
+                  <p className={styles.focus}>{contact.focus}</p>
+                  <dl>
+                    <div><dt>Email</dt><dd><a href={`mailto:${contact.email}`}>{contact.email}</a></dd></div>
+                    {"linkedin" in contact && (
+                      <div><dt>LinkedIn</dt><dd><a href={contact.linkedin} target="_blank" rel="noreferrer">{contact.linkedin.replace(/^https:\/\/www\./, "").replace(/\/$/, "")}</a></dd></div>
+                    )}
+                    {"phone" in contact && (
+                      <div><dt>Phone</dt><dd><a href={`tel:+1${contact.phone.replace(/\D/g, "")}`}>{contact.phone}</a></dd></div>
+                    )}
+                  </dl>
+                </li>
+              ))}
+            </ul>
+            <DriveLink className={styles.secondary} />
+          </section>
+        </main>
+      </PartnerGate>
+    </div>
+  );
+}

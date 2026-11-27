@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
+import { AdTracking } from "./ad-tracking";
 import { BookingWidget } from "./booking-widget";
 import { JsonLd, ORGANIZATION } from "./structured-data";
-import { LINKEDIN_PARTNER_ID } from "@/lib/linkedin";
 import { shareMetadata } from "@/lib/share-metadata";
 
 const geistSans = Geist({
@@ -42,28 +41,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         <BookingWidget />
         {/* Ad tracking; production only, so local dev visits stay out of the data. */}
-        {process.env.NODE_ENV === "production" && (
-          <>
-            {/* LinkedIn Insight Tag: ad attribution and the conversions fired by trackLinkedIn (lib/linkedin.ts). */}
-            <Script id="linkedin-insight" strategy="afterInteractive">
-              {`_linkedin_partner_id = "${LINKEDIN_PARTNER_ID}";
-window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-(function(l) {
-if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
-window.lintrk.q=[]}
-var s = document.getElementsByTagName("script")[0];
-var b = document.createElement("script");
-b.type = "text/javascript";b.async = true;
-b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-s.parentNode.insertBefore(b, s);})(window.lintrk);`}
-            </Script>
-            <noscript>
-              {/* eslint-disable-next-line @next/next/no-img-element -- a tracking pixel, not content */}
-              <img height="1" width="1" style={{ display: "none" }} alt="" src={`https://px.ads.linkedin.com/collect/?pid=${LINKEDIN_PARTNER_ID}&fmt=gif`} />
-            </noscript>
-          </>
-        )}
+        {process.env.NODE_ENV === "production" && <AdTracking />}
       </body>
     </html>
   );
