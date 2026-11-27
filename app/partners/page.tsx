@@ -234,7 +234,7 @@ export default function PartnersPage() {
               <li>
                 <Image className={styles.companyIcon} src="/resources/endo-icon.png" alt="" width={2161} height={2161} sizes="64px" />
                 <h3>endo</h3>
-                <p className={styles.role}>The company</p>
+                <p className={styles.role}>Company pages</p>
                 <dl>
                   <div><dt>Website</dt><dd><a href="https://www.endodeals.com" target="_blank" rel="noreferrer">endodeals.com</a></dd></div>
                   <div><dt>LinkedIn</dt><dd><a href={COMPANY_LINKEDIN} target="_blank" rel="noreferrer">{COMPANY_LINKEDIN.replace(/^https:\/\/www\./, "")}</a></dd></div>
