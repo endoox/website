@@ -91,7 +91,6 @@ export const ONE_PAGER = {
 // ---------- How to make an intro ----------
 export const INTRO_STEPS = [
   { title: "Send the agency a short intro", body: "Copy Mike on a short email to the agency. Use the template below, or put it in your own words." },
-  { title: "Let Jack know", body: "Email jack@endodeals.com the agency name, the contact and a line of context, so we can log the intro to you." },
   { title: "Mike takes it from there", body: "Mike follows up with the agency and takes the first meeting." },
 ] as const;
 
@@ -105,7 +104,8 @@ I think it could save your team a lot of admin and help in negotiations. Mike, I
 Best,
 [Your name]`;
 
-export const INTRO_LOG_EMAIL = "jack@endodeals.com";
+// "Open in email" starts a new email with this subject and the template, copying Mike (the first contact).
+export const INTRO_SUBJECT = "Introducing endo";
 
 // ---------- FAQ ----------
 export const FAQ = [
@@ -123,7 +123,7 @@ export const FAQ = [
   },
   {
     question: "What happens after I make an intro?",
-    answer: "Mike reaches out to the agency and takes the first meeting. Once you've emailed Jack the agency name and contact, the intro is logged to you.",
+    answer: "Mike reaches out to the agency and takes the first meeting. Because he's copied on your intro, we log it to you on our end.",
   },
   {
     question: "How and when do partners get paid?",

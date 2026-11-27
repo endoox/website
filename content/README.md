@@ -50,7 +50,7 @@ Everything on the page is in `content/partners.ts`, in the order it appears:
 - **`KEY_POINTS`**: the six cards.
 - **`BRAND_COLOURS`**, **`LOGO_FILES`**: the brand kit.
 - **`ONE_PAGER`**: the one-page summary. Its feature list reuses the key point titles, and `featuredIn` picks the press article it shows (Sports Business Journal). After changing it, rebuild the PDF (below).
-- **`INTRO_STEPS`**, **`INTRO_TEMPLATE`**, **`INTRO_LOG_EMAIL`**: how to make an intro.
+- **`INTRO_STEPS`**, **`INTRO_TEMPLATE`**, **`INTRO_SUBJECT`**: how to make an intro. "Open in email" starts an email with that subject and template, copying Mike.
 - **`PRESS_ORDER`**: the order of the press cards, by outlet name.
 - **`FAQ`** and **`CONTACTS`**.
 

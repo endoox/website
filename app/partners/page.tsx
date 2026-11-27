@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Image from "next/image";
 import {
-  BRAND_COLOURS, BRAND_KIT_ZIP, COMPANY_LINKEDIN, CONTACTS, DEMO_VIDEO_URL, DRIVE_URL, FAQ, HUB, INTRO_LOG_EMAIL, INTRO_STEPS, INTRO_TEMPLATE,
+  BRAND_COLOURS, BRAND_KIT_ZIP, COMPANY_LINKEDIN, CONTACTS, DEMO_VIDEO_URL, DRIVE_URL, FAQ, HUB, INTRO_STEPS, INTRO_SUBJECT, INTRO_TEMPLATE,
   KEY_POINTS, LOGO_FILES, ONE_PAGER_PDF, PRESS_ORDER,
 } from "@/content/partners";
 import { PRESS } from "@/lib/press";
@@ -40,6 +40,9 @@ const pressInHubOrder = () => {
   };
   return [...PRESS].sort((a, b) => rank(a.outlet) - rank(b.outlet));
 };
+
+// A new email in the partner's own mail app, Mike copied, with the intro template filled in.
+const introMailto = `mailto:?cc=${CONTACTS[0].email}&subject=${encodeURIComponent(INTRO_SUBJECT)}&body=${encodeURIComponent(INTRO_TEMPLATE)}`;
 
 const formatDate = (date: string) => new Date(`${date}T00:00:00`).toLocaleDateString("en-US", { month: "long", year: "numeric" });
 
@@ -165,7 +168,7 @@ export default function PartnersPage() {
           </section>
 
           <section id="intro" className={styles.section} aria-labelledby="intro-heading">
-            <SectionHead id="intro-heading" index={4} title="How to make an intro">Three steps, and Mike handles the rest.</SectionHead>
+            <SectionHead id="intro-heading" index={4} title="How to make an intro">Send one email, and Mike handles the rest.</SectionHead>
             <ol className={styles.steps}>
               {INTRO_STEPS.map((step, index) => (
                 <li key={step.title}>
@@ -178,11 +181,13 @@ export default function PartnersPage() {
             <div className={styles.template}>
               <div className={styles.templateHead}>
                 <h3>Intro email</h3>
-                <CopyButton className={styles.primary} text={INTRO_TEMPLATE} label="Copy intro" copiedLabel="Copied to clipboard" />
+                <div className={styles.templateActions}>
+                  <a className={styles.secondary} href={introMailto}>Open in email ↗</a>
+                  <CopyButton className={styles.primary} text={INTRO_TEMPLATE} label="Copy intro" copiedLabel="Copied to clipboard" />
+                </div>
               </div>
               <pre>{INTRO_TEMPLATE}</pre>
             </div>
-            <a className={styles.secondary} href={`mailto:${INTRO_LOG_EMAIL}?subject=${encodeURIComponent("New intro")}`}>Email {INTRO_LOG_EMAIL} to log an intro</a>
           </section>
 
           <section id="faq" className={styles.section} aria-labelledby="faq-heading">
