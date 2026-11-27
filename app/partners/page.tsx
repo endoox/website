@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Image from "next/image";
 import {
-  BRAND_COLOURS, BRAND_KIT_ZIP, COMPANY_LINKEDIN, CONTACTS, DEMO_VIDEO_URL, DRIVE_URL, FAQ, HUB, INTRO_STEPS, INTRO_SUBJECT, INTRO_TEMPLATE,
+  BRAND_COLOURS, BRAND_KIT_ZIP, COMPANY_LINKEDIN, CONTACTS, DEMO_VIDEO_URL, DRIVE_URL, FAQ, HUB, INTRO_STEPS, INTRO_SUBJECT, INTRO_TEMPLATE, INTRO_TEXT,
   KEY_POINTS, LOGO_FILES, ONE_PAGER_PDF, PRESS_ORDER,
 } from "@/content/partners";
 import { PRESS } from "@/lib/press";
@@ -103,8 +103,11 @@ export default function PartnersPage() {
               </li>
               <li>
                 <h3>Outreach message</h3>
-                <p>The intro email to send the agency, copying Mike.</p>
-                <CopyButton className={styles.primary} text={INTRO_TEMPLATE} label="Copy outreach message" copiedLabel="Message copied" />
+                <p>The intro to send the agency, by email or text, copying Mike.</p>
+                <div className={styles.tldrActions}>
+                  <CopyButton className={styles.primary} text={INTRO_TEMPLATE} label="Copy email" copiedLabel="Email copied" />
+                  <CopyButton className={styles.secondary} text={INTRO_TEXT} label="Copy text" copiedLabel="Text copied" />
+                </div>
               </li>
             </ul>
           </section>
@@ -187,6 +190,15 @@ export default function PartnersPage() {
                 </div>
               </div>
               <pre>{INTRO_TEMPLATE}</pre>
+            </div>
+            <div className={styles.template}>
+              <div className={styles.templateHead}>
+                <h3>Intro text</h3>
+                <div className={styles.templateActions}>
+                  <CopyButton className={styles.primary} text={INTRO_TEXT} label="Copy text" copiedLabel="Copied to clipboard" />
+                </div>
+              </div>
+              <pre>{INTRO_TEXT}</pre>
             </div>
           </section>
 

@@ -90,7 +90,7 @@ export const ONE_PAGER = {
 
 // ---------- How to make an intro ----------
 export const INTRO_STEPS = [
-  { title: "Send the agency a short intro", body: "Copy Mike on a short email to the agency. Use the template below, or put it in your own words." },
+  { title: "Send the agency a short intro", body: "Copy Mike on a short email, or start a group text with him and the agent. Use a template below, or put it in your own words." },
   { title: "Mike takes it from there", body: "Mike follows up with the agency and takes the first meeting." },
   { title: "Join the calls if you like", body: "You're welcome on the first call, or any call after it. Having you there can help get the agency over the finish line." },
 ] as const;
@@ -106,6 +106,10 @@ I've copied Mike here, or you can reach him directly at mike@endodeals.com or (6
 
 Best,
 [Your name]`;
+
+// The intro as a text, for a group text with the agent and Mike. The bracketed parts are for the
+// partner to fill in.
+export const INTRO_TEXT = `Hey [Name], meet Mike Boushy, co-founder of endo (endodeals.com). endo helps agents manage and value endorsement deals for their athletes, and they've already helped a lot of agencies do it. You mentioned [the problem they're dealing with], so I think you two should talk. Mike, over to you!`;
 
 // "Open in email" starts a new email with this subject and the template, copying Mike (the first contact).
 export const INTRO_SUBJECT = "Introducing endo";
