@@ -95,12 +95,16 @@ export const INTRO_STEPS = [
   { title: "Join the calls if you like", body: "You're welcome on the first call, or any call after it. Having you there can help get the agency over the finish line." },
 ] as const;
 
-// The intro email. [Agent name] and [Your name] are for the partner to fill in.
-export const INTRO_TEMPLATE = `Hi [Agent name],
+// The intro email. The bracketed parts are for the partner to fill in.
+export const INTRO_TEMPLATE = `Hi [Name],
 
-I wanted to introduce you to Michael Boushy, co-founder of endo (endodeals.com). endo helps agencies manage and value their athletes' endorsement deals in one place: rosters, contracts, deliverables and payments, plus valuations that show what a deal is actually worth.
+I want to introduce you to Michael Boushy, co-founder of endo (endodeals.com). endo helps agents manage and value endorsement deals for their athletes, and they've already helped a lot of agencies do it.
 
-I think it could save your team a lot of admin and help in negotiations. Mike, I'll let you take it from here.
+I know you mentioned [the problem they're dealing with, e.g. tracking deals and payments across spreadsheets]. That's exactly what endo solves, so I think the two of you should talk.
+
+They recently closed their pre-seed round and are growing quickly. Mike is building relationships with agencies and agents, and your experience would be really valuable to him.
+
+Would you be open to a short intro call? I've copied Mike here, or you can reach him directly at mike@endodeals.com or (647) 531-1492.
 
 Best,
 [Your name]`;
