@@ -241,6 +241,19 @@
   .play svg { width: 26px; height: 26px; }
   .contacts li, .quotes li, .points li, .steps li { padding: 20px; }
   .codeForm > div { flex-direction: column; border-radius: 24px; }
+  /* Compact on phones: tighter quick actions, and step numbers beside their titles. */
+  .tldr { padding: 14px; border-radius: 22px; }
+  .tldr h2 { margin-bottom: 10px; }
+  .tldr ul { gap: 10px; }
+  .tldr li { padding: 16px; gap: 4px; }
+  .tldr p { margin-bottom: 10px; font-size: .88rem; }
+  .steps li { display: grid; grid-template-columns: 34px 1fr; column-gap: 14px; align-items: center; }
+  .steps h3 { margin: 0; }
+  .steps p { grid-column: 2; margin-top: 6px; }
+  .contacts dl div { grid-template-columns: 1fr; gap: 2px; }
+  .logos { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .logoTile { height: 96px; padding: 14px; }
+  .logoMeta { flex-direction: column; align-items: flex-start; gap: 2px; font-size: .84rem; }
   .codeForm input { min-height: 52px; }
 }
 
